@@ -806,12 +806,12 @@
 </div>
 
 <nav class="sticky-nav">
+  <button class="nav-btn" onclick="scrollToSection('currency')">💱 Currency</button>
   <button class="nav-btn" onclick="scrollToSection('flights')">✈ Flights</button>
   <button class="nav-btn" onclick="scrollToSection('globe')">🌍 Flight Map</button>
   <button class="nav-btn" onclick="scrollToSection('hotels')">🏨 Hotels</button>
   <button class="nav-btn" onclick="scrollToSection('hongkong')">🇭🇰 Hong Kong</button>
   <button class="nav-btn" onclick="scrollToSection('itinerary')">📅 Bali Itinerary</button>
-  <button class="nav-btn" onclick="scrollToSection('currency')">💱 Currency</button>
   <button class="nav-btn" onclick="scrollToSection('docs')">📋 Documents</button>
   <button class="nav-btn" onclick="scrollToSection('weather')">🌤 Weather</button>
   <button class="nav-btn" onclick="scrollToSection('packing')">🎒 Packing</button>
@@ -819,6 +819,15 @@
 </nav>
 
 <div class="container">
+
+  <section class="section" id="currency">
+    <div class="section-header"><span class="section-label">💱</span><h2 class="section-title">Currency Converter</h2></div>
+    <div class="currency-grid">
+      <div class="currency-card"><div class="ticket-label">Hong Kong</div><div class="ticket-name">USD → HKD</div><div class="currency-row"><label>Enter USD</label><input type="number" id="usdHKD" value="100" min="0" oninput="syncCurrency('hkd')"><input type="range" id="sliderHKD" min="0" max="1000" value="100" oninput="syncCurrencySlider('hkd')"></div><div class="currency-result" id="resultHKD">HK$780</div><div class="currency-note">Approx rate used: $1 USD ≈ HK$7.80</div><div class="currency-mini-grid"><button class="currency-chip" onclick="setCurrency('hkd',20)">$20</button><button class="currency-chip" onclick="setCurrency('hkd',50)">$50</button><button class="currency-chip" onclick="setCurrency('hkd',100)">$100</button></div></div>
+      <div class="currency-card"><div class="ticket-label">Bali / Indonesia</div><div class="ticket-name">USD → IDR</div><div class="currency-row"><label>Enter USD</label><input type="number" id="usdIDR" value="100" min="0" oninput="syncCurrency('idr')"><input type="range" id="sliderIDR" min="0" max="1000" value="100" oninput="syncCurrencySlider('idr')"></div><div class="currency-result" id="resultIDR">Rp1,744,500</div><div class="currency-note">Approx rate used: $1 USD ≈ Rp17,445</div><div class="currency-mini-grid"><button class="currency-chip" onclick="setCurrency('idr',10)">$10</button><button class="currency-chip" onclick="setCurrency('idr',25)">$25</button><button class="currency-chip" onclick="setCurrency('idr',100)">$100</button></div></div>
+    </div>
+    <div class="note-box mt-md"><strong>Tip:</strong> Use this for quick mental math while traveling. Actual card, ATM, and exchange booth rates may vary.</div>
+  </section>
 
   <section class="section" id="flights">
     <div class="section-header"><span class="section-label">01</span><h2 class="section-title">Flights</h2></div>
@@ -973,15 +982,6 @@
     </div>
   </section>
 
-  <section class="section" id="currency">
-    <div class="section-header"><span class="section-label">💱</span><h2 class="section-title">Currency Converter</h2></div>
-    <div class="currency-grid">
-      <div class="currency-card"><div class="ticket-label">Hong Kong</div><div class="ticket-name">USD → HKD</div><div class="currency-row"><label>Enter USD</label><input type="number" id="usdHKD" value="100" min="0" oninput="syncCurrency('hkd')"><input type="range" id="sliderHKD" min="0" max="1000" value="100" oninput="syncCurrencySlider('hkd')"></div><div class="currency-result" id="resultHKD">HK$780</div><div class="currency-note">Approx rate used: $1 USD ≈ HK$7.80</div><div class="currency-mini-grid"><button class="currency-chip" onclick="setCurrency('hkd',20)">$20</button><button class="currency-chip" onclick="setCurrency('hkd',50)">$50</button><button class="currency-chip" onclick="setCurrency('hkd',100)">$100</button></div></div>
-      <div class="currency-card"><div class="ticket-label">Bali / Indonesia</div><div class="ticket-name">USD → IDR</div><div class="currency-row"><label>Enter USD</label><input type="number" id="usdIDR" value="100" min="0" oninput="syncCurrency('idr')"><input type="range" id="sliderIDR" min="0" max="1000" value="100" oninput="syncCurrencySlider('idr')"></div><div class="currency-result" id="resultIDR">Rp1,744,500</div><div class="currency-note">Approx rate used: $1 USD ≈ Rp17,445</div><div class="currency-mini-grid"><button class="currency-chip" onclick="setCurrency('idr',10)">$10</button><button class="currency-chip" onclick="setCurrency('idr',25)">$25</button><button class="currency-chip" onclick="setCurrency('idr',100)">$100</button></div></div>
-    </div>
-    <div class="note-box mt-md"><strong>Tip:</strong> Use this for quick mental math while traveling. Actual card, ATM, and exchange booth rates may vary.</div>
-  </section>
-
   <section class="section" id="docs">
     <div class="section-header"><span class="section-label">04</span><h2 class="section-title">Travel Documents</h2></div>
 
@@ -1048,7 +1048,7 @@
     document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  const sections = ['flights','globe','hotels','hongkong','itinerary','currency','docs','weather','packing','tips'];
+  const sections = ['currency','flights','globe','hotels','hongkong','itinerary','docs','weather','packing','tips'];
   const navBtns = document.querySelectorAll('.nav-btn');
   window.addEventListener('scroll', () => {
     let current = 'flights';
