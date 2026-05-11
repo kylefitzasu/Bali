@@ -872,6 +872,299 @@
     margin-top: 16px;
   }
   .note-box strong { color: var(--gold); }
+  /* HONG KONG ITINERARY */
+  .hk-section {
+    background: #0D0D0D;
+    color: #F5F0E8;
+    padding: 0;
+    border-bottom: none;
+  }
+
+  .hk-header {
+    background: linear-gradient(135deg, #C8102E 0%, #8B0000 50%, #0D0D0D 100%);
+    padding: 60px 40px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hk-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(200,16,46,0.3) 0%, transparent 60%),
+                radial-gradient(circle at 80% 20%, rgba(255,215,0,0.15) 0%, transparent 50%);
+  }
+
+  .hk-header-inner { position: relative; z-index: 1; }
+
+  .hk-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #FFD700;
+    margin-bottom: 12px;
+  }
+
+  .hk-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 7vw, 64px);
+    font-weight: 700;
+    line-height: 1.05;
+    margin: 0 0 8px;
+    letter-spacing: -1px;
+  }
+
+  .hk-sub {
+    color: #B0A89A;
+    font-size: 15px;
+    margin-top: 10px;
+  }
+
+  .hk-tabs {
+    display: flex;
+    background: #1A1A1A;
+    border-bottom: 1px solid #2A2A2A;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .hk-tabs::-webkit-scrollbar { display: none; }
+
+  .hk-tab {
+    flex: 1;
+    min-width: 100px;
+    padding: 16px 12px;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+    text-align: center;
+  }
+
+  .hk-tab.active { background: #111; color: #F5F0E8; }
+  .hk-tab .tab-emoji { font-size: 22px; display: block; }
+  .hk-tab .tab-day { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; margin-top: 4px; display: block; }
+  .hk-tab .tab-name { font-size: 11px; margin-top: 2px; display: block; }
+
+  .hk-day-panels { display: none; }
+  .hk-day-panels.active-panel { display: block; }
+
+  .hk-day-header {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 32px 24px 20px;
+    border-bottom: 1px solid #222;
+  }
+
+  .hk-day-badge {
+    display: inline-block;
+    color: #fff;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    padding: 4px 12px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .hk-day-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 400;
+    margin: 0 0 6px;
+    color: #F5F0E8;
+  }
+
+  .hk-day-sub {
+    color: #888;
+    font-size: 14px;
+    font-style: italic;
+  }
+
+  .hk-timeline {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 8px 24px 40px;
+  }
+
+  .hk-stop {
+    display: flex;
+    gap: 16px;
+    padding-top: 24px;
+  }
+
+  .hk-stop-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40px;
+    flex-shrink: 0;
+  }
+
+  .hk-stop-dot {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #1A1A1A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+    z-index: 1;
+  }
+
+  .hk-stop-connector {
+    width: 1px;
+    flex: 1;
+    min-height: 32px;
+    margin-top: 4px;
+  }
+
+  .hk-card {
+    flex: 1;
+    padding-bottom: 8px;
+  }
+
+  .hk-card-inner {
+    background: #161616;
+    border: 1px solid #2A2A2A;
+    border-radius: 4px;
+    padding: 16px 18px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+
+  .hk-card-inner:hover { border-color: #444; }
+  .hk-card-inner.expanded { }
+
+  .hk-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .hk-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+  }
+
+  .hk-time {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  .hk-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    padding: 2px 8px;
+    text-transform: uppercase;
+  }
+
+  .hk-stop-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0 0 6px;
+    color: #F5F0E8;
+  }
+
+  .hk-stop-desc {
+    margin: 0;
+    font-size: 13px;
+    color: #999;
+    line-height: 1.6;
+  }
+
+  .hk-chevron {
+    color: #555;
+    font-size: 18px;
+    flex-shrink: 0;
+    transition: transform 0.2s;
+    line-height: 1;
+  }
+
+  .hk-tip-box {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #2A2A2A;
+    display: none;
+  }
+
+  .hk-tip-box.visible { display: block; }
+
+  .hk-tip-inner {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    background: #0A0A0A;
+    border-radius: 4px;
+    padding: 12px 14px;
+  }
+
+  .hk-tip-text {
+    margin: 0;
+    font-size: 13px;
+    color: #B0A89A;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .hk-essential-tips {
+    background: #111;
+    border-top: 1px solid #222;
+    padding: 32px 24px;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .hk-tips-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 20px;
+  }
+
+  .hk-tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  .hk-tip-card {
+    background: #161616;
+    border: 1px solid #2A2A2A;
+    padding: 14px 16px;
+    border-radius: 4px;
+  }
+
+  .hk-tip-card-icon { font-size: 20px; margin-bottom: 6px; display: block; }
+  .hk-tip-card-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; color: #E0D8CC; }
+  .hk-tip-card-text { font-size: 12px; color: #777; line-height: 1.5; }
+
+  .hk-note {
+    max-width: 680px;
+    margin: 0 auto 0;
+    padding: 16px 24px;
+    background: rgba(255,215,0,0.07);
+    border-left: 3px solid #FFD700;
+    font-size: 13px;
+    color: #B0A89A;
+  }
+  .hk-note strong { color: #FFD700; }
+
 </style>
 </head>
 <body>
@@ -889,9 +1182,10 @@
 
 <!-- NAV -->
 <nav class="sticky-nav">
-  <button class="nav-btn active" onclick="scrollTo('flights')">✈ Flights</button>
+  <button class="nav-btn" onclick="scrollTo('flights')">✈ Flights</button>
   <button class="nav-btn" onclick="scrollTo('hotels')">🏨 Hotels</button>
-  <button class="nav-btn" onclick="scrollTo('itinerary')">📅 Itinerary</button>
+  <button class="nav-btn" onclick="scrollTo('itinerary')">📅 Bali Itinerary</button>
+  <button class="nav-btn" onclick="scrollTo('hongkong')">🇭🇰 Hong Kong</button>
   <button class="nav-btn" onclick="scrollTo('docs')">📋 Documents</button>
   <button class="nav-btn" onclick="scrollTo('weather')">🌤 Weather</button>
   <button class="nav-btn" onclick="scrollTo('packing')">🎒 Packing</button>
@@ -1326,6 +1620,578 @@
     </div>
   </section>
 
+  <!-- ===== HONG KONG ITINERARY ===== -->
+  <section class="section hk-section" id="hongkong">
+
+    <div class="hk-header">
+      <div class="hk-header-inner">
+        <div class="hk-eyebrow">May 15 – 18 · 3 Days</div>
+        <h1 class="hk-title">香港 Hong Kong</h1>
+        <p class="hk-sub">Kyle & Sarah · JW Marriott, Pacific Place</p>
+      </div>
+    </div>
+
+    <div class="hk-note">
+      <strong>📍 Note:</strong> This is a suggested itinerary — mix, match, and skip as you like. You arrive May 15 at 9:15 AM and depart May 18 at 9:05 AM, giving you roughly 3 full days to explore.
+    </div>
+
+    <!-- DAY TABS -->
+    <div class="hk-tabs" id="hkTabs">
+      <button class="hk-tab active" onclick="hkSetDay(0)" id="hk-tab-0" style="border-bottom-color: #C8102E;">
+        <span class="tab-emoji">🏙️</span>
+        <span class="tab-day">DAY 1</span>
+        <span class="tab-name" style="color:#FF6B6B;">HK Island</span>
+      </button>
+      <button class="hk-tab" onclick="hkSetDay(1)" id="hk-tab-1">
+        <span class="tab-emoji">🌃</span>
+        <span class="tab-day">DAY 2</span>
+        <span class="tab-name" style="color:#FFC107;">Kowloon</span>
+      </button>
+      <button class="hk-tab" onclick="hkSetDay(2)" id="hk-tab-2">
+        <span class="tab-emoji">🥾</span>
+        <span class="tab-day">DAY 3</span>
+        <span class="tab-name" style="color:#4CAF50;">Adventure</span>
+      </button>
+    </div>
+
+    <!-- DAY 1: HK ISLAND -->
+    <div class="hk-day-panels active-panel" id="hk-panel-0">
+      <div class="hk-day-header">
+        <div class="hk-day-badge" style="background:#C8102E;">Day 1</div>
+        <h2 class="hk-day-title">Hong Kong Island</h2>
+        <p class="hk-day-sub">Markets, Temples & The Peak</p>
+      </div>
+      <div class="hk-timeline">
+
+        <div class="hk-stop">
+          <div class="hk-stop-line">
+            <div class="hk-stop-dot" style="border: 2px solid #C8102E;">🥟</div>
+            <div class="hk-stop-connector" style="background: linear-gradient(#C8102E44, transparent);"></div>
+          </div>
+          <div class="hk-card">
+            <div class="hk-card-inner" onclick="hkToggle(this)">
+              <div class="hk-card-top">
+                <div style="flex:1">
+                  <div class="hk-card-meta">
+                    <span class="hk-time" style="color:#FF6B6B;">8:00 AM</span>
+                    <span class="hk-tag" style="background:#C8102E25;color:#FF6B6B;border:1px solid #C8102E40;">Breakfast</span>
+                  </div>
+                  <h3 class="hk-stop-name">Tim Ho Wan</h3>
+                  <p class="hk-stop-desc">Start with the world's most affordable Michelin-starred dim sum. Order the legendary BBQ pork buns (baked, not steamed), har gow, and cheung fun. Budget ~$15 USD for two.</p>
+                </div>
+                <div class="hk-chevron">▾</div>
+              </div>
+              <div class="hk-tip-box">
+                <div class="hk-tip-inner" style="border:1px solid #C8102E30;">
+                  <span style="font-size:16px;">💡</span>
+                  <p class="hk-tip-text">Arrive right at 8am when it opens — lines form fast. Inside the MTR Hong Kong Station.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hk-stop">
+          <div class="hk-stop-line">
+            <div class="hk-stop-dot" style="border: 2px solid #C8102E;">🏯</div>
+            <div class="hk-stop-connector" style="background: linear-gradient(#C8102E44, transparent);"></div>
+          </div>
+          <div class="hk-card">
+            <div class="hk-card-inner" onclick="hkToggle(this)">
+              <div class="hk-card-top">
+                <div style="flex:1">
+                  <div class="hk-card-meta">
+                    <span class="hk-time" style="color:#FF6B6B;">10:00 AM</span>
+                    <span class="hk-tag" style="background:#C8102E25;color:#FF6B6B;border:1px solid #C8102E40;">Culture</span>
+                  </div>
+                  <h3 class="hk-stop-name">Man Mo Temple</h3>
+                  <p class="hk-stop-desc">One of HK's oldest and most atmospheric temples on Hollywood Road. Massive incense coils hang from the ceiling — the smoke and scent are otherworldly. Free to enter.</p>
+                </div>
+                <div class="hk-chevron">▾</div>
+              </div>
+              <div class="hk-tip-box">
+                <div class="hk-tip-inner" style="border:1px solid #C8102E30;">
+                  <span style="font-size:16px;">💡</span>
+                  <p class="hk-tip-text">Stroll Hollywood Road afterward — it's lined with antique shops selling jade, ceramics, and art.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hk-stop">
+          <div class="hk-stop-line">
+            <div class="hk-stop-dot" style="border: 2px solid #C8102E;">🥧</div>
+            <div class="hk-stop-connector" style="background: linear-gradient(#C8102E44, transparent);"></div>
+          </div>
+          <div class="hk-card">
+            <div class="hk-card-inner" onclick="hkToggle(this)">
+              <div class="hk-card-top">
+                <div style="flex:1">
+                  <div class="hk-card-meta">
+                    <span class="hk-time" style="color:#FF6B6B;">11:30 AM</span>
+                    <span class="hk-tag" style="background:#C8102E25;color:#FF6B6B;border:1px solid #C8102E40;">Snack</span>
+                  </div>
+                  <h3 class="hk-stop-name">Tai Cheong Bakery</h3>
+                  <p class="hk-stop-desc">A mandatory stop. These egg tarts are the stuff of legend — buttery, flaky crust with silky custard. Chris Patten, the last British Governor, was famously obsessed with them.</p>
+                </div>
+                <div class="hk-chevron">▾</div>
+              </div>
+              <div class="hk-tip-box">
+                <div class="hk-tip-inner" style="border:1px solid #C8102E30;">
+                  <span style="font-size:16px;">💡</span>
+                  <p class="hk-tip-text">Get them hot out of the oven — ask staff when the next batch is ready.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hk-stop">
+          <div class="hk-stop-line">
+            <div class="hk-stop-dot" style="border: 2px solid #C8102E;">⛰️</div>
+            <div class="hk-stop-connector" style="background: linear-gradient(#C8102E44, transparent);"></div>
+          </div>
+          <div class="hk-card">
+            <div class="hk-card-inner" onclick="hkToggle(this)">
+              <div class="hk-card-top">
+                <div style="flex:1">
+                  <div class="hk-card-meta">
+                    <span class="hk-time" style="color:#FF6B6B;">12:30 PM</span>
+                    <span class="hk-tag" style="background:#C8102E25;color:#FF6B6B;border:1px solid #C8102E40;">Iconic View</span>
+                  </div>
+                  <h3 class="hk-stop-name">Victoria Peak</h3>
+                  <p class="hk-stop-desc">Take the historic Peak Tram up — the incline is dramatic and thrilling. At the top, skip the paid terrace and walk Lugard Road (free, 15 mins) for the most photogenic panoramic views of the harbor and skyline.</p>
+                </div>
+                <div class="hk-chevron">▾</div>
+              </div>
+              <div class="hk-tip-box">
+                <div class="hk-tip-inner" style="border:1px solid #C8102E30;">
+                  <span style="font-size:16px;">💡</span>
+                  <p class="hk-tip-text">Bus 15 up, Peak Tram down is the local's move. Go on a clear day — call it a morning activity if you have flexibility.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hk-stop">
+          <div class="hk-stop-line">
+            <div class="hk-stop-dot" style="border: 2px solid #C8102E;">🍻</div>
+            <div class="hk-stop-connector" style="background: linear-gradient(#C8102E44, transparent);"></div>
+          </div>
+          <div class="hk-card">
+            <div class="hk-card-inner" onclick="hkToggle(this)">
+              <div class="hk-card-top">
+                <div style="flex:1">
+                  <div class="hk-card-meta">
+                    <span class="hk-time" style="color:#FF6B6B;">3:30 PM</span>
+                    <span class="hk-tag" style="background:#C8102E25;color:#FF6B6B;border:1px solid #C8102E40;">Neighborhood</span>
+                  </div>
+                  <h3 class="hk-stop-name">Lan Kwai Fong</h3>
+                  <p class="hk-stop-desc">HK's most famous bar and restaurant district. By day, grab a craft beer or cocktail at one of the terraces. A great spot to people-watch, recharge, and plan the evening.</p>
+                </div>
+                <div class="hk-chevron">▾</div>
+              </div>
+              <div class="hk-tip-box">
+                <div class="hk-tip-inner" style="border:1px solid #C8102E30;">
+                  <span style="font-size:16px;">💡</span>
+                  <p class="hk-tip-text">The alleys are steeper than they look. Wear comfortable shoes.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hk-stop">
+          <div class="hk-stop-line">
+            <div class="hk-stop-dot" style="border: 2px solid #C8102E;">⭐</div>
+          </div>
+          <div class="hk-card">
+            <div class="hk-card-inner" onclick="hkToggle(this)">
+              <div class="hk-card-top">
+                <div style="flex:1">
+                  <div class="hk-card-meta">
+                    <span class="hk-time" style="color:#FF6B6B;">7:00 PM</span>
+                    <span class="hk-tag" style="background:#C8102E25;color:#FF6B6B;border:1px solid #C8102E40;">Splurge Dinner</span>
+                  </div>
+                  <h3 class="hk-stop-name">Lung King Heen</h3>
+                  <p class="hk-stop-desc">The world's first Chinese restaurant to earn 3 Michelin stars. Cantonese cuisine at its absolute peak — harbor views, impeccable dim sum, and seafood dishes you'll talk about for years. Book weeks in advance.</p>
+                </div>
+                <div class="hk-chevron">▾</div>
+              </div>
+              <div class="hk-tip-box">
+                <div class="hk-tip-inner" style="border:1px solid #C8102E30;">
+                  <span style="font-size:16px;">💡</span>
+                  <p class="hk-tip-text">Request a harbor-view table when booking. The lunch dim sum is slightly more accessible price-wise if dinner is too steep.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DAY 2: KOWLOON -->
+    <div class="hk-day-panels" id="hk-panel-1">
+      <div class="hk-day-header">
+        <div class="hk-day-badge" style="background:#B8860B;">Day 2</div>
+        <h2 class="hk-day-title">Kowloon Peninsula</h2>
+        <p class="hk-day-sub">Markets, Temples & Harbour Magic</p>
+      </div>
+      <div class="hk-timeline">
+
+        <div class="hk-stop">
+          <div class="hk-stop-line">
+            <div class="hk-stop-dot" style="border: 2px solid #FFD700;">🏮</div>
+            <div class="hk-stop-connector" style="background: linear-gradient(#FFD70044, transparent);"></div>
+          </div>
+          <div class="hk-card">
+            <div class="hk-card-inner" onclick="hkToggle(this)">
+              <div class="hk-card-top">
+                <div style="flex:1">
+                  <div class="hk-card-meta">
+                    <span class="hk-time" style="color:#FFC107;">9:00 AM</span>
+                    <span class="hk-tag" style="background:#FFD70025;color:#FFC107;border:1px solid #FFD70040;">Culture</span>
+                  </div>
+                  <h3 class="hk-stop-name">Wong Tai Sin Temple</h3>
+                  <p class="hk-stop-desc">One of HK's grandest Taoist temples, famous for fortune-telling. Locals come to shake the kau cim sticks for readings. The colorful architecture, gardens, and koi ponds make this a photographer's dream.</p>
+                </div>
+                <div class="hk-chevron">▾</div>
+              </div>
+              <div class="hk-tip-box">
+                <div class="hk-tip-inner" style="border:1px solid #FFD70030;">
+                  <span style="font-size:16px;">💡</span>
+                  <p class="hk-tip-text">Visit before 10am for a calmer, more local experience. Dress respectfully.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hk-stop">
+          <div class="hk-stop-line">
+            <div class="hk-stop-dot" style="border: 2px solid #FFD700;">🛍️</div>
+            <div class="hk-stop-connector" style="background: linear-gradient(#FFD70044, transparent);"></div>
+          </div>
+          <div class="hk-card">
+            <div class="hk-card-inner" onclick="hkToggle(this)">
+              <div class="hk-card-top">
+                <div style="flex:1">
+                  <div class="hk-card-meta">
+                    <span class="hk-time" style="color:#FFC107;">11:00 AM</span>
+                    <span class="hk-tag" style="background:#FFD70025;color:#FFC107;border:1px solid #FFD70040;">Shopping</span>
+                  </div>
+                  <h3 class="hk-stop-name">Ladies' Market, Mong Kok</h3>
+                  <p class="hk-stop-desc">A sprawling street market on Tung Choi Street — clothes, souvenirs, electronics, and trinkets. The real fun is bargaining. Start at half the asking price and work from there.</p>
+                </div>
+                <div class="hk-chevron">▾</div>
+              </div>
+              <div class="hk-tip-box">
+                <div class="hk-tip-inner" style="border:1px solid #FFD70030;">
+                  <span style="font-size:16px;">💡</span>
+                  <p class="hk-tip-text">Nearby Fa Yuen Street ('Sneaker Street') is great if you're into trainers. Also check out the goldfish market just around the corner.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hk-stop">
+          <div class="hk-stop-line">
+            <div class="hk-stop-dot" style="border: 2px solid #FFD700;">🍜</div>
+            <div class="hk-stop-connector" style="background: linear-gradient(#FFD70044, transparent);"></div>
+          </div>
+          <div class="hk-card">
+            <div class="hk-card-inner" onclick="hkToggle(this)">
+              <div class="hk-card-top">
+                <div style="flex:1">
+                  <div class="hk-card-meta">
+                    <span class="hk-time" style="color:#FFC107;">1:00 PM</span>
+                    <span class="hk-tag" style="background:#FFD70025;color:#FFC107;border:1px solid #FFD70040;">Lunch</span>
+                  </div>
+                  <h3 class="hk-stop-name">Mong Kok Dai Pai Dong</h3>
+                  <p class="hk-stop-desc">Grab lunch at one of the open-air cooked food stalls in the area — char siu rice, wonton noodle soup, or congee. This is quintessential HK street food culture.</p>
+                </div>
+                <div class="hk-chevron">▾</div>
+              </div>
+              <div class="hk-tip-box">
+                <div class="hk-tip-inner" style="border:1px solid #FFD70030;">
+                  <span style="font-size:16px;">💡</span>
+                  <p class="hk-tip-text">Look for places packed with locals — a queue is always a good sign. Budget ~$5-8 USD per person.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hk-stop">
+          <div class="hk-stop-line">
+            <div class="hk-stop-dot" style="border: 2px solid #FFD700;">⛴️</div>
+            <div class="hk-stop-connector" style="background: linear-gradient(#FFD70044, transparent);"></div>
+          </div>
+          <div class="hk-card">
+            <div class="hk-card-inner" onclick="hkToggle(this)">
+              <div class="hk-card-top">
+                <div style="flex:1">
+                  <div class="hk-card-meta">
+                    <span class="hk-time" style="color:#FFC107;">3:00 PM</span>
+                    <span class="hk-tag" style="background:#FFD70025;color:#FFC107;border:1px solid #FFD70040;">Iconic Experience</span>
+                  </div>
+                  <h3 class="hk-stop-name">Star Ferry</h3>
+                  <p class="hk-stop-desc">The most scenic $0.62 you'll ever spend. The 10-minute ferry crossing between Tsim Sha Tsui and Central has been running since 1888. The harbor views from the water are unmatched.</p>
+                </div>
+                <div class="hk-chevron">▾</div>
+              </div>
+              <div class="hk-tip-box">
+                <div class="hk-tip-inner" style="border:1px solid #FFD70030;">
+                  <span style="font-size:16px;">💡</span>
+                  <p class="hk-tip-text">Take the upper deck for the best views and photos. Do it both ways — HK Island skyline from Kowloon is spectacular.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hk-stop">
+          <div class="hk-stop-line">
+            <div class="hk-stop-dot" style="border: 2px solid #FFD700;">⭐</div>
+            <div class="hk-stop-connector" style="background: linear-gradient(#FFD70044, transparent);"></div>
+          </div>
+          <div class="hk-card">
+            <div class="hk-card-inner" onclick="hkToggle(this)">
+              <div class="hk-card-top">
+                <div style="flex:1">
+                  <div class="hk-card-meta">
+                    <span class="hk-time" style="color:#FFC107;">5:00 PM</span>
+                    <span class="hk-tag" style="background:#FFD70025;color:#FFC107;border:1px solid #FFD70040;">Waterfront Walk</span>
+                  </div>
+                  <h3 class="hk-stop-name">Avenue of Stars</h3>
+                  <p class="hk-stop-desc">HK's answer to Hollywood's Walk of Fame — handprints of Jackie Chan, Bruce Lee, Jet Li, Michelle Yeoh, and more. The harbor promenade at golden hour is absolutely stunning.</p>
+                </div>
+                <div class="hk-chevron">▾</div>
+              </div>
+              <div class="hk-tip-box">
+                <div class="hk-tip-inner" style="border:1px solid #FFD70030;">
+                  <span style="font-size:16px;">💡</span>
+                  <p class="hk-tip-text">Walk from the Star Ferry pier east along the promenade. Grab drinks at a harborfront bar to settle in for the light show.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hk-stop">
+          <div class="hk-stop-line">
+            <div class="hk-stop-dot" style="border: 2px solid #FFD700;">🌙</div>
+          </div>
+          <div class="hk-card">
+            <div class="hk-card-inner" onclick="hkToggle(this)">
+              <div class="hk-card-top">
+                <div style="flex:1">
+                  <div class="hk-card-meta">
+                    <span class="hk-time" style="color:#FFC107;">8:00 PM</span>
+                    <span class="hk-tag" style="background:#FFD70025;color:#FFC107;border:1px solid #FFD70040;">Night Market</span>
+                  </div>
+                  <h3 class="hk-stop-name">Temple Street Night Market</h3>
+                  <p class="hk-stop-desc">The most atmospheric night market in HK. Fortune tellers, street opera, seafood stalls, neon signs. Don't miss the dai pai dong at the south end for grilled oysters and clams.</p>
+                </div>
+                <div class="hk-chevron">▾</div>
+              </div>
+              <div class="hk-tip-box">
+                <div class="hk-tip-inner" style="border:1px solid #FFD70030;">
+                  <span style="font-size:16px;">💡</span>
+                  <p class="hk-tip-text">Goes until 11pm. Bargain hard — the asking price is always inflated for tourists.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DAY 3: ADVENTURE -->
+    <div class="hk-day-panels" id="hk-panel-2">
+      <div class="hk-day-header">
+        <div class="hk-day-badge" style="background:#0A6B3B;">Day 3</div>
+        <h2 class="hk-day-title">Adventure Day</h2>
+        <p class="hk-day-sub">Dragon's Back, Sai Kung & Skyline Farewell</p>
+      </div>
+      <div class="hk-timeline">
+
+        <div class="hk-stop">
+          <div class="hk-stop-line">
+            <div class="hk-stop-dot" style="border: 2px solid #4CAF50;">🥾</div>
+            <div class="hk-stop-connector" style="background: linear-gradient(#4CAF5044, transparent);"></div>
+          </div>
+          <div class="hk-card">
+            <div class="hk-card-inner" onclick="hkToggle(this)">
+              <div class="hk-card-top">
+                <div style="flex:1">
+                  <div class="hk-card-meta">
+                    <span class="hk-time" style="color:#4CAF50;">7:30 AM</span>
+                    <span class="hk-tag" style="background:#4CAF5025;color:#4CAF50;border:1px solid #4CAF5040;">Hiking</span>
+                  </div>
+                  <h3 class="hk-stop-name">Dragon's Back Trail</h3>
+                  <p class="hk-stop-desc">Named Asia's best urban hike. The ridge trail follows the spine of Hong Kong Island with 360° views of the South China Sea, Shek O village, and Big Wave Bay. About 8km, 2.5–3 hours.</p>
+                </div>
+                <div class="hk-chevron">▾</div>
+              </div>
+              <div class="hk-tip-box">
+                <div class="hk-tip-inner" style="border:1px solid #4CAF5030;">
+                  <span style="font-size:16px;">💡</span>
+                  <p class="hk-tip-text">End at Big Wave Bay beach — take a dip if the water's warm. Bring sunscreen, water, and sturdy shoes. Take bus 9 from Shau Kei Wan MTR.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hk-stop">
+          <div class="hk-stop-line">
+            <div class="hk-stop-dot" style="border: 2px solid #4CAF50;">🏖️</div>
+            <div class="hk-stop-connector" style="background: linear-gradient(#4CAF5044, transparent);"></div>
+          </div>
+          <div class="hk-card">
+            <div class="hk-card-inner" onclick="hkToggle(this)">
+              <div class="hk-card-top">
+                <div style="flex:1">
+                  <div class="hk-card-meta">
+                    <span class="hk-time" style="color:#4CAF50;">11:00 AM</span>
+                    <span class="hk-tag" style="background:#4CAF5025;color:#4CAF50;border:1px solid #4CAF5040;">Hidden Gem</span>
+                  </div>
+                  <h3 class="hk-stop-name">Shek O Village</h3>
+                  <p class="hk-stop-desc">A sleepy, charming fishing village just below Dragon's Back. Colorful colonial houses, a Thai restaurant or two, and a beautiful beach. Feels a world away from Central.</p>
+                </div>
+                <div class="hk-chevron">▾</div>
+              </div>
+              <div class="hk-tip-box">
+                <div class="hk-tip-inner" style="border:1px solid #4CAF5030;">
+                  <span style="font-size:16px;">💡</span>
+                  <p class="hk-tip-text">Rent a beach chair and decompress after the hike. The village has good casual restaurants for brunch.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hk-stop">
+          <div class="hk-stop-line">
+            <div class="hk-stop-dot" style="border: 2px solid #4CAF50;">🦀</div>
+            <div class="hk-stop-connector" style="background: linear-gradient(#4CAF5044, transparent);"></div>
+          </div>
+          <div class="hk-card">
+            <div class="hk-card-inner" onclick="hkToggle(this)">
+              <div class="hk-card-top">
+                <div style="flex:1">
+                  <div class="hk-card-meta">
+                    <span class="hk-time" style="color:#4CAF50;">1:30 PM</span>
+                    <span class="hk-tag" style="background:#4CAF5025;color:#4CAF50;border:1px solid #4CAF5040;">Adventure Lunch</span>
+                  </div>
+                  <h3 class="hk-stop-name">Sai Kung Seafood Street</h3>
+                  <p class="hk-stop-desc">Take a taxi or bus to Sai Kung — a fishing town on the New Territories coast. Pick live seafood straight from the tanks (prawns, crab, abalone, lobster), haggle a price, and a restaurant will cook it for you.</p>
+                </div>
+                <div class="hk-chevron">▾</div>
+              </div>
+              <div class="hk-tip-box">
+                <div class="hk-tip-inner" style="border:1px solid #4CAF5030;">
+                  <span style="font-size:16px;">💡</span>
+                  <p class="hk-tip-text">Compare prices between restaurants — the seafood cost is separate from the cooking fee. Budget ~$40–60 USD for a serious feast for two.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hk-stop">
+          <div class="hk-stop-line">
+            <div class="hk-stop-dot" style="border: 2px solid #4CAF50;">⛵</div>
+            <div class="hk-stop-connector" style="background: linear-gradient(#4CAF5044, transparent);"></div>
+          </div>
+          <div class="hk-card">
+            <div class="hk-card-inner" onclick="hkToggle(this)">
+              <div class="hk-card-top">
+                <div style="flex:1">
+                  <div class="hk-card-meta">
+                    <span class="hk-time" style="color:#4CAF50;">4:00 PM</span>
+                    <span class="hk-tag" style="background:#4CAF5025;color:#4CAF50;border:1px solid #4CAF5040;">On the Water</span>
+                  </div>
+                  <h3 class="hk-stop-name">Sai Kung Harbour Boat Trip</h3>
+                  <p class="hk-stop-desc">Small wooden kaido boats ferry you to hidden beaches and islands around the Sai Kung peninsula — some only accessible by water. Pure adventure with incredible coastal scenery.</p>
+                </div>
+                <div class="hk-chevron">▾</div>
+              </div>
+              <div class="hk-tip-box">
+                <div class="hk-tip-inner" style="border:1px solid #4CAF5030;">
+                  <span style="font-size:16px;">💡</span>
+                  <p class="hk-tip-text">Negotiate directly with the boat captains at the pier. A 2-hour trip to Sharp Island or Kiu Tsui Beach runs ~$100–150 USD for the boat.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hk-stop">
+          <div class="hk-stop-line">
+            <div class="hk-stop-dot" style="border: 2px solid #4CAF50;">🍸</div>
+          </div>
+          <div class="hk-card">
+            <div class="hk-card-inner" onclick="hkToggle(this)">
+              <div class="hk-card-top">
+                <div style="flex:1">
+                  <div class="hk-card-meta">
+                    <span class="hk-time" style="color:#4CAF50;">7:30 PM</span>
+                    <span class="hk-tag" style="background:#4CAF5025;color:#4CAF50;border:1px solid #4CAF5040;">Farewell Dinner</span>
+                  </div>
+                  <h3 class="hk-stop-name">Aqua Restaurant</h3>
+                  <p class="hk-stop-desc">On the 17th floor of a Tsim Sha Tsui tower with floor-to-ceiling windows over Victoria Harbour. Japanese-Italian fusion, a world-class cocktail menu, and arguably the best skyline view in HK. The perfect final dinner.</p>
+                </div>
+                <div class="hk-chevron">▾</div>
+              </div>
+              <div class="hk-tip-box">
+                <div class="hk-tip-inner" style="border:1px solid #4CAF5030;">
+                  <span style="font-size:16px;">💡</span>
+                  <p class="hk-tip-text">Make a reservation and specifically request a window table. Order cocktails at the bar first — the bar views are also stunning.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ESSENTIAL TIPS -->
+    <div class="hk-essential-tips">
+      <h3 class="hk-tips-title">Essential Tips</h3>
+      <div class="hk-tips-grid">
+        <div class="hk-tip-card">
+          <span class="hk-tip-card-icon">🚇</span>
+          <div class="hk-tip-card-title">Octopus Card</div>
+          <div class="hk-tip-card-text">Buy at any MTR station. Covers metro, buses, Star Ferry, and even 7-Eleven.</div>
+        </div>
+        <div class="hk-tip-card">
+          <span class="hk-tip-card-icon">💰</span>
+          <div class="hk-tip-card-title">Money</div>
+          <div class="hk-tip-card-text">Carry HKD cash for markets and street food. Cards work everywhere upscale.</div>
+        </div>
+        <div class="hk-tip-card">
+          <span class="hk-tip-card-icon">🌡️</span>
+          <div class="hk-tip-card-title">Weather</div>
+          <div class="hk-tip-card-text">Light, breathable clothes. Bring a layer for aggressive restaurant AC.</div>
+        </div>
+        <div class="hk-tip-card">
+          <span class="hk-tip-card-icon">📱</span>
+          <div class="hk-tip-card-title">Apps</div>
+          <div class="hk-tip-card-text">Download Citymapper HK for transit. Google Translate camera works great here.</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
   <!-- ===== DOCUMENTS ===== -->
   <section class="section" id="docs">
     <div class="section-header">
@@ -1646,8 +2512,33 @@
     document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  // Active nav tracking
-  const sections = ['flights','hotels','itinerary','docs','weather','packing','tips'];
+  // HK Day tab switcher
+  const dayColors = ['#C8102E', '#B8860B', '#0A6B3B'];
+  const dayAccents = ['#FF6B6B', '#FFC107', '#4CAF50'];
+
+  function hkSetDay(idx) {
+    document.querySelectorAll('.hk-day-panels').forEach((p, i) => {
+      p.classList.toggle('active-panel', i === idx);
+    });
+    document.querySelectorAll('.hk-tab').forEach((t, i) => {
+      t.classList.toggle('active', i === idx);
+      t.style.borderBottomColor = i === idx ? dayColors[i] : 'transparent';
+      t.style.background = i === idx ? '#111' : 'transparent';
+      t.style.color = i === idx ? '#F5F0E8' : '#666';
+    });
+  }
+
+  // HK card expand/collapse
+  function hkToggle(el) {
+    const tip = el.querySelector('.hk-tip-box');
+    const chevron = el.querySelector('.hk-chevron');
+    const isOpen = tip.classList.contains('visible');
+    tip.classList.toggle('visible', !isOpen);
+    chevron.style.transform = isOpen ? 'none' : 'rotate(180deg)';
+  }
+
+
+  const sections = ['flights','hotels','itinerary','hongkong','docs','weather','packing','tips'];
   const navBtns = document.querySelectorAll('.nav-btn');
 
   window.addEventListener('scroll', () => {
