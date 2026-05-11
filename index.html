@@ -792,6 +792,164 @@
   .docs-unlocked .doc-lock-card { display: none; }
   .docs-unlocked .docs-unlocked-bar { display: flex; }
 
+
+  /* QUICK REFERENCE GRID */
+  .quick-ref-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  @media (max-width: 860px) {
+    .quick-ref-grid { grid-template-columns: 1fr; }
+  }
+
+  .quick-ref-block {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+  }
+
+  .quick-ref-block-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+
+  /* LIVE CLOCKS */
+  .tz-live-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .tz-live-card {
+    background: var(--deep-teal);
+    border-radius: 12px;
+    padding: 14px 10px;
+    text-align: center;
+    color: var(--sand);
+  }
+
+  .tz-flag { font-size: 20px; margin-bottom: 4px; }
+
+  .tz-city {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gold-light);
+    margin-bottom: 2px;
+  }
+
+  .tz-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(242,232,217,0.5);
+    margin-bottom: 6px;
+  }
+
+  .tz-time {
+    font-family: 'DM Mono', monospace;
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    letter-spacing: 1px;
+  }
+
+  .tz-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: rgba(242,232,217,0.45);
+    margin-top: 3px;
+    letter-spacing: 0.5px;
+  }
+
+  /* CONVERTER */
+  .tz-converter-row { margin-top: 4px; }
+
+  .tz-converter-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .tz-inputs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+
+  .tz-inputs input[type="time"],
+  .tz-inputs select {
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    color: var(--dark);
+    background: white;
+    flex: 1;
+    min-width: 100px;
+  }
+
+  .tz-results {
+    background: var(--warm-white);
+    border-radius: 10px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .tz-result-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .tz-result-flag { font-size: 16px; }
+
+  .tz-result-label {
+    font-size: 13px;
+    color: var(--muted);
+    flex: 1;
+  }
+
+  .tz-result-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--deep-teal);
+    font-weight: 700;
+    text-align: right;
+  }
+
+  /* Stack currency cards vertically inside the block */
+  .quick-ref-block .currency-grid {
+    gap: 12px;
+  }
+
+  .quick-ref-block .currency-card {
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  .quick-ref-block .currency-result {
+    font-size: 24px;
+  }
+
 </style>
 </head>
 <body>
@@ -821,12 +979,63 @@
 <div class="container">
 
   <section class="section" id="currency">
-    <div class="section-header"><span class="section-label">💱</span><h2 class="section-title">Currency Converter</h2></div>
-    <div class="currency-grid">
-      <div class="currency-card"><div class="ticket-label">Hong Kong</div><div class="ticket-name">USD → HKD</div><div class="currency-row"><label>Enter USD</label><input type="number" id="usdHKD" value="100" min="0" oninput="syncCurrency('hkd')"><input type="range" id="sliderHKD" min="0" max="1000" value="100" oninput="syncCurrencySlider('hkd')"></div><div class="currency-result" id="resultHKD">HK$780</div><div class="currency-note">Approx rate used: $1 USD ≈ HK$7.80</div><div class="currency-mini-grid"><button class="currency-chip" onclick="setCurrency('hkd',20)">$20</button><button class="currency-chip" onclick="setCurrency('hkd',50)">$50</button><button class="currency-chip" onclick="setCurrency('hkd',100)">$100</button></div></div>
-      <div class="currency-card"><div class="ticket-label">Bali / Indonesia</div><div class="ticket-name">USD → IDR</div><div class="currency-row"><label>Enter USD</label><input type="number" id="usdIDR" value="100" min="0" oninput="syncCurrency('idr')"><input type="range" id="sliderIDR" min="0" max="1000" value="100" oninput="syncCurrencySlider('idr')"></div><div class="currency-result" id="resultIDR">Rp1,744,500</div><div class="currency-note">Approx rate used: $1 USD ≈ Rp17,445</div><div class="currency-mini-grid"><button class="currency-chip" onclick="setCurrency('idr',10)">$10</button><button class="currency-chip" onclick="setCurrency('idr',25)">$25</button><button class="currency-chip" onclick="setCurrency('idr',100)">$100</button></div></div>
+    <div class="section-header"><span class="section-label">✦</span><h2 class="section-title">Quick Reference</h2></div>
+
+    <div class="quick-ref-grid">
+
+      <!-- TIMEZONE CONVERTER -->
+      <div class="quick-ref-block">
+        <div class="quick-ref-block-title">🕐 Time Zone Converter</div>
+        <div class="tz-live-row">
+          <div class="tz-live-card" id="tzDEN">
+            <div class="tz-flag">🇺🇸</div>
+            <div class="tz-city">Denver</div>
+            <div class="tz-label">Mountain Time (MDT)</div>
+            <div class="tz-time" id="tzTimeDEN">--:-- --</div>
+            <div class="tz-date" id="tzDateDEN"></div>
+          </div>
+          <div class="tz-live-card" id="tzHKG">
+            <div class="tz-flag">🇭🇰</div>
+            <div class="tz-city">Hong Kong</div>
+            <div class="tz-label">HKT (UTC+8)</div>
+            <div class="tz-time" id="tzTimeHKG">--:-- --</div>
+            <div class="tz-date" id="tzDateHKG"></div>
+          </div>
+          <div class="tz-live-card" id="tzBALI">
+            <div class="tz-flag">🇮🇩</div>
+            <div class="tz-city">Bali</div>
+            <div class="tz-label">WITA (UTC+8)</div>
+            <div class="tz-time" id="tzTimeBALI">--:-- --</div>
+            <div class="tz-date" id="tzDateBALI"></div>
+          </div>
+        </div>
+        <div class="tz-converter-row">
+          <div class="tz-converter-label">Convert a Denver time →</div>
+          <div class="tz-inputs">
+            <input type="time" id="tzInput" value="09:00" oninput="convertTZ()">
+            <select id="tzDirection" onchange="convertTZ()">
+              <option value="den-to-remote">Denver → Abroad</option>
+              <option value="remote-to-den">Abroad → Denver</option>
+            </select>
+          </div>
+          <div class="tz-results" id="tzResults">
+            <div class="tz-result-row"><span class="tz-result-flag">🇭🇰</span><span class="tz-result-label">Hong Kong</span><span class="tz-result-val" id="tzResHKG">—</span></div>
+            <div class="tz-result-row"><span class="tz-result-flag">🇮🇩</span><span class="tz-result-label">Bali</span><span class="tz-result-val" id="tzResBALI">—</span></div>
+          </div>
+        </div>
+        <div class="note-box" style="margin-top:12px;font-size:12px;"><strong>Note:</strong> Both Hong Kong & Bali are UTC+8 — same time as each other. Denver (MDT) is UTC−6, so they're always <strong>14 hours ahead</strong>.</div>
+      </div>
+
+      <!-- CURRENCY CONVERTER -->
+      <div class="quick-ref-block">
+        <div class="quick-ref-block-title">💱 Currency Converter</div>
+        <div class="currency-grid" style="grid-template-columns:1fr;">
+          <div class="currency-card"><div class="ticket-label">Hong Kong</div><div class="ticket-name">USD → HKD</div><div class="currency-row"><label>Enter USD</label><input type="number" id="usdHKD" value="100" min="0" oninput="syncCurrency('hkd')"><input type="range" id="sliderHKD" min="0" max="1000" value="100" oninput="syncCurrencySlider('hkd')"></div><div class="currency-result" id="resultHKD">HK$780</div><div class="currency-note">$1 USD ≈ HK$7.80</div><div class="currency-mini-grid"><button class="currency-chip" onclick="setCurrency('hkd',20)">$20</button><button class="currency-chip" onclick="setCurrency('hkd',50)">$50</button><button class="currency-chip" onclick="setCurrency('hkd',100)">$100</button></div></div>
+          <div class="currency-card"><div class="ticket-label">Bali / Indonesia</div><div class="ticket-name">USD → IDR</div><div class="currency-row"><label>Enter USD</label><input type="number" id="usdIDR" value="100" min="0" oninput="syncCurrency('idr')"><input type="range" id="sliderIDR" min="0" max="1000" value="100" oninput="syncCurrencySlider('idr')"></div><div class="currency-result" id="resultIDR">Rp1,744,500</div><div class="currency-note">$1 USD ≈ Rp17,445</div><div class="currency-mini-grid"><button class="currency-chip" onclick="setCurrency('idr',10)">$10</button><button class="currency-chip" onclick="setCurrency('idr',25)">$25</button><button class="currency-chip" onclick="setCurrency('idr',100)">$100</button></div></div>
+        </div>
+      </div>
+
     </div>
-    <div class="note-box mt-md"><strong>Tip:</strong> Use this for quick mental math while traveling. Actual card, ATM, and exchange booth rates may vary.</div>
   </section>
 
   <section class="section" id="flights">
@@ -1300,6 +1509,57 @@
   }
   syncCurrency('hkd');
   syncCurrency('idr');
+
+
+  // ---- TIMEZONE LIVE CLOCKS ----
+  function updateClocks() {
+    const now = new Date();
+    const fmtTime = (d, tz) => d.toLocaleTimeString('en-US', { timeZone: tz, hour: 'numeric', minute: '2-digit', hour12: true });
+    const fmtDate = (d, tz) => d.toLocaleDateString('en-US', { timeZone: tz, weekday: 'short', month: 'short', day: 'numeric' });
+
+    document.getElementById('tzTimeDEN').textContent  = fmtTime(now, 'America/Denver');
+    document.getElementById('tzDateDEN').textContent   = fmtDate(now, 'America/Denver');
+    document.getElementById('tzTimeHKG').textContent  = fmtTime(now, 'Asia/Hong_Kong');
+    document.getElementById('tzDateHKG').textContent   = fmtDate(now, 'Asia/Hong_Kong');
+    document.getElementById('tzTimeBALI').textContent = fmtTime(now, 'Asia/Makassar');
+    document.getElementById('tzDateBALI').textContent  = fmtDate(now, 'Asia/Makassar');
+  }
+  updateClocks();
+  setInterval(updateClocks, 1000);
+
+  // ---- TIMEZONE CONVERTER ----
+  function convertTZ() {
+    const input = document.getElementById('tzInput').value;
+    const direction = document.getElementById('tzDirection').value;
+    if (!input) return;
+    const [h, m] = input.split(':').map(Number);
+
+    let resultH, resultM, dayNote;
+    if (direction === 'den-to-remote') {
+      // MDT = UTC-6, HKT/WITA = UTC+8, diff = +14
+      resultH = (h + 14) % 24;
+      resultM = m;
+      const crossed = h + 14 >= 24;
+      dayNote = crossed ? ' (+1 day)' : '';
+    } else {
+      // Abroad to Denver: -14
+      resultH = ((h - 14) + 24) % 24;
+      resultM = m;
+      const crossed = h - 14 < 0;
+      dayNote = crossed ? ' (−1 day)' : '';
+    }
+
+    const fmt = (hh, mm) => {
+      const ampm = hh >= 12 ? 'PM' : 'AM';
+      const h12 = hh % 12 === 0 ? 12 : hh % 12;
+      return `${h12}:${String(mm).padStart(2,'0')} ${ampm}`;
+    };
+
+    const resultStr = fmt(resultH, resultM) + dayNote;
+    document.getElementById('tzResHKG').textContent = resultStr;
+    document.getElementById('tzResBALI').textContent = resultStr;
+  }
+  convertTZ();
 
   const checkboxes = document.querySelectorAll('.packing-item input[type="checkbox"]');
   checkboxes.forEach((cb, i) => {
