@@ -3,2765 +3,307 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bali & Beyond — Fitzpatrick Trip Hub</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Globe Test</title>
 <style>
-  :root {
-    --sand: #F2E8D9;
-    --warm-white: #FAF7F2;
-    --terracotta: #C4623A;
-    --terracotta-light: #E8825E;
-    --deep-teal: #1A4A4A;
-    --teal: #2D6B6B;
-    --teal-light: #4A9090;
-    --gold: #C9963A;
-    --gold-light: #E8B85A;
-    --dark: #1A1A18;
-    --muted: #7A7060;
-    --border: rgba(26,74,74,0.15);
-    --shadow: 0 4px 24px rgba(26,74,74,0.08);
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    background: var(--warm-white);
-    color: var(--dark);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  /* HERO */
-  .hero {
-    background: var(--deep-teal);
-    color: var(--sand);
-    padding: 120px 40px 100px;
-    position: relative;
-    overflow: hidden;
-    text-align: center;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url('https://images.unsplash.com/photo-1577717903315-1691ae25ab3f?fm=jpg&q=90&w=2400&auto=format&fit=crop');
-    background-size: cover;
-    background-position: center 40%;
-    opacity: 0.85;
-  }
-
-  .hero::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(10,40,40,0.25) 0%, rgba(10,40,40,0.55) 100%);
-  }
-
-  .hero > * {
-    position: relative;
-    z-index: 2;
-  }
-
-  .hero-palm {
-    position: absolute;
-    font-size: 120px;
-    opacity: 0.06;
-    top: -20px;
-    right: -20px;
-    transform: rotate(-15deg);
-    pointer-events: none;
-  }
-
-  .hero-palm-left {
-    position: absolute;
-    font-size: 80px;
-    opacity: 0.05;
-    bottom: -10px;
-    left: 20px;
-    transform: rotate(10deg) scaleX(-1);
-    pointer-events: none;
-  }
-
-  .hero-eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--gold-light);
-    margin-bottom: 16px;
-    opacity: 0.9;
-  }
-
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(42px, 7vw, 80px);
-    font-weight: 700;
-    line-height: 1.05;
-    letter-spacing: -1px;
-    margin-bottom: 8px;
-  }
-
-  .hero h1 em {
-    font-style: italic;
-    color: var(--gold-light);
-  }
-
-  .hero-sub {
-    font-size: 15px;
-    color: rgba(242,232,217,0.65);
-    margin-top: 16px;
-    letter-spacing: 0.5px;
-  }
-
-  .hero-dates {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    margin-top: 28px;
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 100px;
-    padding: 10px 24px;
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    color: var(--sand);
-  }
-
-  .hero-dates span { color: var(--gold-light); }
-
-  /* NAV */
-  .sticky-nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: var(--deep-teal);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    padding: 0 24px;
-    display: flex;
-    gap: 4px;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-  .sticky-nav::-webkit-scrollbar { display: none; }
-
-  .nav-btn {
-    background: none;
-    border: none;
-    color: rgba(242,232,217,0.6);
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 14px 16px;
-    cursor: pointer;
-    white-space: nowrap;
-    border-bottom: 2px solid transparent;
-    transition: all 0.2s;
-  }
-  .nav-btn:hover, .nav-btn.active {
-    color: var(--gold-light);
-    border-bottom-color: var(--gold-light);
-  }
-
-  /* LAYOUT */
-  .container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  .section {
-    padding: 60px 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .section-header {
-    display: flex;
-    align-items: baseline;
-    gap: 16px;
-    margin-bottom: 36px;
-  }
-
-  .section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--terracotta);
-  }
-
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 32px;
-    font-weight: 700;
-    color: var(--deep-teal);
-  }
-
-  /* FLIGHT CARDS */
-  .flight-leg {
-    margin-bottom: 32px;
-  }
-
-  .leg-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .leg-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-
-  .flight-card {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 20px 24px;
-    margin-bottom: 8px;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr auto;
-    align-items: center;
-    gap: 16px;
-    box-shadow: var(--shadow);
-    transition: transform 0.2s, box-shadow 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .flight-card::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background: var(--teal);
-    border-radius: 4px 0 0 4px;
-  }
-
-  .flight-card.layover-card::before { background: var(--gold); }
-
-  .flight-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(26,74,74,0.12);
-  }
-
-  .flight-endpoint { flex: 1; }
-
-  .flight-endpoint.right { text-align: right; }
-
-  .airport-code {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--deep-teal);
-    letter-spacing: -0.5px;
-  }
-
-  .airport-city {
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 2px;
-  }
-
-  .flight-time {
-    font-family: 'DM Mono', monospace;
-    font-size: 20px;
-    font-weight: 500;
-    color: var(--dark);
-    margin-top: 4px;
-  }
-
-  .flight-date-small {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: var(--muted);
-    margin-top: 2px;
-  }
-
-  .flight-middle {
-    text-align: center;
-    padding: 0 8px;
-  }
-
-  .flight-line {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 4px;
-  }
-
-  .flight-line-bar {
-    width: 60px;
-    height: 1px;
-    background: linear-gradient(to right, var(--teal-light), var(--teal));
-    position: relative;
-  }
-
-  .flight-line-bar::after {
-    content: '✈';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 12px;
-    color: var(--teal);
-    background: white;
-    padding: 0 4px;
-  }
-
-  .flight-duration {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--teal);
-    white-space: nowrap;
-  }
-
-  .flight-airline {
-    font-size: 11px;
-    color: var(--muted);
-    white-space: nowrap;
-  }
-
-  .flight-meta {
-    text-align: right;
-  }
-
-  .flight-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    color: var(--dark);
-    font-weight: 500;
-  }
-
-  .flight-tag {
-    display: inline-block;
-    background: var(--deep-teal);
-    color: var(--sand);
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 1px;
-    padding: 3px 8px;
-    border-radius: 100px;
-    margin-top: 4px;
-  }
-
-  .layover-badge {
-    background: rgba(201,150,58,0.1);
-    border: 1px solid rgba(201,150,58,0.3);
-    border-radius: 10px;
-    padding: 10px 16px;
-    margin: 4px 0 8px 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 12px;
-    color: var(--gold);
-    font-family: 'DM Mono', monospace;
-  }
-
-  .summary-strip {
-    background: var(--deep-teal);
-    color: var(--sand);
-    border-radius: 12px;
-    padding: 16px 24px;
-    display: flex;
-    gap: 32px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-  }
-
-  .summary-stat { text-align: center; }
-  .summary-stat-val {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    color: var(--gold-light);
-  }
-  .summary-stat-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(242,232,217,0.5);
-    margin-top: 2px;
-  }
-
-  /* TICKETS */
-  .ticket-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 16px;
-  }
-
-  .ticket-card {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 24px;
-    box-shadow: var(--shadow);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .ticket-card::after {
-    content: '';
-    position: absolute;
-    bottom: -20px;
-    right: -20px;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: var(--deep-teal);
-    opacity: 0.04;
-  }
-
-  .ticket-icon {
-    font-size: 28px;
-    margin-bottom: 12px;
-    display: block;
-  }
-
-  .ticket-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 6px;
-  }
-
-  .ticket-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    color: var(--deep-teal);
-    margin-bottom: 12px;
-  }
-
-  .ticket-detail {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    color: var(--dark);
-    margin-bottom: 4px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .ticket-detail span:first-child { color: var(--muted); font-size: 10px; }
-
-  .ticket-val {
-    font-weight: 500;
-    color: var(--deep-teal);
-  }
-
-  .doc-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 14px;
-    background: var(--deep-teal);
-    color: var(--sand);
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 8px 14px;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background 0.2s, transform 0.15s;
-  }
-  .doc-link:hover {
-    background: var(--teal);
-    transform: translateY(-1px);
-  }
-
-  .status-badge {
-    display: inline-block;
-    background: rgba(45,107,107,0.1);
-    color: var(--teal);
-    border: 1px solid rgba(45,107,107,0.2);
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 100px;
-    margin-top: 12px;
-  }
-
-  /* ITINERARY */
-  .timeline {
-    position: relative;
-    padding-left: 32px;
-  }
-
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 7px;
-    top: 8px;
-    bottom: 8px;
-    width: 2px;
-    background: linear-gradient(to bottom, var(--teal), var(--terracotta));
-    border-radius: 2px;
-  }
-
-  .timeline-item {
-    position: relative;
-    margin-bottom: 24px;
-  }
-
-  .timeline-dot {
-    position: absolute;
-    left: -28px;
-    top: 6px;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: var(--teal);
-    border: 2px solid white;
-    box-shadow: 0 0 0 2px var(--teal);
-  }
-
-  .timeline-dot.gold { background: var(--gold); box-shadow: 0 0 0 2px var(--gold); }
-  .timeline-dot.terra { background: var(--terracotta); box-shadow: 0 0 0 2px var(--terracotta); }
-
-  .timeline-date {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 6px;
-  }
-
-  .timeline-card {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 16px 20px;
-    box-shadow: var(--shadow);
-  }
-
-  .timeline-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    color: var(--deep-teal);
-    margin-bottom: 4px;
-  }
-
-  .timeline-desc {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
-  .timeline-time {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--terracotta);
-    margin-top: 8px;
-  }
-
-  /* HOTEL CARDS */
-  .hotel-card {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 28px;
-    box-shadow: var(--shadow);
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 24px;
-    align-items: start;
-    margin-bottom: 16px;
-  }
-
-  .hotel-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 24px;
-    color: var(--deep-teal);
-    margin-bottom: 4px;
-  }
-
-  .hotel-brand {
-    font-size: 12px;
-    color: var(--muted);
-    margin-bottom: 16px;
-    font-family: 'DM Mono', monospace;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-
-  .hotel-detail-row {
-    display: flex;
-    gap: 24px;
-    flex-wrap: wrap;
-    margin-bottom: 12px;
-  }
-
-  .hotel-detail-item { }
-
-  .hotel-detail-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 2px;
-  }
-
-  .hotel-detail-val {
-    font-size: 14px;
-    color: var(--dark);
-    font-weight: 500;
-  }
-
-  .hotel-conf {
-    background: var(--deep-teal);
-    color: var(--sand);
-    border-radius: 12px;
-    padding: 16px 20px;
-    text-align: center;
-    min-width: 140px;
-  }
-
-  .hotel-conf-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(242,232,217,0.5);
-    margin-bottom: 6px;
-  }
-
-  .hotel-conf-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    color: var(--gold-light);
-    letter-spacing: 1px;
-  }
-
-  /* WEATHER */
-  .weather-strip {
-    background: linear-gradient(135deg, var(--deep-teal), var(--teal));
-    color: var(--sand);
-    border-radius: 16px;
-    padding: 28px 32px;
-    display: flex;
-    align-items: center;
-    gap: 32px;
-    flex-wrap: wrap;
-  }
-
-  .weather-main {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .weather-icon { font-size: 48px; }
-
-  .weather-temp {
-    font-family: 'Playfair Display', serif;
-    font-size: 48px;
-    color: var(--gold-light);
-    line-height: 1;
-  }
-
-  .weather-desc {
-    font-size: 13px;
-    color: rgba(242,232,217,0.7);
-    margin-top: 4px;
-  }
-
-  .weather-details {
-    display: flex;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
-
-  .weather-detail { }
-  .weather-detail-val {
-    font-family: 'DM Mono', monospace;
-    font-size: 16px;
-    color: var(--sand);
-  }
-  .weather-detail-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(242,232,217,0.45);
-    margin-top: 2px;
-  }
-
-  /* PACKING */
-  .packing-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
-  }
-
-  .packing-cat {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: var(--shadow);
-  }
-
-  .packing-cat-title {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--terracotta);
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .packing-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 13px;
-    color: var(--dark);
-    padding: 5px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.04);
-    cursor: pointer;
-    transition: color 0.15s;
-  }
-
-  .packing-item:last-child { border-bottom: none; }
-
-  .packing-item input[type="checkbox"] {
-    accent-color: var(--teal);
-    width: 14px;
-    height: 14px;
-    cursor: pointer;
-  }
-
-  .packing-item.checked { color: var(--muted); text-decoration: line-through; }
-
-  /* DOCS section */
-  .doc-card {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 24px;
-    box-shadow: var(--shadow);
-    position: relative;
-  }
-
-  .doc-status-needed {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    background: rgba(196,98,58,0.1);
-    color: var(--terracotta);
-    border: 1px solid rgba(196,98,58,0.25);
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 100px;
-  }
-
-  .doc-status-ok {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    background: rgba(45,107,107,0.1);
-    color: var(--teal);
-    border: 1px solid rgba(45,107,107,0.2);
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 100px;
-  }
-
-  /* TIPS */
-  .tips-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px;
-  }
-
-  .tip-card {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: var(--shadow);
-  }
-
-  .tip-icon { font-size: 24px; margin-bottom: 8px; display: block; }
-
-  .tip-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 15px;
-    color: var(--deep-teal);
-    margin-bottom: 6px;
-  }
-
-  .tip-body {
-    font-size: 12px;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
-  /* FOOTER */
-  footer {
-    background: var(--deep-teal);
-    color: rgba(242,232,217,0.4);
-    text-align: center;
-    padding: 24px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 1px;
-  }
-
-  footer strong { color: var(--gold-light); }
-
-  /* RESPONSIVE */
-  @media (max-width: 640px) {
-    .flight-card {
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto;
-    }
-    .flight-middle { grid-column: 1 / -1; order: 3; }
-    .flight-meta { grid-column: 1 / -1; text-align: left; }
-    .hotel-card { grid-template-columns: 1fr; }
-    .hero { padding: 60px 24px 40px; }
-    .summary-strip { gap: 16px; }
-  }
-
-  /* Utility */
-  .mt-sm { margin-top: 8px; }
-  .mt-md { margin-top: 16px; }
-  .mt-lg { margin-top: 24px; }
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
-
-  .note-box {
-    background: rgba(201,150,58,0.08);
-    border: 1px solid rgba(201,150,58,0.25);
-    border-left: 3px solid var(--gold);
-    border-radius: 8px;
-    padding: 12px 16px;
-    font-size: 13px;
-    color: var(--dark);
-    margin-top: 16px;
-  }
-  .note-box strong { color: var(--gold); }
-  /* HONG KONG ITINERARY */
-  .hk-section {
-    background: #0D0D0D;
-    color: #F5F0E8;
-    padding: 0;
-    border-bottom: none;
-  }
-
-  .hk-header {
-    background: linear-gradient(135deg, #C8102E 0%, #8B0000 50%, #0D0D0D 100%);
-    padding: 60px 40px 40px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hk-header::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 20% 50%, rgba(200,16,46,0.3) 0%, transparent 60%),
-                radial-gradient(circle at 80% 20%, rgba(255,215,0,0.15) 0%, transparent 50%);
-  }
-
-  .hk-header-inner { position: relative; z-index: 1; }
-
-  .hk-eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: #FFD700;
-    margin-bottom: 12px;
-  }
-
-  .hk-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(36px, 7vw, 64px);
-    font-weight: 700;
-    line-height: 1.05;
-    margin: 0 0 8px;
-    letter-spacing: -1px;
-  }
-
-  .hk-sub {
-    color: #B0A89A;
-    font-size: 15px;
-    margin-top: 10px;
-  }
-
-  .hk-tabs {
-    display: flex;
-    background: #1A1A1A;
-    border-bottom: 1px solid #2A2A2A;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-  .hk-tabs::-webkit-scrollbar { display: none; }
-
-  .hk-tab {
-    flex: 1;
-    min-width: 100px;
-    padding: 16px 12px;
-    background: transparent;
-    border: none;
-    border-bottom: 3px solid transparent;
-    color: #666;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-family: 'DM Sans', sans-serif;
-    text-align: center;
-  }
-
-  .hk-tab.active { background: #111; color: #F5F0E8; }
-  .hk-tab .tab-emoji { font-size: 22px; display: block; }
-  .hk-tab .tab-day { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; margin-top: 4px; display: block; }
-  .hk-tab .tab-name { font-size: 11px; margin-top: 2px; display: block; }
-
-  .hk-day-panels { display: none; }
-  .hk-day-panels.active-panel { display: block; }
-
-  .hk-day-header {
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 32px 24px 20px;
-    border-bottom: 1px solid #222;
-  }
-
-  .hk-day-badge {
-    display: inline-block;
-    color: #fff;
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 3px;
-    padding: 4px 12px;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-
-  .hk-day-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    font-weight: 400;
-    margin: 0 0 6px;
-    color: #F5F0E8;
-  }
-
-  .hk-day-sub {
-    color: #888;
-    font-size: 14px;
-    font-style: italic;
-  }
-
-  .hk-timeline {
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 8px 24px 40px;
-  }
-
-  .hk-stop {
-    display: flex;
-    gap: 16px;
-    padding-top: 24px;
-  }
-
-  .hk-stop-line {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 40px;
-    flex-shrink: 0;
-  }
-
-  .hk-stop-dot {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: #1A1A1A;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    flex-shrink: 0;
-    z-index: 1;
-  }
-
-  .hk-stop-connector {
-    width: 1px;
-    flex: 1;
-    min-height: 32px;
-    margin-top: 4px;
-  }
-
-  .hk-card {
-    flex: 1;
-    padding-bottom: 8px;
-  }
-
-  .hk-card-inner {
-    background: #161616;
-    border: 1px solid #2A2A2A;
-    border-radius: 4px;
-    padding: 16px 18px;
-    cursor: pointer;
-    transition: border-color 0.2s;
-  }
-
-  .hk-card-inner:hover { border-color: #444; }
-  .hk-card-inner.expanded { }
-
-  .hk-card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  .hk-card-meta {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 6px;
-    flex-wrap: wrap;
-  }
-
-  .hk-time {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 1px;
-  }
-
-  .hk-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-    padding: 2px 8px;
-    text-transform: uppercase;
-  }
-
-  .hk-stop-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    font-weight: 400;
-    margin: 0 0 6px;
-    color: #F5F0E8;
-  }
-
-  .hk-stop-desc {
-    margin: 0;
-    font-size: 13px;
-    color: #999;
-    line-height: 1.6;
-  }
-
-  .hk-chevron {
-    color: #555;
-    font-size: 18px;
-    flex-shrink: 0;
-    transition: transform 0.2s;
-    line-height: 1;
-  }
-
-  .hk-tip-box {
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px solid #2A2A2A;
-    display: none;
-  }
-
-  .hk-tip-box.visible { display: block; }
-
-  .hk-tip-inner {
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-    background: #0A0A0A;
-    border-radius: 4px;
-    padding: 12px 14px;
-  }
-
-  .hk-tip-text {
-    margin: 0;
-    font-size: 13px;
-    color: #B0A89A;
-    line-height: 1.6;
-    font-style: italic;
-  }
-
-  .hk-essential-tips {
-    background: #111;
-    border-top: 1px solid #222;
-    padding: 32px 24px;
-    max-width: 680px;
-    margin: 0 auto;
-  }
-
-  .hk-tips-title {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: #888;
-    margin-bottom: 20px;
-  }
-
-  .hk-tips-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
-  }
-
-  .hk-tip-card {
-    background: #161616;
-    border: 1px solid #2A2A2A;
-    padding: 14px 16px;
-    border-radius: 4px;
-  }
-
-  .hk-tip-card-icon { font-size: 20px; margin-bottom: 6px; display: block; }
-  .hk-tip-card-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; color: #E0D8CC; }
-  .hk-tip-card-text { font-size: 12px; color: #777; line-height: 1.5; }
-
-  .hk-note {
-    max-width: 680px;
-    margin: 0 auto 0;
-    padding: 16px 24px;
-    background: rgba(255,215,0,0.07);
-    border-left: 3px solid #FFD700;
-    font-size: 13px;
-    color: #B0A89A;
-  }
-  .hk-note strong { color: #FFD700; }
-
+  body { background:#f5f5f0; display:flex; justify-content:center; padding:20px; font-family:sans-serif; margin:0; }
+  #gw{display:flex;flex-direction:column;align-items:center;gap:14px;}
+  #ginfo{text-align:center;min-height:50px;}
+  #gname{font-size:20px;font-weight:600;color:#1a4a4a;margin:0 0 4px;}
+  #gdate{font-size:13px;color:#7a7060;margin:0;letter-spacing:1px;}
+  #gctrl{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center;}
+  .gbtn{font-size:12px;padding:7px 18px;border-radius:8px;border:1px solid #ccc;background:white;color:#1a4a4a;cursor:pointer;}
+  .gbtn:hover{background:#f0f0ec;}
+  #gleg{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;}
+  .gli{display:flex;align-items:center;gap:6px;font-size:12px;color:#7a7060;}
+  .gld{width:10px;height:10px;border-radius:50%;}
 </style>
 </head>
 <body>
-
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-eyebrow">Fivetran President's Club 2026</div>
-  <h1>Bali &amp; <em>Beyond</em></h1>
-  <div class="hero-sub">Kyle &amp; Sarah Fitzpatrick — Complete Trip Hub</div>
-  <div class="hero-dates">
-    <span>May 13</span> → Denver Departs →
-    <span>May 23</span> → Bali → Home <span>May 24</span>
+<div id="gw">
+  <div id="ginfo">
+    <p id="gname">Denver, CO</p>
+    <p id="gdate">Departs May 13</p>
+  </div>
+  <canvas id="gc" width="480" height="480" style="border-radius:50%;display:block;"></canvas>
+  <div id="gctrl">
+    <button class="gbtn" id="gbplay">⏸ Pause</button>
+    <button class="gbtn" id="gbrestart">↺ Restart</button>
+    <span style="font-size:12px;color:#7a7060;">Speed</span>
+    <input type="range" id="gbspeed" min="0.5" max="6" step="0.5" value="1.5" style="width:80px;">
+  </div>
+  <div id="gleg">
+    <div class="gli"><div class="gld" style="background:#E8B85A;"></div>Outbound</div>
+    <div class="gli"><div class="gld" style="background:#7EC8E3;"></div>Return</div>
+    <div class="gli"><div class="gld" style="background:#FF6B6B;"></div>Plane</div>
+    <div class="gli"><div class="gld" style="background:#90EE90;"></div>Visited</div>
   </div>
 </div>
-
-<!-- NAV -->
-<nav class="sticky-nav">
-  <button class="nav-btn" onclick="scrollTo('flights')">✈ Flights</button>
-  <button class="nav-btn" onclick="scrollTo('hotels')">🏨 Hotels</button>
-  <button class="nav-btn" onclick="scrollTo('globe')">🌍 Flight Map</button>
-  <button class="nav-btn" onclick="scrollTo('itinerary')">📅 Bali Itinerary</button>
-  <button class="nav-btn" onclick="scrollTo('hongkong')">🇭🇰 Hong Kong</button>
-  <button class="nav-btn" onclick="scrollTo('docs')">📋 Documents</button>
-  <button class="nav-btn" onclick="scrollTo('weather')">🌤 Weather</button>
-  <button class="nav-btn" onclick="scrollTo('packing')">🎒 Packing</button>
-  <button class="nav-btn" onclick="scrollTo('tips')">💡 Tips</button>
-</nav>
-
-<div class="container">
-
-  <!-- ===== FLIGHTS ===== -->
-  <section class="section" id="flights">
-    <div class="section-header">
-      <span class="section-label">01</span>
-      <h2 class="section-title">Flights</h2>
-    </div>
-
-    <!-- OUTBOUND -->
-    <div class="flight-leg">
-      <div class="leg-label">🛫 Outbound — Denver to Bali</div>
-
-      <!-- DEN → SFO -->
-      <div class="flight-card">
-        <div class="flight-endpoint">
-          <div class="airport-code">DEN</div>
-          <div class="airport-city">Denver, CO</div>
-          <div class="flight-time">8:25 PM</div>
-          <div class="flight-date-small">Wed May 13</div>
-        </div>
-        <div class="flight-middle">
-          <div class="flight-line"><div class="flight-line-bar"></div></div>
-          <div class="flight-duration">2h 45m</div>
-          <div class="flight-airline">Southwest Airlines</div>
-        </div>
-        <div class="flight-endpoint right">
-          <div class="airport-code">SFO</div>
-          <div class="airport-city">San Francisco, CA</div>
-          <div class="flight-time">10:10 PM</div>
-          <div class="flight-date-small">Wed May 13</div>
-        </div>
-        <div class="flight-meta">
-          <div class="flight-num">WN 1667</div>
-          <div class="flight-tag">Conf: B8POYW</div>
-        </div>
-      </div>
-
-      <!-- Layover SFO -->
-      <div class="layover-badge">⏱ 2h 55m layover — San Francisco</div>
-
-      <!-- SFO → TPE -->
-      <div class="flight-card">
-        <div class="flight-endpoint">
-          <div class="airport-code">SFO</div>
-          <div class="airport-city">San Francisco, CA</div>
-          <div class="flight-time">1:05 AM</div>
-          <div class="flight-date-small">Thu May 14</div>
-        </div>
-        <div class="flight-middle">
-          <div class="flight-line"><div class="flight-line-bar"></div></div>
-          <div class="flight-duration">13h 30m</div>
-          <div class="flight-airline">China Airlines</div>
-        </div>
-        <div class="flight-endpoint right">
-          <div class="airport-code">TPE</div>
-          <div class="airport-city">Taipei, Taiwan</div>
-          <div class="flight-time">5:35 AM</div>
-          <div class="flight-date-small">Fri May 15</div>
-        </div>
-        <div class="flight-meta">
-          <div class="flight-num">CI 0003</div>
-          <div class="flight-tag">Kyle: 2977428474320</div>
-        </div>
-      </div>
-
-      <!-- Layover TPE -->
-      <div class="layover-badge">⏱ 1h 45m layover — Taipei</div>
-
-      <!-- TPE → HKG -->
-      <div class="flight-card">
-        <div class="flight-endpoint">
-          <div class="airport-code">TPE</div>
-          <div class="airport-city">Taipei, Taiwan</div>
-          <div class="flight-time">7:20 AM</div>
-          <div class="flight-date-small">Fri May 15</div>
-        </div>
-        <div class="flight-middle">
-          <div class="flight-line"><div class="flight-line-bar"></div></div>
-          <div class="flight-duration">1h 55m</div>
-          <div class="flight-airline">China Airlines</div>
-        </div>
-        <div class="flight-endpoint right">
-          <div class="airport-code">HKG</div>
-          <div class="airport-city">Hong Kong</div>
-          <div class="flight-time">9:15 AM</div>
-          <div class="flight-date-small">Fri May 15</div>
-        </div>
-        <div class="flight-meta">
-          <div class="flight-num">CI 0601</div>
-          <div class="flight-tag">Sarah: 2977428474322</div>
-        </div>
-      </div>
-
-      <div class="note-box" style="margin-bottom:12px;"><strong>🇭🇰 Hong Kong Stop:</strong> You have May 15–18 in Hong Kong before your connecting flights to Bali.</div>
-
-      <!-- HKG → SIN -->
-      <div class="flight-card">
-        <div class="flight-endpoint">
-          <div class="airport-code">HKG</div>
-          <div class="airport-city">Hong Kong</div>
-          <div class="flight-time">9:05 AM</div>
-          <div class="flight-date-small">Mon May 18</div>
-        </div>
-        <div class="flight-middle">
-          <div class="flight-line"><div class="flight-line-bar"></div></div>
-          <div class="flight-duration">3h 55m</div>
-          <div class="flight-airline">Singapore Airlines</div>
-        </div>
-        <div class="flight-endpoint right">
-          <div class="airport-code">SIN</div>
-          <div class="airport-city">Singapore</div>
-          <div class="flight-time">12:55 PM</div>
-          <div class="flight-date-small">Mon May 18</div>
-        </div>
-        <div class="flight-meta">
-          <div class="flight-num">SQ 0899</div>
-        </div>
-      </div>
-
-      <!-- Layover SIN -->
-      <div class="layover-badge">⏱ 1h 5m layover — Singapore Changi</div>
-
-      <!-- SIN → DPS -->
-      <div class="flight-card">
-        <div class="flight-endpoint">
-          <div class="airport-code">SIN</div>
-          <div class="airport-city">Singapore</div>
-          <div class="flight-time">2:00 PM</div>
-          <div class="flight-date-small">Mon May 18</div>
-        </div>
-        <div class="flight-middle">
-          <div class="flight-line"><div class="flight-line-bar"></div></div>
-          <div class="flight-duration">2h 35m</div>
-          <div class="flight-airline">Singapore Airlines</div>
-        </div>
-        <div class="flight-endpoint right">
-          <div class="airport-code">DPS</div>
-          <div class="airport-city">Bali (Ngurah Rai)</div>
-          <div class="flight-time">4:35 PM</div>
-          <div class="flight-date-small">Mon May 18</div>
-        </div>
-        <div class="flight-meta">
-          <div class="flight-num">SQ 8548</div>
-        </div>
-      </div>
-
-      <div class="summary-strip">
-        <div class="summary-stat"><div class="summary-stat-val">24h 40m</div><div class="summary-stat-label">Total Flight Time</div></div>
-        <div class="summary-stat"><div class="summary-stat-val">5h 45m</div><div class="summary-stat-label">Total Layovers</div></div>
-        <div class="summary-stat"><div class="summary-stat-val">5</div><div class="summary-stat-label">Flights</div></div>
-        <div class="summary-stat"><div class="summary-stat-val">May 13→18</div><div class="summary-stat-label">Travel Days</div></div>
-      </div>
-    </div>
-
-    <!-- INBOUND -->
-    <div class="flight-leg" style="margin-top:40px;">
-      <div class="leg-label">🛬 Inbound — Bali to Denver</div>
-
-      <!-- DPS → TPE -->
-      <div class="flight-card">
-        <div class="flight-endpoint">
-          <div class="airport-code">DPS</div>
-          <div class="airport-city">Bali (Ngurah Rai)</div>
-          <div class="flight-time">3:55 PM</div>
-          <div class="flight-date-small">Fri May 23</div>
-        </div>
-        <div class="flight-middle">
-          <div class="flight-line"><div class="flight-line-bar"></div></div>
-          <div class="flight-duration">5h 25m</div>
-          <div class="flight-airline">China Airlines</div>
-        </div>
-        <div class="flight-endpoint right">
-          <div class="airport-code">TPE</div>
-          <div class="airport-city">Taipei, Taiwan</div>
-          <div class="flight-time">9:20 PM</div>
-          <div class="flight-date-small">Fri May 23</div>
-        </div>
-        <div class="flight-meta">
-          <div class="flight-num">CI 0772</div>
-        </div>
-      </div>
-
-      <!-- Layover TPE -->
-      <div class="layover-badge">⏱ 2h 30m layover — Taipei</div>
-
-      <!-- TPE → LAX -->
-      <div class="flight-card">
-        <div class="flight-endpoint">
-          <div class="airport-code">TPE</div>
-          <div class="airport-city">Taipei, Taiwan</div>
-          <div class="flight-time">11:50 PM</div>
-          <div class="flight-date-small">Fri May 23</div>
-        </div>
-        <div class="flight-middle">
-          <div class="flight-line"><div class="flight-line-bar"></div></div>
-          <div class="flight-duration">11h 55m</div>
-          <div class="flight-airline">China Airlines</div>
-        </div>
-        <div class="flight-endpoint right">
-          <div class="airport-code">LAX</div>
-          <div class="airport-city">Los Angeles, CA</div>
-          <div class="flight-time">8:45 PM</div>
-          <div class="flight-date-small">Fri May 23</div>
-        </div>
-        <div class="flight-meta">
-          <div class="flight-num">CI 0008</div>
-        </div>
-      </div>
-
-      <div class="note-box" style="margin-bottom:12px;"><strong>🌙 LAX Overnight:</strong> Overnight at Hyatt Regency LAX — next morning flight home.</div>
-
-      <!-- LAX → DEN -->
-      <div class="flight-card">
-        <div class="flight-endpoint">
-          <div class="airport-code">LAX</div>
-          <div class="airport-city">Los Angeles, CA</div>
-          <div class="flight-time">9:20 AM</div>
-          <div class="flight-date-small">Sat May 24</div>
-        </div>
-        <div class="flight-middle">
-          <div class="flight-line"><div class="flight-line-bar"></div></div>
-          <div class="flight-duration">2h 20m</div>
-          <div class="flight-airline">Southwest Airlines</div>
-        </div>
-        <div class="flight-endpoint right">
-          <div class="airport-code">DEN</div>
-          <div class="airport-city">Denver, CO</div>
-          <div class="flight-time">12:40 PM</div>
-          <div class="flight-date-small">Sat May 24</div>
-        </div>
-        <div class="flight-meta">
-          <div class="flight-num">WN 2842</div>
-        </div>
-      </div>
-
-      <div class="summary-strip">
-        <div class="summary-stat"><div class="summary-stat-val">19h 40m</div><div class="summary-stat-label">Total Flight Time</div></div>
-        <div class="summary-stat"><div class="summary-stat-val">14h 5m</div><div class="summary-stat-label">Total Layovers</div></div>
-        <div class="summary-stat"><div class="summary-stat-val">3</div><div class="summary-stat-label">Flights</div></div>
-        <div class="summary-stat"><div class="summary-stat-val">May 23→24</div><div class="summary-stat-label">Travel Days</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== HOTELS ===== -->
-  <section class="section" id="hotels">
-    <div class="section-header">
-      <span class="section-label">02</span>
-      <h2 class="section-title">Hotels &amp; Accommodations</h2>
-    </div>
-
-    <!-- JW Marriott Hong Kong -->
-    <div class="hotel-card">
-      <div>
-        <div class="hotel-brand">🇭🇰 Hong Kong · Pre-Bali Stop</div>
-        <div class="hotel-name">JW Marriott Hong Kong</div>
-        <div class="hotel-detail-row">
-          <div class="hotel-detail-item">
-            <div class="hotel-detail-label">Check-in</div>
-            <div class="hotel-detail-val">May 15, 2026</div>
-          </div>
-          <div class="hotel-detail-item">
-            <div class="hotel-detail-label">Check-out</div>
-            <div class="hotel-detail-val">May 18, 2026</div>
-          </div>
-          <div class="hotel-detail-item">
-            <div class="hotel-detail-label">Nights</div>
-            <div class="hotel-detail-val">3 nights</div>
-          </div>
-          <div class="hotel-detail-item">
-            <div class="hotel-detail-label">Notes</div>
-            <div class="hotel-detail-val">Arrive HKG 9:15 AM via CI 0601</div>
-          </div>
-        </div>
-        <div class="status-badge">✓ Confirmed</div>
-      </div>
-      <div class="hotel-conf">
-        <div class="hotel-conf-label">Confirmation</div>
-        <div class="hotel-conf-num" style="font-size:16px;">94185544</div>
-      </div>
-    </div>
-
-    <!-- Grand Hyatt Bali -->
-    <div class="hotel-card">
-      <div>
-        <div class="hotel-brand">🇮🇩 Bali, Indonesia · President's Club Venue</div>
-        <div class="hotel-name">Grand Hyatt Bali</div>
-        <div class="hotel-detail-row">
-          <div class="hotel-detail-item">
-            <div class="hotel-detail-label">Check-in</div>
-            <div class="hotel-detail-val">May 18, 2026</div>
-          </div>
-          <div class="hotel-detail-item">
-            <div class="hotel-detail-label">Check-out</div>
-            <div class="hotel-detail-val">May 23, 2026</div>
-          </div>
-          <div class="hotel-detail-item">
-            <div class="hotel-detail-label">Nights</div>
-            <div class="hotel-detail-val">5 nights</div>
-          </div>
-          <div class="hotel-detail-item">
-            <div class="hotel-detail-label">Program</div>
-            <div class="hotel-detail-val">Fivetran President's Club</div>
-          </div>
-        </div>
-        <div class="status-badge">✓ Confirmed</div>
-      </div>
-      <div class="hotel-conf">
-        <div class="hotel-conf-label">Confirmation</div>
-        <div class="hotel-conf-num">520001</div>
-      </div>
-    </div>
-
-    <!-- Hyatt LAX -->
-    <div class="hotel-card">
-      <div>
-        <div class="hotel-brand">🇺🇸 Los Angeles, CA · Return Layover</div>
-        <div class="hotel-name">Hyatt Regency LAX</div>
-        <div class="hotel-detail-row">
-          <div class="hotel-detail-item">
-            <div class="hotel-detail-label">Check-in</div>
-            <div class="hotel-detail-val">May 23, 2026</div>
-          </div>
-          <div class="hotel-detail-item">
-            <div class="hotel-detail-label">Check-out</div>
-            <div class="hotel-detail-val">May 24, 2026</div>
-          </div>
-          <div class="hotel-detail-item">
-            <div class="hotel-detail-label">Nights</div>
-            <div class="hotel-detail-val">1 night</div>
-          </div>
-          <div class="hotel-detail-item">
-            <div class="hotel-detail-label">Notes</div>
-            <div class="hotel-detail-val">Morning flight DEN @ 9:20 AM</div>
-          </div>
-        </div>
-        <div class="status-badge">✓ Confirmed</div>
-      </div>
-      <div class="hotel-conf">
-        <div class="hotel-conf-label">Confirmation</div>
-        <div class="hotel-conf-num" style="font-size:16px;">944971835</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== GLOBE ===== -->
-  <section class="section" id="globe">
-    <div class="section-header">
-      <span class="section-label">✦</span>
-      <h2 class="section-title">Flight Map</h2>
-    </div>
-
-    <div style="display:flex; flex-direction:column; align-items:center; gap:16px;">
-
-      <div id="gib" style="min-height:48px; text-align:center;">
-        <p id="gln" style="font-family:'Playfair Display',serif; font-size:22px; color:var(--deep-teal); margin:0 0 4px; font-weight:700;">Denver, CO</p>
-        <p id="gld" style="font-family:'DM Mono',monospace; font-size:12px; color:var(--muted); margin:0; letter-spacing:1px; text-transform:uppercase;">Departure: May 13</p>
-      </div>
-
-      <div style="position:relative; width:500px; height:500px; max-width:100%;">
-        <canvas id="gc" width="500" height="500" style="border-radius:50%; max-width:100%;"></canvas>
-      </div>
-
-      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:center;">
-        <button id="gbp" onclick="gTogglePlay()" style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:1px; padding:8px 18px; border-radius:8px; border:1px solid var(--border); background:var(--deep-teal); color:var(--sand); cursor:pointer;">⏸ PAUSE</button>
-        <button id="gbr" onclick="gRestart()" style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:1px; padding:8px 18px; border-radius:8px; border:1px solid var(--border); background:white; color:var(--deep-teal); cursor:pointer;">↺ RESTART</button>
-        <span style="font-family:'DM Mono',monospace; font-size:10px; color:var(--muted); letter-spacing:1px;">SPEED</span>
-        <input type="range" id="gspd" min="0.2" max="5" step="0.1" value="1" style="width:80px;" oninput="gSpd=parseFloat(this.value)">
-      </div>
-
-      <div style="display:flex; gap:16px; flex-wrap:wrap; justify-content:center;">
-        <div style="display:flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1px;"><div style="width:10px;height:10px;border-radius:50%;background:#E8B85A;"></div>OUTBOUND</div>
-        <div style="display:flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1px;"><div style="width:10px;height:10px;border-radius:50%;background:#7EC8E3;"></div>RETURN</div>
-        <div style="display:flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1px;"><div style="width:10px;height:10px;border-radius:50%;background:#FF6B6B;"></div>PLANE</div>
-        <div style="display:flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1px;"><div style="width:10px;height:10px;border-radius:50%;background:#A8E6A3;"></div>VISITED</div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ===== ITINERARY ===== -->
-  <section class="section" id="itinerary">
-    <div class="section-header">
-      <span class="section-label">03</span>
-      <h2 class="section-title">Bali Itinerary</h2>
-    </div>
-
-    <div class="timeline">
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">Monday — May 18</div>
-        <div class="timeline-card">
-          <div class="timeline-title">✈ Arrival in Bali</div>
-          <div class="timeline-desc">Land at Ngurah Rai International Airport at 4:35 PM via SQ 8548. Transfer to Grand Hyatt Bali. Check-in and settle in — welcome dinner or relaxing evening at the resort.</div>
-          <div class="timeline-time">4:35 PM — Arrival</div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot gold"></div>
-        <div class="timeline-date">Tuesday — May 19</div>
-        <div class="timeline-card">
-          <div class="timeline-title">🧖 Welcome Spa Experience — Zahra Spa</div>
-          <div class="timeline-desc">Both Kyle & Sarah have a massage booked at Zahra Spa. Relax and decompress after the long journey. Enjoy the resort and pools for the remainder of the day.</div>
-          <div class="timeline-time">11:00 AM — Massage (Kyle & Sarah)</div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot terra"></div>
-        <div class="timeline-date">Wednesday — May 20</div>
-        <div class="timeline-card">
-          <div class="timeline-title">⛵ Catamaran Sail — Group Activity</div>
-          <div class="timeline-desc">Full-day catamaran cruise with the President's Club group. Both Kyle and Sarah are booked on the Catamaran Cruise. Full day on the water — bring sunscreen, swimwear, and camera!</div>
-          <div class="timeline-time">8:00 AM – 5:30 PM (Full Day)</div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot gold"></div>
-        <div class="timeline-date">Thursday — May 21</div>
-        <div class="timeline-card">
-          <div class="timeline-title">🐒 Ubud Culture &amp; Monkey Forest Experience</div>
-          <div class="timeline-desc">Hosted excursion to Ubud, Bali's cultural heart. Explore the Sacred Monkey Forest Sanctuary, traditional villages, local markets, and Balinese arts and crafts. Both Kyle and Sarah attending.</div>
-          <div class="timeline-time">8:00 AM – 5:30 PM (Full Day)</div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">Friday — May 22</div>
-        <div class="timeline-card">
-          <div class="timeline-title">🌊 Day at Leisure</div>
-          <div class="timeline-desc">Non-hosted free day! Options: Explore Seminyak or Kuta, rent a scooter, visit local temples (Tanah Lot, Uluwatu), spa day, surf lessons, rice terrace walk in Tegallalang, or simply enjoy the Grand Hyatt beach and pools.</div>
-          <div class="timeline-time">Your day to design</div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot terra"></div>
-        <div class="timeline-date">Saturday — May 23</div>
-        <div class="timeline-card">
-          <div class="timeline-title">🛫 Departure Day — Bali to LAX</div>
-          <div class="timeline-desc">Check out of Grand Hyatt Bali and head to Ngurah Rai Airport. Depart on CI 0772 at 3:55 PM. Arrive Taipei 9:20 PM, connect to CI 0008 at 11:50 PM to LAX. Overnight at Hyatt Regency LAX.</div>
-          <div class="timeline-time">3:55 PM — CI 0772 Departs</div>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">Sunday — May 24</div>
-        <div class="timeline-card">
-          <div class="timeline-title">🏠 Home to Denver</div>
-          <div class="timeline-desc">Depart LAX on WN 2842 at 9:20 AM. Arrive Denver at 12:40 PM. Welcome home!</div>
-          <div class="timeline-time">9:20 AM — WN 2842 → Arrive DEN 12:40 PM</div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ===== HONG KONG ITINERARY ===== -->
-  <section class="section hk-section" id="hongkong">
-
-    <div class="hk-header">
-      <div class="hk-header-inner">
-        <div class="hk-eyebrow">May 15 – 18 · 3 Days</div>
-        <h1 class="hk-title">香港 Hong Kong</h1>
-        <p class="hk-sub">Kyle & Sarah · JW Marriott, Pacific Place</p>
-      </div>
-    </div>
-
-    <div class="hk-note">
-      <strong>📍 Note:</strong> This is a suggested itinerary — mix, match, and skip as you like. You arrive May 15 at 9:15 AM and depart May 18 at 9:05 AM, giving you roughly 3 full days to explore.
-    </div>
-
-    <!-- DAY TABS -->
-    <div class="hk-tabs" id="hkTabs">
-      <button class="hk-tab active" onclick="hkSetDay(0)" id="hk-tab-0" style="border-bottom-color: #C8102E;">
-        <span class="tab-emoji">🏙️</span>
-        <span class="tab-day">DAY 1</span>
-        <span class="tab-name" style="color:#FF6B6B;">HK Island</span>
-      </button>
-      <button class="hk-tab" onclick="hkSetDay(1)" id="hk-tab-1">
-        <span class="tab-emoji">🌃</span>
-        <span class="tab-day">DAY 2</span>
-        <span class="tab-name" style="color:#FFC107;">Kowloon</span>
-      </button>
-      <button class="hk-tab" onclick="hkSetDay(2)" id="hk-tab-2">
-        <span class="tab-emoji">🥾</span>
-        <span class="tab-day">DAY 3</span>
-        <span class="tab-name" style="color:#4CAF50;">Adventure</span>
-      </button>
-    </div>
-
-    <!-- DAY 1: HK ISLAND -->
-    <div class="hk-day-panels active-panel" id="hk-panel-0">
-      <div class="hk-day-header">
-        <div class="hk-day-badge" style="background:#C8102E;">Day 1</div>
-        <h2 class="hk-day-title">Hong Kong Island</h2>
-        <p class="hk-day-sub">Markets, Temples & The Peak</p>
-      </div>
-      <div class="hk-timeline">
-
-        <div class="hk-stop">
-          <div class="hk-stop-line">
-            <div class="hk-stop-dot" style="border: 2px solid #C8102E;">🥟</div>
-            <div class="hk-stop-connector" style="background: linear-gradient(#C8102E44, transparent);"></div>
-          </div>
-          <div class="hk-card">
-            <div class="hk-card-inner" onclick="hkToggle(this)">
-              <div class="hk-card-top">
-                <div style="flex:1">
-                  <div class="hk-card-meta">
-                    <span class="hk-time" style="color:#FF6B6B;">8:00 AM</span>
-                    <span class="hk-tag" style="background:#C8102E25;color:#FF6B6B;border:1px solid #C8102E40;">Breakfast</span>
-                  </div>
-                  <h3 class="hk-stop-name">Tim Ho Wan</h3>
-                  <p class="hk-stop-desc">Start with the world's most affordable Michelin-starred dim sum. Order the legendary BBQ pork buns (baked, not steamed), har gow, and cheung fun. Budget ~$15 USD for two.</p>
-                </div>
-                <div class="hk-chevron">▾</div>
-              </div>
-              <div class="hk-tip-box">
-                <div class="hk-tip-inner" style="border:1px solid #C8102E30;">
-                  <span style="font-size:16px;">💡</span>
-                  <p class="hk-tip-text">Arrive right at 8am when it opens — lines form fast. Inside the MTR Hong Kong Station.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="hk-stop">
-          <div class="hk-stop-line">
-            <div class="hk-stop-dot" style="border: 2px solid #C8102E;">🏯</div>
-            <div class="hk-stop-connector" style="background: linear-gradient(#C8102E44, transparent);"></div>
-          </div>
-          <div class="hk-card">
-            <div class="hk-card-inner" onclick="hkToggle(this)">
-              <div class="hk-card-top">
-                <div style="flex:1">
-                  <div class="hk-card-meta">
-                    <span class="hk-time" style="color:#FF6B6B;">10:00 AM</span>
-                    <span class="hk-tag" style="background:#C8102E25;color:#FF6B6B;border:1px solid #C8102E40;">Culture</span>
-                  </div>
-                  <h3 class="hk-stop-name">Man Mo Temple</h3>
-                  <p class="hk-stop-desc">One of HK's oldest and most atmospheric temples on Hollywood Road. Massive incense coils hang from the ceiling — the smoke and scent are otherworldly. Free to enter.</p>
-                </div>
-                <div class="hk-chevron">▾</div>
-              </div>
-              <div class="hk-tip-box">
-                <div class="hk-tip-inner" style="border:1px solid #C8102E30;">
-                  <span style="font-size:16px;">💡</span>
-                  <p class="hk-tip-text">Stroll Hollywood Road afterward — it's lined with antique shops selling jade, ceramics, and art.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="hk-stop">
-          <div class="hk-stop-line">
-            <div class="hk-stop-dot" style="border: 2px solid #C8102E;">🥧</div>
-            <div class="hk-stop-connector" style="background: linear-gradient(#C8102E44, transparent);"></div>
-          </div>
-          <div class="hk-card">
-            <div class="hk-card-inner" onclick="hkToggle(this)">
-              <div class="hk-card-top">
-                <div style="flex:1">
-                  <div class="hk-card-meta">
-                    <span class="hk-time" style="color:#FF6B6B;">11:30 AM</span>
-                    <span class="hk-tag" style="background:#C8102E25;color:#FF6B6B;border:1px solid #C8102E40;">Snack</span>
-                  </div>
-                  <h3 class="hk-stop-name">Tai Cheong Bakery</h3>
-                  <p class="hk-stop-desc">A mandatory stop. These egg tarts are the stuff of legend — buttery, flaky crust with silky custard. Chris Patten, the last British Governor, was famously obsessed with them.</p>
-                </div>
-                <div class="hk-chevron">▾</div>
-              </div>
-              <div class="hk-tip-box">
-                <div class="hk-tip-inner" style="border:1px solid #C8102E30;">
-                  <span style="font-size:16px;">💡</span>
-                  <p class="hk-tip-text">Get them hot out of the oven — ask staff when the next batch is ready.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="hk-stop">
-          <div class="hk-stop-line">
-            <div class="hk-stop-dot" style="border: 2px solid #C8102E;">⛰️</div>
-            <div class="hk-stop-connector" style="background: linear-gradient(#C8102E44, transparent);"></div>
-          </div>
-          <div class="hk-card">
-            <div class="hk-card-inner" onclick="hkToggle(this)">
-              <div class="hk-card-top">
-                <div style="flex:1">
-                  <div class="hk-card-meta">
-                    <span class="hk-time" style="color:#FF6B6B;">12:30 PM</span>
-                    <span class="hk-tag" style="background:#C8102E25;color:#FF6B6B;border:1px solid #C8102E40;">Iconic View</span>
-                  </div>
-                  <h3 class="hk-stop-name">Victoria Peak</h3>
-                  <p class="hk-stop-desc">Take the historic Peak Tram up — the incline is dramatic and thrilling. At the top, skip the paid terrace and walk Lugard Road (free, 15 mins) for the most photogenic panoramic views of the harbor and skyline.</p>
-                </div>
-                <div class="hk-chevron">▾</div>
-              </div>
-              <div class="hk-tip-box">
-                <div class="hk-tip-inner" style="border:1px solid #C8102E30;">
-                  <span style="font-size:16px;">💡</span>
-                  <p class="hk-tip-text">Bus 15 up, Peak Tram down is the local's move. Go on a clear day — call it a morning activity if you have flexibility.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="hk-stop">
-          <div class="hk-stop-line">
-            <div class="hk-stop-dot" style="border: 2px solid #C8102E;">🍻</div>
-            <div class="hk-stop-connector" style="background: linear-gradient(#C8102E44, transparent);"></div>
-          </div>
-          <div class="hk-card">
-            <div class="hk-card-inner" onclick="hkToggle(this)">
-              <div class="hk-card-top">
-                <div style="flex:1">
-                  <div class="hk-card-meta">
-                    <span class="hk-time" style="color:#FF6B6B;">3:30 PM</span>
-                    <span class="hk-tag" style="background:#C8102E25;color:#FF6B6B;border:1px solid #C8102E40;">Neighborhood</span>
-                  </div>
-                  <h3 class="hk-stop-name">Lan Kwai Fong</h3>
-                  <p class="hk-stop-desc">HK's most famous bar and restaurant district. By day, grab a craft beer or cocktail at one of the terraces. A great spot to people-watch, recharge, and plan the evening.</p>
-                </div>
-                <div class="hk-chevron">▾</div>
-              </div>
-              <div class="hk-tip-box">
-                <div class="hk-tip-inner" style="border:1px solid #C8102E30;">
-                  <span style="font-size:16px;">💡</span>
-                  <p class="hk-tip-text">The alleys are steeper than they look. Wear comfortable shoes.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="hk-stop">
-          <div class="hk-stop-line">
-            <div class="hk-stop-dot" style="border: 2px solid #C8102E;">⭐</div>
-          </div>
-          <div class="hk-card">
-            <div class="hk-card-inner" onclick="hkToggle(this)">
-              <div class="hk-card-top">
-                <div style="flex:1">
-                  <div class="hk-card-meta">
-                    <span class="hk-time" style="color:#FF6B6B;">7:00 PM</span>
-                    <span class="hk-tag" style="background:#C8102E25;color:#FF6B6B;border:1px solid #C8102E40;">Splurge Dinner</span>
-                  </div>
-                  <h3 class="hk-stop-name">Lung King Heen</h3>
-                  <p class="hk-stop-desc">The world's first Chinese restaurant to earn 3 Michelin stars. Cantonese cuisine at its absolute peak — harbor views, impeccable dim sum, and seafood dishes you'll talk about for years. Book weeks in advance.</p>
-                </div>
-                <div class="hk-chevron">▾</div>
-              </div>
-              <div class="hk-tip-box">
-                <div class="hk-tip-inner" style="border:1px solid #C8102E30;">
-                  <span style="font-size:16px;">💡</span>
-                  <p class="hk-tip-text">Request a harbor-view table when booking. The lunch dim sum is slightly more accessible price-wise if dinner is too steep.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- DAY 2: KOWLOON -->
-    <div class="hk-day-panels" id="hk-panel-1">
-      <div class="hk-day-header">
-        <div class="hk-day-badge" style="background:#B8860B;">Day 2</div>
-        <h2 class="hk-day-title">Kowloon Peninsula</h2>
-        <p class="hk-day-sub">Markets, Temples & Harbour Magic</p>
-      </div>
-      <div class="hk-timeline">
-
-        <div class="hk-stop">
-          <div class="hk-stop-line">
-            <div class="hk-stop-dot" style="border: 2px solid #FFD700;">🏮</div>
-            <div class="hk-stop-connector" style="background: linear-gradient(#FFD70044, transparent);"></div>
-          </div>
-          <div class="hk-card">
-            <div class="hk-card-inner" onclick="hkToggle(this)">
-              <div class="hk-card-top">
-                <div style="flex:1">
-                  <div class="hk-card-meta">
-                    <span class="hk-time" style="color:#FFC107;">9:00 AM</span>
-                    <span class="hk-tag" style="background:#FFD70025;color:#FFC107;border:1px solid #FFD70040;">Culture</span>
-                  </div>
-                  <h3 class="hk-stop-name">Wong Tai Sin Temple</h3>
-                  <p class="hk-stop-desc">One of HK's grandest Taoist temples, famous for fortune-telling. Locals come to shake the kau cim sticks for readings. The colorful architecture, gardens, and koi ponds make this a photographer's dream.</p>
-                </div>
-                <div class="hk-chevron">▾</div>
-              </div>
-              <div class="hk-tip-box">
-                <div class="hk-tip-inner" style="border:1px solid #FFD70030;">
-                  <span style="font-size:16px;">💡</span>
-                  <p class="hk-tip-text">Visit before 10am for a calmer, more local experience. Dress respectfully.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="hk-stop">
-          <div class="hk-stop-line">
-            <div class="hk-stop-dot" style="border: 2px solid #FFD700;">🛍️</div>
-            <div class="hk-stop-connector" style="background: linear-gradient(#FFD70044, transparent);"></div>
-          </div>
-          <div class="hk-card">
-            <div class="hk-card-inner" onclick="hkToggle(this)">
-              <div class="hk-card-top">
-                <div style="flex:1">
-                  <div class="hk-card-meta">
-                    <span class="hk-time" style="color:#FFC107;">11:00 AM</span>
-                    <span class="hk-tag" style="background:#FFD70025;color:#FFC107;border:1px solid #FFD70040;">Shopping</span>
-                  </div>
-                  <h3 class="hk-stop-name">Ladies' Market, Mong Kok</h3>
-                  <p class="hk-stop-desc">A sprawling street market on Tung Choi Street — clothes, souvenirs, electronics, and trinkets. The real fun is bargaining. Start at half the asking price and work from there.</p>
-                </div>
-                <div class="hk-chevron">▾</div>
-              </div>
-              <div class="hk-tip-box">
-                <div class="hk-tip-inner" style="border:1px solid #FFD70030;">
-                  <span style="font-size:16px;">💡</span>
-                  <p class="hk-tip-text">Nearby Fa Yuen Street ('Sneaker Street') is great if you're into trainers. Also check out the goldfish market just around the corner.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="hk-stop">
-          <div class="hk-stop-line">
-            <div class="hk-stop-dot" style="border: 2px solid #FFD700;">🍜</div>
-            <div class="hk-stop-connector" style="background: linear-gradient(#FFD70044, transparent);"></div>
-          </div>
-          <div class="hk-card">
-            <div class="hk-card-inner" onclick="hkToggle(this)">
-              <div class="hk-card-top">
-                <div style="flex:1">
-                  <div class="hk-card-meta">
-                    <span class="hk-time" style="color:#FFC107;">1:00 PM</span>
-                    <span class="hk-tag" style="background:#FFD70025;color:#FFC107;border:1px solid #FFD70040;">Lunch</span>
-                  </div>
-                  <h3 class="hk-stop-name">Mong Kok Dai Pai Dong</h3>
-                  <p class="hk-stop-desc">Grab lunch at one of the open-air cooked food stalls in the area — char siu rice, wonton noodle soup, or congee. This is quintessential HK street food culture.</p>
-                </div>
-                <div class="hk-chevron">▾</div>
-              </div>
-              <div class="hk-tip-box">
-                <div class="hk-tip-inner" style="border:1px solid #FFD70030;">
-                  <span style="font-size:16px;">💡</span>
-                  <p class="hk-tip-text">Look for places packed with locals — a queue is always a good sign. Budget ~$5-8 USD per person.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="hk-stop">
-          <div class="hk-stop-line">
-            <div class="hk-stop-dot" style="border: 2px solid #FFD700;">⛴️</div>
-            <div class="hk-stop-connector" style="background: linear-gradient(#FFD70044, transparent);"></div>
-          </div>
-          <div class="hk-card">
-            <div class="hk-card-inner" onclick="hkToggle(this)">
-              <div class="hk-card-top">
-                <div style="flex:1">
-                  <div class="hk-card-meta">
-                    <span class="hk-time" style="color:#FFC107;">3:00 PM</span>
-                    <span class="hk-tag" style="background:#FFD70025;color:#FFC107;border:1px solid #FFD70040;">Iconic Experience</span>
-                  </div>
-                  <h3 class="hk-stop-name">Star Ferry</h3>
-                  <p class="hk-stop-desc">The most scenic $0.62 you'll ever spend. The 10-minute ferry crossing between Tsim Sha Tsui and Central has been running since 1888. The harbor views from the water are unmatched.</p>
-                </div>
-                <div class="hk-chevron">▾</div>
-              </div>
-              <div class="hk-tip-box">
-                <div class="hk-tip-inner" style="border:1px solid #FFD70030;">
-                  <span style="font-size:16px;">💡</span>
-                  <p class="hk-tip-text">Take the upper deck for the best views and photos. Do it both ways — HK Island skyline from Kowloon is spectacular.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="hk-stop">
-          <div class="hk-stop-line">
-            <div class="hk-stop-dot" style="border: 2px solid #FFD700;">⭐</div>
-            <div class="hk-stop-connector" style="background: linear-gradient(#FFD70044, transparent);"></div>
-          </div>
-          <div class="hk-card">
-            <div class="hk-card-inner" onclick="hkToggle(this)">
-              <div class="hk-card-top">
-                <div style="flex:1">
-                  <div class="hk-card-meta">
-                    <span class="hk-time" style="color:#FFC107;">5:00 PM</span>
-                    <span class="hk-tag" style="background:#FFD70025;color:#FFC107;border:1px solid #FFD70040;">Waterfront Walk</span>
-                  </div>
-                  <h3 class="hk-stop-name">Avenue of Stars</h3>
-                  <p class="hk-stop-desc">HK's answer to Hollywood's Walk of Fame — handprints of Jackie Chan, Bruce Lee, Jet Li, Michelle Yeoh, and more. The harbor promenade at golden hour is absolutely stunning.</p>
-                </div>
-                <div class="hk-chevron">▾</div>
-              </div>
-              <div class="hk-tip-box">
-                <div class="hk-tip-inner" style="border:1px solid #FFD70030;">
-                  <span style="font-size:16px;">💡</span>
-                  <p class="hk-tip-text">Walk from the Star Ferry pier east along the promenade. Grab drinks at a harborfront bar to settle in for the light show.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="hk-stop">
-          <div class="hk-stop-line">
-            <div class="hk-stop-dot" style="border: 2px solid #FFD700;">🌙</div>
-          </div>
-          <div class="hk-card">
-            <div class="hk-card-inner" onclick="hkToggle(this)">
-              <div class="hk-card-top">
-                <div style="flex:1">
-                  <div class="hk-card-meta">
-                    <span class="hk-time" style="color:#FFC107;">8:00 PM</span>
-                    <span class="hk-tag" style="background:#FFD70025;color:#FFC107;border:1px solid #FFD70040;">Night Market</span>
-                  </div>
-                  <h3 class="hk-stop-name">Temple Street Night Market</h3>
-                  <p class="hk-stop-desc">The most atmospheric night market in HK. Fortune tellers, street opera, seafood stalls, neon signs. Don't miss the dai pai dong at the south end for grilled oysters and clams.</p>
-                </div>
-                <div class="hk-chevron">▾</div>
-              </div>
-              <div class="hk-tip-box">
-                <div class="hk-tip-inner" style="border:1px solid #FFD70030;">
-                  <span style="font-size:16px;">💡</span>
-                  <p class="hk-tip-text">Goes until 11pm. Bargain hard — the asking price is always inflated for tourists.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- DAY 3: ADVENTURE -->
-    <div class="hk-day-panels" id="hk-panel-2">
-      <div class="hk-day-header">
-        <div class="hk-day-badge" style="background:#0A6B3B;">Day 3</div>
-        <h2 class="hk-day-title">Adventure Day</h2>
-        <p class="hk-day-sub">Dragon's Back, Sai Kung & Skyline Farewell</p>
-      </div>
-      <div class="hk-timeline">
-
-        <div class="hk-stop">
-          <div class="hk-stop-line">
-            <div class="hk-stop-dot" style="border: 2px solid #4CAF50;">🥾</div>
-            <div class="hk-stop-connector" style="background: linear-gradient(#4CAF5044, transparent);"></div>
-          </div>
-          <div class="hk-card">
-            <div class="hk-card-inner" onclick="hkToggle(this)">
-              <div class="hk-card-top">
-                <div style="flex:1">
-                  <div class="hk-card-meta">
-                    <span class="hk-time" style="color:#4CAF50;">7:30 AM</span>
-                    <span class="hk-tag" style="background:#4CAF5025;color:#4CAF50;border:1px solid #4CAF5040;">Hiking</span>
-                  </div>
-                  <h3 class="hk-stop-name">Dragon's Back Trail</h3>
-                  <p class="hk-stop-desc">Named Asia's best urban hike. The ridge trail follows the spine of Hong Kong Island with 360° views of the South China Sea, Shek O village, and Big Wave Bay. About 8km, 2.5–3 hours.</p>
-                </div>
-                <div class="hk-chevron">▾</div>
-              </div>
-              <div class="hk-tip-box">
-                <div class="hk-tip-inner" style="border:1px solid #4CAF5030;">
-                  <span style="font-size:16px;">💡</span>
-                  <p class="hk-tip-text">End at Big Wave Bay beach — take a dip if the water's warm. Bring sunscreen, water, and sturdy shoes. Take bus 9 from Shau Kei Wan MTR.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="hk-stop">
-          <div class="hk-stop-line">
-            <div class="hk-stop-dot" style="border: 2px solid #4CAF50;">🏖️</div>
-            <div class="hk-stop-connector" style="background: linear-gradient(#4CAF5044, transparent);"></div>
-          </div>
-          <div class="hk-card">
-            <div class="hk-card-inner" onclick="hkToggle(this)">
-              <div class="hk-card-top">
-                <div style="flex:1">
-                  <div class="hk-card-meta">
-                    <span class="hk-time" style="color:#4CAF50;">11:00 AM</span>
-                    <span class="hk-tag" style="background:#4CAF5025;color:#4CAF50;border:1px solid #4CAF5040;">Hidden Gem</span>
-                  </div>
-                  <h3 class="hk-stop-name">Shek O Village</h3>
-                  <p class="hk-stop-desc">A sleepy, charming fishing village just below Dragon's Back. Colorful colonial houses, a Thai restaurant or two, and a beautiful beach. Feels a world away from Central.</p>
-                </div>
-                <div class="hk-chevron">▾</div>
-              </div>
-              <div class="hk-tip-box">
-                <div class="hk-tip-inner" style="border:1px solid #4CAF5030;">
-                  <span style="font-size:16px;">💡</span>
-                  <p class="hk-tip-text">Rent a beach chair and decompress after the hike. The village has good casual restaurants for brunch.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="hk-stop">
-          <div class="hk-stop-line">
-            <div class="hk-stop-dot" style="border: 2px solid #4CAF50;">🦀</div>
-            <div class="hk-stop-connector" style="background: linear-gradient(#4CAF5044, transparent);"></div>
-          </div>
-          <div class="hk-card">
-            <div class="hk-card-inner" onclick="hkToggle(this)">
-              <div class="hk-card-top">
-                <div style="flex:1">
-                  <div class="hk-card-meta">
-                    <span class="hk-time" style="color:#4CAF50;">1:30 PM</span>
-                    <span class="hk-tag" style="background:#4CAF5025;color:#4CAF50;border:1px solid #4CAF5040;">Adventure Lunch</span>
-                  </div>
-                  <h3 class="hk-stop-name">Sai Kung Seafood Street</h3>
-                  <p class="hk-stop-desc">Take a taxi or bus to Sai Kung — a fishing town on the New Territories coast. Pick live seafood straight from the tanks (prawns, crab, abalone, lobster), haggle a price, and a restaurant will cook it for you.</p>
-                </div>
-                <div class="hk-chevron">▾</div>
-              </div>
-              <div class="hk-tip-box">
-                <div class="hk-tip-inner" style="border:1px solid #4CAF5030;">
-                  <span style="font-size:16px;">💡</span>
-                  <p class="hk-tip-text">Compare prices between restaurants — the seafood cost is separate from the cooking fee. Budget ~$40–60 USD for a serious feast for two.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="hk-stop">
-          <div class="hk-stop-line">
-            <div class="hk-stop-dot" style="border: 2px solid #4CAF50;">⛵</div>
-            <div class="hk-stop-connector" style="background: linear-gradient(#4CAF5044, transparent);"></div>
-          </div>
-          <div class="hk-card">
-            <div class="hk-card-inner" onclick="hkToggle(this)">
-              <div class="hk-card-top">
-                <div style="flex:1">
-                  <div class="hk-card-meta">
-                    <span class="hk-time" style="color:#4CAF50;">4:00 PM</span>
-                    <span class="hk-tag" style="background:#4CAF5025;color:#4CAF50;border:1px solid #4CAF5040;">On the Water</span>
-                  </div>
-                  <h3 class="hk-stop-name">Sai Kung Harbour Boat Trip</h3>
-                  <p class="hk-stop-desc">Small wooden kaido boats ferry you to hidden beaches and islands around the Sai Kung peninsula — some only accessible by water. Pure adventure with incredible coastal scenery.</p>
-                </div>
-                <div class="hk-chevron">▾</div>
-              </div>
-              <div class="hk-tip-box">
-                <div class="hk-tip-inner" style="border:1px solid #4CAF5030;">
-                  <span style="font-size:16px;">💡</span>
-                  <p class="hk-tip-text">Negotiate directly with the boat captains at the pier. A 2-hour trip to Sharp Island or Kiu Tsui Beach runs ~$100–150 USD for the boat.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="hk-stop">
-          <div class="hk-stop-line">
-            <div class="hk-stop-dot" style="border: 2px solid #4CAF50;">🍸</div>
-          </div>
-          <div class="hk-card">
-            <div class="hk-card-inner" onclick="hkToggle(this)">
-              <div class="hk-card-top">
-                <div style="flex:1">
-                  <div class="hk-card-meta">
-                    <span class="hk-time" style="color:#4CAF50;">7:30 PM</span>
-                    <span class="hk-tag" style="background:#4CAF5025;color:#4CAF50;border:1px solid #4CAF5040;">Farewell Dinner</span>
-                  </div>
-                  <h3 class="hk-stop-name">Aqua Restaurant</h3>
-                  <p class="hk-stop-desc">On the 17th floor of a Tsim Sha Tsui tower with floor-to-ceiling windows over Victoria Harbour. Japanese-Italian fusion, a world-class cocktail menu, and arguably the best skyline view in HK. The perfect final dinner.</p>
-                </div>
-                <div class="hk-chevron">▾</div>
-              </div>
-              <div class="hk-tip-box">
-                <div class="hk-tip-inner" style="border:1px solid #4CAF5030;">
-                  <span style="font-size:16px;">💡</span>
-                  <p class="hk-tip-text">Make a reservation and specifically request a window table. Order cocktails at the bar first — the bar views are also stunning.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ESSENTIAL TIPS -->
-    <div class="hk-essential-tips">
-      <h3 class="hk-tips-title">Essential Tips</h3>
-      <div class="hk-tips-grid">
-        <div class="hk-tip-card">
-          <span class="hk-tip-card-icon">🚇</span>
-          <div class="hk-tip-card-title">Octopus Card</div>
-          <div class="hk-tip-card-text">Buy at any MTR station. Covers metro, buses, Star Ferry, and even 7-Eleven.</div>
-        </div>
-        <div class="hk-tip-card">
-          <span class="hk-tip-card-icon">💰</span>
-          <div class="hk-tip-card-title">Money</div>
-          <div class="hk-tip-card-text">Carry HKD cash for markets and street food. Cards work everywhere upscale.</div>
-        </div>
-        <div class="hk-tip-card">
-          <span class="hk-tip-card-icon">🌡️</span>
-          <div class="hk-tip-card-title">Weather</div>
-          <div class="hk-tip-card-text">Light, breathable clothes. Bring a layer for aggressive restaurant AC.</div>
-        </div>
-        <div class="hk-tip-card">
-          <span class="hk-tip-card-icon">📱</span>
-          <div class="hk-tip-card-title">Apps</div>
-          <div class="hk-tip-card-text">Download Citymapper HK for transit. Google Translate camera works great here.</div>
-        </div>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- ===== DOCUMENTS ===== -->
-  <section class="section" id="docs">
-    <div class="section-header">
-      <span class="section-label">04</span>
-      <h2 class="section-title">Travel Documents</h2>
-    </div>
-
-    <div class="ticket-grid">
-
-      <div class="ticket-card">
-        <span class="doc-status-ok">✓ Valid</span>
-        <span class="ticket-icon">🛂</span>
-        <div class="ticket-label">US Passport — Kyle</div>
-        <div class="ticket-name">Kyle William Fitzpatrick</div>
-        <div class="ticket-detail"><span>Passport No.</span> <span class="ticket-val">A33387694</span></div>
-        <div class="ticket-detail"><span>Date of Birth</span> <span class="ticket-val">26 JUL 1983</span></div>
-        <div class="ticket-detail"><span>Nationality</span> <span class="ticket-val">United States of America</span></div>
-        <div class="ticket-detail"><span>Place of Birth</span> <span class="ticket-val">California, U.S.A.</span></div>
-        <div class="ticket-detail"><span>Issued</span> <span class="ticket-val">19 NOV 2023</span></div>
-        <div class="ticket-detail"><span>Expires</span> <span class="ticket-val">18 NOV 2033</span></div>
-        <div class="status-badge">✓ Valid through Nov 2033</div>
-        <br><a class="doc-link" href="https://drive.google.com/file/d/1h8Ej36bBexRICoiGL2uDGaaz2KotBh0l/view?usp=sharing" target="_blank">📄 View Passport</a>
-      </div>
-
-      <div class="ticket-card">
-        <span class="doc-status-ok">✓ Valid</span>
-        <span class="ticket-icon">🛂</span>
-        <div class="ticket-label">US Passport — Sarah</div>
-        <div class="ticket-name">Sarah Kohn Fitzpatrick</div>
-        <div class="ticket-detail"><span>Passport No.</span> <span class="ticket-val">A33254903</span></div>
-        <div class="ticket-detail"><span>Date of Birth</span> <span class="ticket-val">12 JAN 1982</span></div>
-        <div class="ticket-detail"><span>Nationality</span> <span class="ticket-val">United States of America</span></div>
-        <div class="ticket-detail"><span>Place of Birth</span> <span class="ticket-val">Missouri, U.S.A.</span></div>
-        <div class="ticket-detail"><span>Issued</span> <span class="ticket-val">12 NOV 2023</span></div>
-        <div class="ticket-detail"><span>Expires</span> <span class="ticket-val">11 NOV 2033</span></div>
-        <div class="status-badge">✓ Valid through Nov 2033</div>
-        <br><a class="doc-link" href="https://drive.google.com/file/d/12wEXN0CFCr0YZHPjRDulrSqefmkWd1Fa/view?usp=sharing" target="_blank">📄 View Passport</a>
-      </div>
-
-      <div class="ticket-card">
-        <span class="doc-status-ok">✓ Confirmed</span>
-        <span class="ticket-icon">🇮🇩</span>
-        <div class="ticket-label">Indonesia e-VOA — Kyle</div>
-        <div class="ticket-name">Electronic Visa on Arrival</div>
-        <div class="ticket-detail"><span>Visa No.</span> <span class="ticket-val">Z1A9609232</span></div>
-        <div class="ticket-detail"><span>Reference No.</span> <span class="ticket-val">2100526B1607520</span></div>
-        <div class="ticket-detail"><span>Payment Receipt</span> <span class="ticket-val">XC7729012</span></div>
-        <div class="ticket-detail"><span>Issued</span> <span class="ticket-val">10 May 2026</span></div>
-        <div class="ticket-detail"><span>Use Before</span> <span class="ticket-val">07 Aug 2026</span></div>
-        <div class="ticket-detail"><span>Duration of Stay</span> <span class="ticket-val">30 Days</span></div>
-        <div class="ticket-detail"><span>Visa Type</span> <span class="ticket-val">B1 — Tourism</span></div>
-        <div class="note-box" style="font-size:11px;"><strong>✓ Autogate eligible</strong> — Skip the visa queue at DPS, proceed directly to the Immigration Counter. Present passport + return ticket.</div>
-        <a class="doc-link" href="https://drive.google.com/file/d/1LzPXsyPhaD2ymBGUGHI15_YFzfhg_pGX/view?usp=sharing" target="_blank">📄 View e-VOA</a>
-      </div>
-
-      <div class="ticket-card">
-        <span class="doc-status-ok">✓ Confirmed</span>
-        <span class="ticket-icon">🇮🇩</span>
-        <div class="ticket-label">Indonesia e-VOA — Sarah</div>
-        <div class="ticket-name">Electronic Visa on Arrival</div>
-        <div class="ticket-detail"><span>Visa No.</span> <span class="ticket-val">Z1A9609332</span></div>
-        <div class="ticket-detail"><span>Reference No.</span> <span class="ticket-val">2100526B1607765</span></div>
-        <div class="ticket-detail"><span>Payment Receipt</span> <span class="ticket-val">XC7729113</span></div>
-        <div class="ticket-detail"><span>Issued</span> <span class="ticket-val">10 May 2026</span></div>
-        <div class="ticket-detail"><span>Use Before</span> <span class="ticket-val">07 Aug 2026</span></div>
-        <div class="ticket-detail"><span>Duration of Stay</span> <span class="ticket-val">30 Days</span></div>
-        <div class="ticket-detail"><span>Visa Type</span> <span class="ticket-val">B1 — Tourism</span></div>
-        <div class="note-box" style="font-size:11px;"><strong>✓ Autogate eligible</strong> — Skip the visa queue at DPS, proceed directly to the Immigration Counter. Present passport + return ticket.</div>
-        <a class="doc-link" href="https://drive.google.com/file/d/1aE_sooQs5c0i74bnO8Jk1Tanjm4pb61U/view?usp=sharing" target="_blank">📄 View e-VOA</a>
-      </div>
-
-      <div class="ticket-card">
-        <span class="doc-status-ok">✓ Paid</span>
-        <span class="ticket-icon">🌿</span>
-        <div class="ticket-label">Bali Tourism Levy — Kyle</div>
-        <div class="ticket-name">Bali Provincial Gov. Levy</div>
-        <div class="ticket-detail"><span>Levy Voucher No.</span> <span class="ticket-val">LVB26EU1S2P</span></div>
-        <div class="ticket-detail"><span>Name</span> <span class="ticket-val">Kyle William Fitzpatrick</span></div>
-        <div class="ticket-detail"><span>Arrival Date</span> <span class="ticket-val">18 May 2026</span></div>
-        <div class="ticket-detail"><span>Amount Paid</span> <span class="ticket-val">IDR 150,000 + IDR 4,500 fee</span></div>
-        <div class="ticket-detail"><span>Date Stamped</span> <span class="ticket-val">11 May 2026</span></div>
-        <div class="note-box" style="font-size:11px;"><strong>✓ Paid & confirmed.</strong> Bring this voucher (printed or on phone) during your stay in Bali.</div>
-        <a class="doc-link" href="https://drive.google.com/file/d/1r9RXYJ_UUCxKVdygE8zd-R8HA5M6lNbr/view?usp=sharing" target="_blank">📄 View Levy Voucher</a>
-      </div>
-
-      <div class="ticket-card">
-        <span class="doc-status-ok">✓ Paid</span>
-        <span class="ticket-icon">🌿</span>
-        <div class="ticket-label">Bali Tourism Levy — Sarah</div>
-        <div class="ticket-name">Bali Provincial Gov. Levy</div>
-        <div class="ticket-detail"><span>Levy Voucher No.</span> <span class="ticket-val">LVB26EUXBN4</span></div>
-        <div class="ticket-detail"><span>Name</span> <span class="ticket-val">Sarah Kohn Fitzpatrick</span></div>
-        <div class="ticket-detail"><span>Arrival Date</span> <span class="ticket-val">18 May 2026</span></div>
-        <div class="ticket-detail"><span>Amount Paid</span> <span class="ticket-val">IDR 150,000 + IDR 4,500 fee</span></div>
-        <div class="ticket-detail"><span>Date Stamped</span> <span class="ticket-val">11 May 2026</span></div>
-        <div class="note-box" style="font-size:11px;"><strong>✓ Paid & confirmed.</strong> Bring this voucher (printed or on phone) during your stay in Bali.</div>
-        <a class="doc-link" href="https://drive.google.com/file/d/1XKO8CCNJyGWN0k3UIaDl5HObc2U9pZgX/view?usp=sharing" target="_blank">📄 View Levy Voucher</a>
-      </div>
-
-      <div class="ticket-card">
-        <span class="doc-status-ok">✓ Confirmed</span>
-        <span class="ticket-icon">✈</span>
-        <div class="ticket-label">Airline Ticket</div>
-        <div class="ticket-name">China Airlines — Kyle</div>
-        <div class="ticket-detail"><span>Ticket #</span> <span class="ticket-val">2977428474320</span></div>
-        <div class="ticket-detail"><span>Passenger</span> <span class="ticket-val">FITZPATRICK/KYLE WILLIAM</span></div>
-        <div class="ticket-detail"><span>Routes</span> <span class="ticket-val">SFO↔TPE↔HKG / DPS↔TPE↔LAX</span></div>
-      </div>
-
-      <div class="ticket-card">
-        <span class="doc-status-ok">✓ Confirmed</span>
-        <span class="ticket-icon">✈</span>
-        <div class="ticket-label">Airline Ticket</div>
-        <div class="ticket-name">China Airlines — Sarah</div>
-        <div class="ticket-detail"><span>Ticket #</span> <span class="ticket-val">2977428474322</span></div>
-        <div class="ticket-detail"><span>Passenger</span> <span class="ticket-val">FITZPATRICK/SARAH KOHN</span></div>
-        <div class="ticket-detail"><span>Routes</span> <span class="ticket-val">SFO↔TPE↔HKG / DPS↔TPE↔LAX</span></div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ===== WEATHER ===== -->
-  <section class="section" id="weather">
-    <div class="section-header">
-      <span class="section-label">05</span>
-      <h2 class="section-title">Weather &amp; Climate</h2>
-    </div>
-
-    <div class="weather-strip">
-      <div class="weather-main">
-        <div class="weather-icon">🌤</div>
-        <div>
-          <div class="weather-temp">80–88°F</div>
-          <div class="weather-desc">Warm, tropical & humid · May is shoulder season</div>
-        </div>
-      </div>
-      <div class="weather-details">
-        <div class="weather-detail">
-          <div class="weather-detail-val">85°F avg</div>
-          <div class="weather-detail-label">Daytime High</div>
-        </div>
-        <div class="weather-detail">
-          <div class="weather-detail-val">74°F avg</div>
-          <div class="weather-detail-label">Evening Low</div>
-        </div>
-        <div class="weather-detail">
-          <div class="weather-detail-val">High</div>
-          <div class="weather-detail-label">Humidity</div>
-        </div>
-        <div class="weather-detail">
-          <div class="weather-detail-val">Occasional</div>
-          <div class="weather-detail-label">Rain Showers</div>
-        </div>
-        <div class="weather-detail">
-          <div class="weather-detail-val">Low</div>
-          <div class="weather-detail-label">Crowd Level</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="note-box mt-md">
-      <strong>May in Bali:</strong> You're arriving at the tail end of rainy season — expect mostly sunny days with occasional brief tropical showers, especially in the afternoon. Evenings are warm and humid. Perfect beach and pool weather. Pack a light rain jacket for excursions.
-    </div>
-  </section>
-
-  <!-- ===== PACKING ===== -->
-  <section class="section" id="packing">
-    <div class="section-header">
-      <span class="section-label">06</span>
-      <h2 class="section-title">Packing Checklist</h2>
-    </div>
-
-    <div class="packing-grid" id="packingGrid">
-
-      <div class="packing-cat">
-        <div class="packing-cat-title">👗 Clothing</div>
-        <label class="packing-item"><input type="checkbox"> Lightweight resort wear</label>
-        <label class="packing-item"><input type="checkbox"> Casual evening attire</label>
-        <label class="packing-item"><input type="checkbox"> Swimwear (2+ sets)</label>
-        <label class="packing-item"><input type="checkbox"> Cover-ups / sarong</label>
-        <label class="packing-item"><input type="checkbox"> Comfortable walking shoes</label>
-        <label class="packing-item"><input type="checkbox"> Sandals / flip flops</label>
-        <label class="packing-item"><input type="checkbox"> Light sweater / wrap</label>
-        <label class="packing-item"><input type="checkbox"> Socks & underwear</label>
-      </div>
-
-      <div class="packing-cat">
-        <div class="packing-cat-title">🌞 Sun & Outdoors</div>
-        <label class="packing-item"><input type="checkbox"> Sunscreen SPF 50+</label>
-        <label class="packing-item"><input type="checkbox"> Sunglasses</label>
-        <label class="packing-item"><input type="checkbox"> Hat / cap</label>
-        <label class="packing-item"><input type="checkbox"> Small umbrella / rain jacket</label>
-        <label class="packing-item"><input type="checkbox"> Insect repellent</label>
-        <label class="packing-item"><input type="checkbox"> Reef-safe sunscreen</label>
-        <label class="packing-item"><input type="checkbox"> Dry bag / waterproof case</label>
-      </div>
-
-      <div class="packing-cat">
-        <div class="packing-cat-title">📋 Documents</div>
-        <label class="packing-item"><input type="checkbox"> Passport — Kyle</label>
-        <label class="packing-item"><input type="checkbox"> Passport — Sarah</label>
-        <label class="packing-item"><input type="checkbox"> Indonesia e-VOA printout</label>
-        <label class="packing-item"><input type="checkbox"> Tourism tax QR code</label>
-        <label class="packing-item"><input type="checkbox"> Hotel confirmations</label>
-        <label class="packing-item"><input type="checkbox"> Flight confirmations</label>
-        <label class="packing-item"><input type="checkbox"> Travel insurance cards</label>
-        <label class="packing-item"><input type="checkbox"> Credit cards + cash (IDR)</label>
-      </div>
-
-      <div class="packing-cat">
-        <div class="packing-cat-title">💊 Health & Safety</div>
-        <label class="packing-item"><input type="checkbox"> Prescription meds (extra supply)</label>
-        <label class="packing-item"><input type="checkbox"> Motion sickness meds</label>
-        <label class="packing-item"><input type="checkbox"> Anti-diarrheal / Pepto</label>
-        <label class="packing-item"><input type="checkbox"> Antihistamines</label>
-        <label class="packing-item"><input type="checkbox"> Bandages / first aid</label>
-        <label class="packing-item"><input type="checkbox"> Hand sanitizer</label>
-        <label class="packing-item"><input type="checkbox"> Melatonin (jet lag)</label>
-        <label class="packing-item"><input type="checkbox"> Travel health insurance</label>
-      </div>
-
-      <div class="packing-cat">
-        <div class="packing-cat-title">📱 Tech & Gadgets</div>
-        <label class="packing-item"><input type="checkbox"> Phone + charger</label>
-        <label class="packing-item"><input type="checkbox"> Universal adapter</label>
-        <label class="packing-item"><input type="checkbox"> Portable battery bank</label>
-        <label class="packing-item"><input type="checkbox"> Camera / GoPro</label>
-        <label class="packing-item"><input type="checkbox"> Earbuds / noise-canceling headphones</label>
-        <label class="packing-item"><input type="checkbox"> Downloaded maps (offline)</label>
-        <label class="packing-item"><input type="checkbox"> SIM card or intl plan</label>
-      </div>
-
-      <div class="packing-cat">
-        <div class="packing-cat-title">✈ Long-Haul Comfort</div>
-        <label class="packing-item"><input type="checkbox"> Neck pillow</label>
-        <label class="packing-item"><input type="checkbox"> Eye mask</label>
-        <label class="packing-item"><input type="checkbox"> Compression socks</label>
-        <label class="packing-item"><input type="checkbox"> Lip balm & moisturizer</label>
-        <label class="packing-item"><input type="checkbox"> Snacks for flight</label>
-        <label class="packing-item"><input type="checkbox"> Empty water bottle</label>
-        <label class="packing-item"><input type="checkbox"> Entertainment downloaded</label>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ===== TIPS ===== -->
-  <section class="section" id="tips">
-    <div class="section-header">
-      <span class="section-label">07</span>
-      <h2 class="section-title">Local Tips &amp; Spots</h2>
-    </div>
-
-    <div class="tips-grid">
-
-      <div class="tip-card">
-        <span class="tip-icon">💰</span>
-        <div class="tip-title">Currency & Money</div>
-        <div class="tip-body">Indonesian Rupiah (IDR). $1 USD ≈ 16,000 IDR. Carry cash for local warungs, temples, and markets. ATMs widely available. Notify your bank before travel. Avoid exchange booths offering "too good" rates.</div>
-      </div>
-
-      <div class="tip-card">
-        <span class="tip-icon">🛺</span>
-        <div class="tip-title">Getting Around</div>
-        <div class="tip-body">Use Grab or Gojek apps for reliable, metered rides. Avoid unmetered taxis. Rent a scooter only if you're experienced. Traffic in Kuta/Seminyak can be chaotic — budget extra time.</div>
-      </div>
-
-      <div class="tip-card">
-        <span class="tip-icon">🍜</span>
-        <div class="tip-title">Food & Water</div>
-        <div class="tip-body">Stick to bottled water — don't drink tap. Try nasi goreng, mie goreng, satay, and babi guling. Warung local spots are cheaper and often delicious. Avoid salads at local spots if worried about stomach.</div>
-      </div>
-
-      <div class="tip-card">
-        <span class="tip-icon">🛕</span>
-        <div class="tip-title">Temple Etiquette</div>
-        <div class="tip-body">Wear a sarong & sash to enter temples (usually rented at entrance). Cover shoulders and knees. Don't enter if menstruating. Remove shoes when entering. Respect ceremonies and don't interrupt.</div>
-      </div>
-
-      <div class="tip-card">
-        <span class="tip-icon">🌺</span>
-        <div class="tip-title">Must-See Near Nusa Dua</div>
-        <div class="tip-body">Uluwatu Temple at sunset, Tanah Lot, Garuda Wisnu Kencana (GWK) Cultural Park, Jimbaran Bay seafood at sunset, Seminyak beach clubs (Ku De Ta, Potato Head), Tegallalang rice terraces.</div>
-      </div>
-
-      <div class="tip-card">
-        <span class="tip-icon">🩺</span>
-        <div class="tip-title">Health & Safety</div>
-        <div class="tip-body">Bali is generally safe. Watch your belongings in busy markets. Drink only bottled water. Bring travel insurance. BIMC Hospital Nusa Dua is the closest quality medical facility to Grand Hyatt. Emergency: 112.</div>
-      </div>
-
-      <div class="tip-card">
-        <span class="tip-icon">📡</span>
-        <div class="tip-title">Connectivity</div>
-        <div class="tip-body">Buy a local SIM at the airport (Telkomsel or XL Axiata) for ~$5-10 for data. Grand Hyatt has excellent WiFi. Download Google Maps offline before you go. WhatsApp works great for communication.</div>
-      </div>
-
-      <div class="tip-card">
-        <span class="tip-icon">🕐</span>
-        <div class="tip-title">Time Zone</div>
-        <div class="tip-body">Bali is WITA — UTC+8. Denver (MDT) is UTC-6, so Bali is 14 hours ahead. When it's 8 AM in Bali, it's 6 PM the previous day in Denver. Plan calls home accordingly!</div>
-      </div>
-
-    </div>
-  </section>
-
-</div><!-- /container -->
-
-<footer>
-  <div>🌴 Fitzpatrick — Bali & Beyond · May 2026</div>
-  <div style="margin-top:6px;">Fivetran President's Club · <strong>Grand Hyatt Bali</strong> · May 18–23, 2026</div>
-</footer>
-
 <script>
-  // Smooth scroll nav
-  function scrollTo(id) {
-    document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+const C=document.getElementById('gc');
+const X=C.getContext('2d');
+const W=480,H=480,CX=240,CY=240,R=210;
+
+const STOPS=[
+  {n:"Denver, CO",       d:"Departs May 13",  la:39.74, lo:-104.99, t:"out"},
+  {n:"San Francisco, CA",d:"Layover May 13",  la:37.77, lo:-122.42, t:"out"},
+  {n:"Taipei, Taiwan",   d:"Layover May 15",  la:25.03, lo:121.57,  t:"out"},
+  {n:"Hong Kong",        d:"May 15–18",       la:22.32, lo:114.17,  t:"out"},
+  {n:"Singapore",        d:"Layover May 18",  la:1.35,  lo:103.82,  t:"out"},
+  {n:"Bali, Indonesia",  d:"May 18–23",       la:-8.34, lo:115.09,  t:"out"},
+  {n:"Taipei, Taiwan",   d:"Layover May 23",  la:25.03, lo:121.57,  t:"ret"},
+  {n:"Los Angeles, CA",  d:"Overnight May 23",la:34.05, lo:-118.24, t:"ret"},
+  {n:"Denver, CO",       d:"Arrives May 24",  la:39.74, lo:-104.99, t:"ret"},
+];
+
+// Continent polygons [lon, lat]
+const CONTINENTS = [
+  // North America
+  { c:'#3d7a4a', segs: [
+    [[-168,72],[-140,70],[-120,68],[-95,74],[-85,73],[-75,68],[-65,63],[-60,47],[-66,44],[-70,42],[-75,35],[-81,25],[-83,10],[-77,8],[-83,10],[-88,16],[-90,15],[-100,19],[-104,19],[-110,23],[-117,32],[-120,34],[-124,40],[-124,49],[-110,49],[-95,49],[-88,48],[-84,46],[-83,42],[-79,43],[-75,44],[-72,45],[-66,45],[-60,47],[-65,63],[-75,68],[-85,73],[-95,74],[-120,68],[-140,70],[-168,72]],
+    [[-152,60],[-145,60],[-138,58],[-134,58],[-130,54],[-124,49],[-130,54],[-138,58],[-145,60],[-152,60]],
+  ]},
+  // Greenland
+  { c:'#4a8a5a', segs: [[[-44,84],[-20,83],[-18,70],[-26,65],[-44,62],[-52,66],[-56,72],[-50,82],[-44,84]]] },
+  // South America
+  { c:'#3d7a4a', segs: [[
+    [-82,8],[-77,4],[-62,2],[-50,0],[-35,-5],[-35,-10],[-38,-18],[-42,-22],[-44,-23],[-48,-26],[-50,-28],[-51,-30],[-51,-34],[-58,-38],[-62,-38],[-65,-42],[-66,-52],[-68,-54],[-70,-52],[-72,-46],[-74,-38],[-72,-28],[-70,-18],[-75,-10],[-80,0],[-77,4],[-82,8]
+  ]]},
+  // Europe
+  { c:'#3d7a4a', segs: [[
+    [-10,36],[0,36],[8,38],[15,38],[18,40],[24,38],[28,38],[30,42],[30,46],[26,46],[22,46],[18,46],[14,46],[10,47],[6,47],[2,51],[-2,51],[-5,48],[-8,44],[-10,38],[-10,36]
+  ]]},
+  // Scandinavia
+  { c:'#3d7a4a', segs: [[
+    [4,58],[8,58],[10,58],[14,56],[20,56],[26,60],[28,64],[30,68],[26,70],[20,70],[16,68],[14,64],[10,58],[4,58]
+  ]]},
+  // Africa
+  { c:'#3d7a4a', segs: [[
+    [-18,16],[-16,12],[-15,5],[-8,4],[0,5],[8,4],[10,2],[14,4],[16,2],[20,2],[26,0],[30,-2],[34,-5],[38,-10],[36,-18],[34,-22],[30,-30],[26,-34],[18,-34],[14,-30],[12,-22],[8,-14],[4,-8],[2,4],[0,8],[4,12],[8,14],[14,16],[20,22],[24,20],[30,20],[36,22],[38,18],[42,12],[44,8],[48,10],[50,8],[46,4],[40,2],[36,-2],[34,-8],[38,-10],[36,-18],[30,-30],[26,-34],[18,-34],[14,-30],[12,-22],[8,-14],[4,-8],[2,4],[0,8],[-5,5],[-15,5],[-16,12],[-18,16]
+  ]]},
+  // Asia main
+  { c:'#3d7a4a', segs: [[
+    [26,42],[30,42],[36,36],[40,36],[44,38],[50,38],[58,34],[60,28],[62,22],[68,22],[72,22],[76,28],[80,28],[84,26],[88,26],[90,20],[96,20],[100,5],[104,2],[108,2],[110,2],[112,-2],[110,-6],[108,-6],[106,-6],[104,2],[100,5],[96,20],[90,20],[88,26],[84,26],[80,28],[76,28],[72,22],[68,22],[62,22],[60,24],[58,28],[56,30],[52,30],[48,30],[44,36],[40,36],[36,36],[30,42],[26,42]
+  ],[
+    [90,42],[100,40],[110,42],[120,46],[130,42],[135,35],[130,33],[122,32],[118,24],[114,22],[108,22],[104,26],[96,28],[90,34],[84,34],[78,34],[72,34],[68,36],[62,36],[56,38],[60,42],[70,42],[80,40],[90,40],[100,40],[90,42]
+  ]]},
+  // Southeast Asia peninsulas
+  { c:'#3d7a4a', segs: [[
+    [100,5],[102,2],[104,2],[108,2],[108,6],[106,12],[104,14],[100,14],[98,18],[96,20],[100,5]
+  ]]},
+  // Japan
+  { c:'#3d7a4a', segs: [[
+    [130,32],[132,34],[134,36],[136,36],[138,38],[140,40],[141,44],[140,45],[136,44],[134,38],[132,34],[130,32]
+  ]]},
+  // Indonesia (Sumatra + Java + Borneo + Sulawesi)
+  { c:'#3d7a4a', segs: [
+    [[96,4],[98,2],[100,0],[104,-2],[106,-6],[108,-6],[108,-8],[104,-6],[100,-2],[96,2],[96,4]],
+    [[108,-6],[110,-6],[114,-8],[116,-8],[116,-10],[112,-10],[108,-8],[108,-6]],
+    [[108,2],[112,2],[116,2],[118,0],[116,-4],[112,-4],[108,0],[108,2]],
+    [[122,-2],[126,-2],[128,-4],[128,-6],[124,-6],[122,-4],[122,-2]],
+  ]},
+  // Philippines
+  { c:'#3d7a4a', segs: [[
+    [118,10],[120,10],[122,12],[122,16],[120,18],[118,16],[116,14],[118,10]
+  ]]},
+  // Australia
+  { c:'#3d7a4a', segs: [[
+    [114,-22],[118,-20],[122,-18],[128,-14],[132,-12],[136,-12],[138,-12],[142,-12],[146,-18],[150,-22],[152,-26],[152,-30],[150,-38],[146,-38],[142,-38],[138,-36],[132,-32],[128,-32],[124,-34],[120,-34],[114,-34],[112,-26],[114,-22]
+  ]]},
+  // New Zealand
+  { c:'#3d7a4a', segs: [[
+    [168,-46],[172,-44],[174,-42],[174,-38],[172,-36],[168,-40],[166,-44],[168,-46]
+  ]]},
+  // UK
+  { c:'#3d7a4a', segs: [[
+    [-6,50],[-2,50],[2,52],[-2,52],[-4,56],[-6,58],[-4,56],[-2,52],[-6,50]
+  ]]},
+  // Iceland
+  { c:'#4a8a5a', segs: [[
+    [-24,64],[-14,64],[-12,66],[-20,66],[-24,64]
+  ]]},
+];
+
+let rotLon = -104.99 + 15;
+let gt=0, playing=true, spd=1.5, lastTs=null;
+const STEPS=300, TOTAL=(STOPS.length-1)*STEPS;
+
+function toRad(d){return d*Math.PI/180;}
+
+function project(lat, lon, rLon){
+  const φ=toRad(lat);
+  const λ=toRad(lon - rLon);
+  const cosφ=Math.cos(φ);
+  const x = cosφ * Math.sin(λ);
+  const y = -Math.sin(φ);
+  const z = cosφ * Math.cos(λ);
+  return { x: CX + R*x, y: CY + R*y, z: z };
+}
+
+function slerp(la1,lo1,la2,lo2,f){
+  const r=toRad;
+  const v1=[Math.cos(r(la1))*Math.cos(r(lo1)),Math.cos(r(la1))*Math.sin(r(lo1)),Math.sin(r(la1))];
+  const v2=[Math.cos(r(la2))*Math.cos(r(lo2)),Math.cos(r(la2))*Math.sin(r(lo2)),Math.sin(r(la2))];
+  let dot=v1[0]*v2[0]+v1[1]*v2[1]+v1[2]*v2[2];
+  dot=Math.max(-1,Math.min(1,dot));
+  const Ω=Math.acos(dot);
+  if(Ω<1e-5)return{lat:la1,lon:lo1};
+  const s=Math.sin(Ω);
+  const a=Math.sin((1-f)*Ω)/s, b=Math.sin(f*Ω)/s;
+  const rx=a*v1[0]+b*v2[0], ry=a*v1[1]+b*v2[1], rz=a*v1[2]+b*v2[2];
+  return{
+    lat:Math.atan2(rz,Math.sqrt(rx*rx+ry*ry))*180/Math.PI,
+    lon:Math.atan2(ry,rx)*180/Math.PI
+  };
+}
+
+function drawGlobe(){
+  X.clearRect(0,0,W,H);
+
+  // Ocean
+  const og=X.createRadialGradient(CX-55,CY-55,15,CX,CY,R);
+  og.addColorStop(0,'#1e5799');
+  og.addColorStop(1,'#0a1f3c');
+  X.beginPath(); X.arc(CX,CY,R,0,Math.PI*2);
+  X.fillStyle=og; X.fill();
+
+  // Clip to sphere
+  X.save();
+  X.beginPath(); X.arc(CX,CY,R,0,Math.PI*2); X.clip();
+
+  // Grid
+  X.strokeStyle='rgba(255,255,255,0.07)'; X.lineWidth=0.5;
+  for(let la=-75;la<=75;la+=15){
+    X.beginPath(); let fst=true;
+    for(let lo=-180;lo<=180;lo+=3){
+      const p=project(la,lo,rotLon);
+      if(p.z>0){fst?X.moveTo(p.x,p.y):X.lineTo(p.x,p.y);fst=false;}else fst=true;
+    }
+    X.stroke();
+  }
+  for(let lo=-180;lo<180;lo+=15){
+    X.beginPath(); let fst=true;
+    for(let la=-88;la<=88;la+=3){
+      const p=project(la,lo,rotLon);
+      if(p.z>0){fst?X.moveTo(p.x,p.y):X.lineTo(p.x,p.y);fst=false;}else fst=true;
+    }
+    X.stroke();
   }
 
-  // HK Day tab switcher
-  const dayColors = ['#C8102E', '#B8860B', '#0A6B3B'];
-  const dayAccents = ['#FF6B6B', '#FFC107', '#4CAF50'];
-
-  function hkSetDay(idx) {
-    document.querySelectorAll('.hk-day-panels').forEach((p, i) => {
-      p.classList.toggle('active-panel', i === idx);
-    });
-    document.querySelectorAll('.hk-tab').forEach((t, i) => {
-      t.classList.toggle('active', i === idx);
-      t.style.borderBottomColor = i === idx ? dayColors[i] : 'transparent';
-      t.style.background = i === idx ? '#111' : 'transparent';
-      t.style.color = i === idx ? '#F5F0E8' : '#666';
-    });
-  }
-
-  // HK card expand/collapse
-  function hkToggle(el) {
-    const tip = el.querySelector('.hk-tip-box');
-    const chevron = el.querySelector('.hk-chevron');
-    const isOpen = tip.classList.contains('visible');
-    tip.classList.toggle('visible', !isOpen);
-    chevron.style.transform = isOpen ? 'none' : 'rotate(180deg)';
-  }
-
-
-  const sections = ['flights','hotels','globe','itinerary','hongkong','docs','weather','packing','tips'];
-  const navBtns = document.querySelectorAll('.nav-btn');
-
-  window.addEventListener('scroll', () => {
-    let current = 'flights';
-    sections.forEach(id => {
-      const el = document.getElementById(id);
-      if (el && window.scrollY >= el.offsetTop - 120) current = id;
-    });
-    navBtns.forEach((btn, i) => {
-      btn.classList.toggle('active', sections[i] === current);
+  // Continents
+  CONTINENTS.forEach(({c,segs})=>{
+    segs.forEach(poly=>{
+      X.beginPath();
+      let fst=true, lastVis=false;
+      poly.forEach(([lo,la])=>{
+        const p=project(la,lo,rotLon);
+        if(p.z>0.02){
+          if(fst||!lastVis) X.moveTo(p.x,p.y); else X.lineTo(p.x,p.y);
+          fst=false; lastVis=true;
+        } else { lastVis=false; }
+      });
+      X.closePath();
+      X.fillStyle=c; X.fill();
+      X.strokeStyle='rgba(120,200,130,0.25)'; X.lineWidth=0.5; X.stroke();
     });
   });
 
-  // Packing checkbox persistence
-  const checkboxes = document.querySelectorAll('.packing-item input[type="checkbox"]');
-  checkboxes.forEach((cb, i) => {
-    const key = `pack_${i}`;
-    cb.checked = localStorage.getItem(key) === '1';
-    if (cb.checked) cb.closest('.packing-item').classList.add('checked');
-    cb.addEventListener('change', () => {
-      localStorage.setItem(key, cb.checked ? '1' : '0');
-      cb.closest('.packing-item').classList.toggle('checked', cb.checked);
-    });
+  X.restore();
+
+  const seg=Math.floor(gt/STEPS), frac=(gt%STEPS)/STEPS;
+
+  // Completed arcs
+  for(let i=0;i<seg&&i<STOPS.length-1;i++) drawArc(STOPS[i],STOPS[i+1],1);
+  // Active arc
+  if(seg<STOPS.length-1) drawArc(STOPS[seg],STOPS[seg+1],frac);
+
+  // Stop dots
+  STOPS.forEach((s,i)=>{
+    const p=project(s.la,s.lo,rotLon);
+    if(p.z<=0.05) return;
+    X.beginPath(); X.arc(p.x,p.y,5,0,Math.PI*2);
+    X.fillStyle=i<=seg?'#90EE90':'rgba(255,255,255,0.3)'; X.fill();
+    X.strokeStyle='rgba(255,255,255,0.85)'; X.lineWidth=1.5; X.stroke();
   });
-</script>
 
-<!-- Globe scripts -->
-<script src="https://cdn.jsdelivr.net/npm/d3-geo@3/dist/d3-geo.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
-<script>
-(function(){
-  const stops=[
-    {name:"Denver, CO",date:"Departs May 13",lat:39.7392,lon:-104.9903,type:"out"},
-    {name:"San Francisco, CA",date:"Layover May 13",lat:37.7749,lon:-122.4194,type:"out"},
-    {name:"Taipei, Taiwan",date:"Layover May 15",lat:25.033,lon:121.5654,type:"out"},
-    {name:"Hong Kong",date:"May 15–18",lat:22.3193,lon:114.1694,type:"out"},
-    {name:"Singapore",date:"Layover May 18",lat:1.3521,lon:103.8198,type:"out"},
-    {name:"Bali, Indonesia",date:"May 18–23",lat:-8.3405,lon:115.092,type:"out"},
-    {name:"Taipei, Taiwan",date:"Layover May 23",lat:25.033,lon:121.5654,type:"ret"},
-    {name:"Los Angeles, CA",date:"Overnight May 23",lat:34.0522,lon:-118.2437,type:"ret"},
-    {name:"Denver, CO",date:"Arrives May 24",lat:39.7392,lon:-104.9903,type:"ret"},
-  ];
-
-  const STEPS=300, TOTAL=(stops.length-1)*STEPS;
-  const canvas=document.getElementById('gc');
-  if(!canvas) return;
-  const ctx=canvas.getContext('2d');
-  const W=500,H=500,CX=250,CY=250,R=220;
-
-  let rotLon=stops[0].lon-20, rotLat=-8;
-  let gT=0, gPlaying=true, gLast=null;
-  window.gSpd=1;
-  let gGeoData=null, projection, pathGen;
-
-  function buildProjection(){
-    projection=d3.geoOrthographic().scale(R).translate([CX,CY]).clipAngle(90).rotate([-rotLon,-rotLat]);
-    pathGen=d3.geoPath(projection,ctx);
-  }
-
-  function toRad(d){return d*Math.PI/180;}
-
-  function slerp(la1,lo1,la2,lo2,tt){
-    const f=toRad;
-    const p1=[Math.cos(f(la1))*Math.cos(f(lo1)),Math.cos(f(la1))*Math.sin(f(lo1)),Math.sin(f(la1))];
-    const p2=[Math.cos(f(la2))*Math.cos(f(lo2)),Math.cos(f(la2))*Math.sin(f(lo2)),Math.sin(f(la2))];
-    let dot=Math.max(-1,Math.min(1,p1[0]*p2[0]+p1[1]*p2[1]+p1[2]*p2[2]));
-    const omega=Math.acos(dot);
-    if(omega<0.0001)return{lat:la1,lon:lo1};
-    const s=Math.sin(omega);
-    const a=Math.sin((1-tt)*omega)/s, b=Math.sin(tt*omega)/s;
-    const rx=a*p1[0]+b*p2[0], ry=a*p1[1]+b*p2[1], rz=a*p1[2]+b*p2[2];
-    return{lat:Math.atan2(rz,Math.sqrt(rx*rx+ry*ry))*180/Math.PI, lon:Math.atan2(ry,rx)*180/Math.PI};
-  }
-
-  function isVisible(lat,lon){
-    const ro=projection.rotate();
-    return Math.cos(toRad(lat))*Math.cos(toRad(lon+ro[0]))>0;
-  }
-
-  function drawScene(){
-    ctx.clearRect(0,0,W,H);
-    buildProjection();
-
-    ctx.beginPath(); ctx.arc(CX,CY,R,0,Math.PI*2);
-    const og=ctx.createRadialGradient(CX-50,CY-50,10,CX,CY,R);
-    og.addColorStop(0,'#1a4a7a'); og.addColorStop(1,'#0a2040');
-    ctx.fillStyle=og; ctx.fill();
-
-    ctx.strokeStyle='rgba(255,255,255,0.06)'; ctx.lineWidth=0.5;
-    ctx.beginPath(); pathGen(d3.geoGraticule()()); ctx.stroke();
-
-    if(gGeoData){
-      ctx.beginPath(); pathGen(gGeoData);
-      const lg=ctx.createLinearGradient(CX-R,CY-R,CX+R,CY+R);
-      lg.addColorStop(0,'#3d7a4a'); lg.addColorStop(1,'#2a5c35');
-      ctx.fillStyle=lg; ctx.fill();
-      ctx.strokeStyle='rgba(180,220,160,0.2)'; ctx.lineWidth=0.4; ctx.stroke();
+  // Plane
+  if(seg<STOPS.length-1){
+    const cur=slerp(STOPS[seg].la,STOPS[seg].lo,STOPS[seg+1].la,STOPS[seg+1].lo,frac);
+    const nxt=slerp(STOPS[seg].la,STOPS[seg].lo,STOPS[seg+1].la,STOPS[seg+1].lo,Math.min(1,frac+0.02));
+    const pc=project(cur.lat,cur.lon,rotLon);
+    const pn=project(nxt.lat,nxt.lon,rotLon);
+    if(pc.z>0.05){
+      const ang=Math.atan2(pn.y-pc.y,pn.x-pc.x);
+      X.save(); X.translate(pc.x,pc.y); X.rotate(ang);
+      X.font='20px serif'; X.fillText('✈',-10,7); X.restore();
+      X.beginPath(); X.arc(pc.x,pc.y,13,0,Math.PI*2);
+      X.strokeStyle='rgba(255,80,80,0.7)'; X.lineWidth=2; X.stroke();
     }
-
-    const seg=Math.floor(gT/STEPS), frac=(gT%STEPS)/STEPS;
-
-    for(let i=0;i<seg&&i<stops.length-1;i++){
-      const col=stops[i].type==='out'?'rgba(232,184,90,0.9)':'rgba(126,200,227,0.9)';
-      ctx.strokeStyle=col; ctx.lineWidth=2; ctx.setLineDash([5,4]);
-      const arc={type:'LineString',coordinates:[]};
-      for(let tt=0;tt<=1;tt+=0.015){const p=slerp(stops[i].lat,stops[i].lon,stops[i+1].lat,stops[i+1].lon,tt);arc.coordinates.push([p.lon,p.lat]);}
-      ctx.beginPath(); pathGen(arc); ctx.stroke();
-    }
-    if(seg<stops.length-1){
-      const col=stops[seg].type==='out'?'rgba(232,184,90,0.9)':'rgba(126,200,227,0.9)';
-      ctx.strokeStyle=col; ctx.lineWidth=2; ctx.setLineDash([5,4]);
-      const arc={type:'LineString',coordinates:[]};
-      for(let tt=0;tt<=frac;tt+=0.015){const p=slerp(stops[seg].lat,stops[seg].lon,stops[seg+1].lat,stops[seg+1].lon,tt);arc.coordinates.push([p.lon,p.lat]);}
-      if(arc.coordinates.length>1){ctx.beginPath();pathGen(arc);ctx.stroke();}
-    }
-    ctx.setLineDash([]);
-
-    stops.forEach((s,i)=>{
-      if(!isVisible(s.lat,s.lon))return;
-      const xy=projection([s.lon,s.lat]); if(!xy)return;
-      ctx.beginPath(); ctx.arc(xy[0],xy[1],5,0,Math.PI*2);
-      ctx.fillStyle=i<=seg?'#A8E6A3':'rgba(255,255,255,0.25)'; ctx.fill();
-      ctx.strokeStyle='rgba(255,255,255,0.8)'; ctx.lineWidth=1.5; ctx.stroke();
-    });
-
-    if(seg<stops.length-1){
-      const cur=slerp(stops[seg].lat,stops[seg].lon,stops[seg+1].lat,stops[seg+1].lon,frac);
-      const nxt=slerp(stops[seg].lat,stops[seg].lon,stops[seg+1].lat,stops[seg+1].lon,Math.min(1,frac+0.02));
-      if(isVisible(cur.lat,cur.lon)){
-        const xy=projection([cur.lon,cur.lat]), nxy=projection([nxt.lon,nxt.lat]);
-        if(xy){
-          const ang=nxy?Math.atan2(nxy[1]-xy[1],nxy[0]-xy[0]):0;
-          ctx.save(); ctx.translate(xy[0],xy[1]); ctx.rotate(ang);
-          ctx.font='18px serif'; ctx.fillText('✈',-9,6); ctx.restore();
-          ctx.beginPath(); ctx.arc(xy[0],xy[1],12,0,Math.PI*2);
-          ctx.strokeStyle='rgba(255,107,107,0.65)'; ctx.lineWidth=1.5; ctx.stroke();
-        }
-      }
-    } else {
-      const xy=projection([stops[stops.length-1].lon,stops[stops.length-1].lat]);
-      if(xy){ctx.font='18px serif';ctx.fillText('🏠',xy[0]-9,xy[1]+6);}
-    }
-
-    const sh=ctx.createRadialGradient(CX-65,CY-65,5,CX-65,CY-65,170);
-    sh.addColorStop(0,'rgba(255,255,255,0.1)'); sh.addColorStop(1,'rgba(255,255,255,0)');
-    ctx.save(); ctx.beginPath(); ctx.arc(CX,CY,R,0,Math.PI*2); ctx.clip();
-    ctx.fillStyle=sh; ctx.fillRect(0,0,W,H); ctx.restore();
-    ctx.beginPath(); ctx.arc(CX,CY,R,0,Math.PI*2);
-    ctx.strokeStyle='rgba(255,255,255,0.15)'; ctx.lineWidth=1; ctx.stroke();
+  } else {
+    const p=project(STOPS[STOPS.length-1].la,STOPS[STOPS.length-1].lo,rotLon);
+    if(p.z>0.05){ X.font='20px serif'; X.fillText('🏠',p.x-10,p.y+7); }
   }
 
-  function updateInfo(){
-    const seg=Math.floor(gT/STEPS), idx=Math.min(seg,stops.length-1);
-    const el1=document.getElementById('gln'), el2=document.getElementById('gld');
-    if(el1) el1.textContent=stops[idx].name;
-    if(el2) el2.textContent=stops[idx].date;
-    const target=stops[idx].lon-20;
-    rotLon+=((target-rotLon+540)%360-180)*0.015;
+  // Shine
+  X.save();
+  X.beginPath(); X.arc(CX,CY,R,0,Math.PI*2); X.clip();
+  const sh=X.createRadialGradient(CX-70,CY-70,5,CX-70,CY-70,175);
+  sh.addColorStop(0,'rgba(255,255,255,0.12)'); sh.addColorStop(1,'rgba(255,255,255,0)');
+  X.fillStyle=sh; X.fillRect(0,0,W,H);
+  X.restore();
+
+  // Rim
+  X.beginPath(); X.arc(CX,CY,R,0,Math.PI*2);
+  X.strokeStyle='rgba(255,255,255,0.2)'; X.lineWidth=1.5; X.stroke();
+}
+
+function drawArc(s1,s2,maxF){
+  const col=s1.t==='out'?'rgba(232,184,90,0.9)':'rgba(126,200,227,0.9)';
+  X.strokeStyle=col; X.lineWidth=2.5; X.setLineDash([6,5]);
+  X.beginPath(); let first=true;
+  const steps=80;
+  for(let i=0;i<=steps;i++){
+    const f=(i/steps)*maxF;
+    const pos=slerp(s1.la,s1.lo,s2.la,s2.lo,f);
+    const p=project(pos.lat,pos.lon,rotLon);
+    if(p.z>0){ first?X.moveTo(p.x,p.y):X.lineTo(p.x,p.y); first=false; }
+    else first=true;
   }
+  X.stroke(); X.setLineDash([]);
+}
 
-  function gLoop(ts){
-    if(!gLast)gLast=ts;
-    const dt=(ts-gLast)/1000; gLast=ts;
-    if(gPlaying&&gT<TOTAL){gT=Math.min(TOTAL,gT+dt*60*window.gSpd);updateInfo();}
-    drawScene();
-    requestAnimationFrame(gLoop);
-  }
+function updateInfo(){
+  const seg=Math.floor(gt/STEPS);
+  const idx=Math.min(seg,STOPS.length-1);
+  const s=STOPS[idx];
+  document.getElementById('gname').textContent=s.n;
+  document.getElementById('gdate').textContent=s.d;
+  const nextIdx=Math.min(idx+1,STOPS.length-1);
+  const target=STOPS[nextIdx].lo-20;
+  const diff=((target-rotLon+540)%360)-180;
+  rotLon+=diff*0.012;
+}
 
-  window.gTogglePlay=function(){
-    gPlaying=!gPlaying;
-    const btn=document.getElementById('gbp');
-    if(btn){btn.textContent=gPlaying?'⏸ PAUSE':'▶ PLAY';}
-  };
-  window.gRestart=function(){
-    gT=0; rotLon=stops[0].lon-20; gPlaying=true; gLast=null;
-    const btn=document.getElementById('gbp');
-    if(btn) btn.textContent='⏸ PAUSE';
-  };
+function loop(ts){
+  if(!lastTs) lastTs=ts;
+  const dt=(ts-lastTs)/1000; lastTs=ts;
+  if(playing&&gt<TOTAL){ gt=Math.min(TOTAL,gt+dt*60*spd); updateInfo(); }
+  drawGlobe();
+  requestAnimationFrame(loop);
+}
 
-  fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
-    .then(r=>r.json())
-    .then(world=>{
-      if(window.topojson) gGeoData=topojson.feature(world,world.objects.land);
-      buildProjection(); requestAnimationFrame(gLoop);
-    })
-    .catch(()=>{buildProjection(); requestAnimationFrame(gLoop);});
-})();
+document.getElementById('gbplay').addEventListener('click',function(){
+  playing=!playing;
+  this.textContent=playing?'⏸ Pause':'▶ Play';
+});
+document.getElementById('gbrestart').addEventListener('click',function(){
+  gt=0; rotLon=-104.99+15; playing=true; lastTs=null;
+  document.getElementById('gbplay').textContent='⏸ Pause';
+});
+document.getElementById('gbspeed').addEventListener('input',function(){
+  spd=parseFloat(this.value);
+});
+
+requestAnimationFrame(loop);
 </script>
 </body>
 </html>
