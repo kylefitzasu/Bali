@@ -796,11 +796,14 @@
   /* QUICK REFERENCE GRID */
   .quick-ref-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 24px;
     align-items: start;
   }
-  @media (max-width: 860px) {
+  @media (max-width: 1100px) {
+    .quick-ref-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
     .quick-ref-grid { grid-template-columns: 1fr; }
   }
 
@@ -950,6 +953,83 @@
     font-size: 24px;
   }
 
+
+  /* TEMP CONVERTER */
+  .temp-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 16px 0;
+  }
+  .temp-bubble {
+    background: var(--deep-teal);
+    color: var(--sand);
+    border-radius: 14px;
+    padding: 16px 20px;
+    text-align: center;
+    flex: 1;
+  }
+  .temp-bubble-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(242,232,217,0.5);
+    margin-bottom: 4px;
+  }
+  .temp-bubble-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+  .temp-arrow { font-size: 20px; color: var(--muted); }
+  .temp-input-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 14px;
+    align-items: center;
+  }
+  .temp-input-row input[type="number"] {
+    flex: 1;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    font-family: 'DM Mono', monospace;
+    font-size: 16px;
+    color: var(--dark);
+  }
+  .temp-input-row select {
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--dark);
+    background: white;
+  }
+  .temp-presets {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-top: 4px;
+  }
+  .temp-preset-btn {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 4px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--dark);
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.15s;
+  }
+  .temp-preset-btn:hover { background: var(--sand); }
+  .temp-preset-label { font-size: 9px; color: var(--muted); display: block; margin-top: 1px; }
 </style>
 </head>
 <body>
@@ -1033,6 +1113,37 @@
           <div class="currency-card"><div class="ticket-label">Hong Kong</div><div class="ticket-name">USD → HKD</div><div class="currency-row"><label>Enter USD</label><input type="number" id="usdHKD" value="100" min="0" oninput="syncCurrency('hkd')"><input type="range" id="sliderHKD" min="0" max="1000" value="100" oninput="syncCurrencySlider('hkd')"></div><div class="currency-result" id="resultHKD">HK$780</div><div class="currency-note">$1 USD ≈ HK$7.80</div><div class="currency-mini-grid"><button class="currency-chip" onclick="setCurrency('hkd',20)">$20</button><button class="currency-chip" onclick="setCurrency('hkd',50)">$50</button><button class="currency-chip" onclick="setCurrency('hkd',100)">$100</button></div></div>
           <div class="currency-card"><div class="ticket-label">Bali / Indonesia</div><div class="ticket-name">USD → IDR</div><div class="currency-row"><label>Enter USD</label><input type="number" id="usdIDR" value="100" min="0" oninput="syncCurrency('idr')"><input type="range" id="sliderIDR" min="0" max="1000" value="100" oninput="syncCurrencySlider('idr')"></div><div class="currency-result" id="resultIDR">Rp1,744,500</div><div class="currency-note">$1 USD ≈ Rp17,445</div><div class="currency-mini-grid"><button class="currency-chip" onclick="setCurrency('idr',10)">$10</button><button class="currency-chip" onclick="setCurrency('idr',25)">$25</button><button class="currency-chip" onclick="setCurrency('idr',100)">$100</button></div></div>
         </div>
+
+      <!-- TEMP CONVERTER -->
+      <div class="quick-ref-block">
+        <div class="quick-ref-block-title">🌡️ Temperature Converter</div>
+        <div class="temp-input-row">
+          <input type="number" id="tempInput" value="86" oninput="convertTemp()">
+          <select id="tempDir" onchange="convertTemp()">
+            <option value="f-to-c">°F → °C</option>
+            <option value="c-to-f">°C → °F</option>
+          </select>
+        </div>
+        <div class="temp-display">
+          <div class="temp-bubble">
+            <div class="temp-bubble-label" id="tempFromLabel">Fahrenheit</div>
+            <div class="temp-bubble-val" id="tempFromVal">86°F</div>
+          </div>
+          <div class="temp-arrow">→</div>
+          <div class="temp-bubble">
+            <div class="temp-bubble-label" id="tempToLabel">Celsius</div>
+            <div class="temp-bubble-val" id="tempToVal">30°C</div>
+          </div>
+        </div>
+        <div class="temp-presets">
+          <button class="temp-preset-btn" onclick="setTemp(80,'f')">80°F<span class="temp-preset-label">Cool morning</span></button>
+          <button class="temp-preset-btn" onclick="setTemp(84,'f')">84°F<span class="temp-preset-label">Avg low</span></button>
+          <button class="temp-preset-btn" onclick="setTemp(88,'f')">88°F<span class="temp-preset-label">Avg high</span></button>
+          <button class="temp-preset-btn" onclick="setTemp(95,'f')">95°F<span class="temp-preset-label">Hot day</span></button>
+          <button class="temp-preset-btn" onclick="setTemp(27,'c')">27°C<span class="temp-preset-label">Warm</span></button>
+          <button class="temp-preset-btn" onclick="setTemp(32,'c')">32°C<span class="temp-preset-label">Hot</span></button>
+        </div>
+        <div class="note-box" style="margin-top:14px;font-size:12px;"><strong>Bali in May:</strong> Expect 27–31°C (80–88°F) daily. Evenings around 24°C (75°F).</div>
       </div>
 
     </div>
@@ -1043,25 +1154,25 @@
 
     <div class="flight-leg">
       <div class="leg-label">🛫 Outbound — Denver to Bali</div>
-      <div class="flight-card"><div class="flight-endpoint"><div class="airport-code">DEN</div><div class="airport-city">Denver, CO</div><div class="flight-time">8:25 PM</div><div class="flight-date-small">Wed May 13</div></div><div class="flight-middle"><div class="flight-line-bar"></div><div class="flight-duration">2h 45m</div><div class="flight-airline">Southwest Airlines</div></div><div class="flight-endpoint right"><div class="airport-code">SFO</div><div class="airport-city">San Francisco, CA</div><div class="flight-time">10:10 PM</div><div class="flight-date-small">Wed May 13</div></div><div class="flight-meta"><div class="flight-num">WN 1667</div><div class="flight-tag">Conf: B8POYW</div></div></div>
+      <div class="flight-card"><div class="flight-endpoint"><div class="airport-code">DEN</div><div class="airport-city">Denver, CO</div><div class="flight-time">8:25 PM</div><div class="flight-date-small">Wed May 13</div></div><div class="flight-middle"><div class="flight-line-bar"></div><div class="flight-duration">2h 45m</div><div class="flight-airline">Southwest Airlines</div></div><div class="flight-endpoint right"><div class="airport-code">SFO</div><div class="airport-city">San Francisco, CA</div><div class="flight-time">10:10 PM</div><div class="flight-date-small">Wed May 13</div></div><div class="flight-meta"><div class="flight-num">WN 1667</div><div class="flight-tag">Conf: B8POYW</div><div class="flight-tag" style="margin-top:4px;">🧍 Kyle: 21A &nbsp;·&nbsp; Sarah: 21C</div></div></div>
       <div class="layover-badge">⏱ 2h 55m layover — San Francisco</div>
-      <div class="flight-card"><div class="flight-endpoint"><div class="airport-code">SFO</div><div class="airport-city">San Francisco, CA</div><div class="flight-time">1:05 AM</div><div class="flight-date-small">Thu May 14</div></div><div class="flight-middle"><div class="flight-line-bar"></div><div class="flight-duration">13h 30m</div><div class="flight-airline">China Airlines</div></div><div class="flight-endpoint right"><div class="airport-code">TPE</div><div class="airport-city">Taipei, Taiwan</div><div class="flight-time">5:35 AM</div><div class="flight-date-small">Fri May 15</div></div><div class="flight-meta"><div class="flight-num">CI 0003</div><div class="flight-tag">Kyle: 2977428474320</div></div></div>
+      <div class="flight-card"><div class="flight-endpoint"><div class="airport-code">SFO</div><div class="airport-city">San Francisco, CA</div><div class="flight-time">1:05 AM</div><div class="flight-date-small">Thu May 14</div></div><div class="flight-middle"><div class="flight-line-bar"></div><div class="flight-duration">13h 30m</div><div class="flight-airline">China Airlines</div></div><div class="flight-endpoint right"><div class="airport-code">TPE</div><div class="airport-city">Taipei, Taiwan</div><div class="flight-time">5:35 AM</div><div class="flight-date-small">Fri May 15</div></div><div class="flight-meta"><div class="flight-num">CI 0003</div><div class="flight-tag">Kyle: 2977428474320</div><div class="flight-tag" style="margin-top:4px;">🧍 Kyle: 33H &nbsp;·&nbsp; Sarah: 33K</div></div></div>
       <div class="layover-badge">⏱ 1h 45m layover — Taipei</div>
-      <div class="flight-card"><div class="flight-endpoint"><div class="airport-code">TPE</div><div class="airport-city">Taipei, Taiwan</div><div class="flight-time">7:20 AM</div><div class="flight-date-small">Fri May 15</div></div><div class="flight-middle"><div class="flight-line-bar"></div><div class="flight-duration">1h 55m</div><div class="flight-airline">China Airlines</div></div><div class="flight-endpoint right"><div class="airport-code">HKG</div><div class="airport-city">Hong Kong</div><div class="flight-time">9:15 AM</div><div class="flight-date-small">Fri May 15</div></div><div class="flight-meta"><div class="flight-num">CI 0601</div><div class="flight-tag">Sarah: 2977428474322</div></div></div>
+      <div class="flight-card"><div class="flight-endpoint"><div class="airport-code">TPE</div><div class="airport-city">Taipei, Taiwan</div><div class="flight-time">7:20 AM</div><div class="flight-date-small">Fri May 15</div></div><div class="flight-middle"><div class="flight-line-bar"></div><div class="flight-duration">1h 55m</div><div class="flight-airline">China Airlines</div></div><div class="flight-endpoint right"><div class="airport-code">HKG</div><div class="airport-city">Hong Kong</div><div class="flight-time">9:15 AM</div><div class="flight-date-small">Fri May 15</div></div><div class="flight-meta"><div class="flight-num">CI 0601</div><div class="flight-tag">Sarah: 2977428474322</div><div class="flight-tag" style="margin-top:4px;">🧍 Kyle: 1K &nbsp;·&nbsp; Sarah: 1J</div></div></div>
       <div class="note-box" style="margin-bottom:12px;"><strong>🇭🇰 Hong Kong Stop:</strong> You have May 15–18 in Hong Kong before your connecting flights to Bali.</div>
-      <div class="flight-card"><div class="flight-endpoint"><div class="airport-code">HKG</div><div class="airport-city">Hong Kong</div><div class="flight-time">9:05 AM</div><div class="flight-date-small">Mon May 18</div></div><div class="flight-middle"><div class="flight-line-bar"></div><div class="flight-duration">3h 55m</div><div class="flight-airline">Singapore Airlines</div></div><div class="flight-endpoint right"><div class="airport-code">SIN</div><div class="airport-city">Singapore</div><div class="flight-time">12:55 PM</div><div class="flight-date-small">Mon May 18</div></div><div class="flight-meta"><div class="flight-num">SQ 0899</div></div></div>
+      <div class="flight-card"><div class="flight-endpoint"><div class="airport-code">HKG</div><div class="airport-city">Hong Kong</div><div class="flight-time">9:05 AM</div><div class="flight-date-small">Mon May 18</div></div><div class="flight-middle"><div class="flight-line-bar"></div><div class="flight-duration">3h 55m</div><div class="flight-airline">Singapore Airlines</div></div><div class="flight-endpoint right"><div class="airport-code">SIN</div><div class="airport-city">Singapore</div><div class="flight-time">12:55 PM</div><div class="flight-date-small">Mon May 18</div></div><div class="flight-meta"><div class="flight-num">SQ 0899</div><div class="flight-tag" style="margin-top:4px;">🧍 Kyle: 48A &nbsp;·&nbsp; Sarah: 48C</div></div></div>
       <div class="layover-badge">⏱ 1h 5m layover — Singapore Changi</div>
-      <div class="flight-card"><div class="flight-endpoint"><div class="airport-code">SIN</div><div class="airport-city">Singapore</div><div class="flight-time">2:00 PM</div><div class="flight-date-small">Mon May 18</div></div><div class="flight-middle"><div class="flight-line-bar"></div><div class="flight-duration">2h 35m</div><div class="flight-airline">Singapore Airlines</div></div><div class="flight-endpoint right"><div class="airport-code">DPS</div><div class="airport-city">Bali</div><div class="flight-time">4:35 PM</div><div class="flight-date-small">Mon May 18</div></div><div class="flight-meta"><div class="flight-num">SQ 8548</div></div></div>
+      <div class="flight-card"><div class="flight-endpoint"><div class="airport-code">SIN</div><div class="airport-city">Singapore</div><div class="flight-time">2:00 PM</div><div class="flight-date-small">Mon May 18</div></div><div class="flight-middle"><div class="flight-line-bar"></div><div class="flight-duration">2h 35m</div><div class="flight-airline">Singapore Airlines</div></div><div class="flight-endpoint right"><div class="airport-code">DPS</div><div class="airport-city">Bali</div><div class="flight-time">4:35 PM</div><div class="flight-date-small">Mon May 18</div></div><div class="flight-meta"><div class="flight-num">SQ 8548</div><div class="flight-tag" style="margin-top:4px;background:rgba(201,150,58,0.15);color:var(--gold);">🎫 Seats at Check-in</div></div></div>
       <div class="summary-strip"><div class="summary-stat"><div class="summary-stat-val">24h 40m</div><div class="summary-stat-label">Flight Time</div></div><div class="summary-stat"><div class="summary-stat-val">5h 45m</div><div class="summary-stat-label">Layovers</div></div><div class="summary-stat"><div class="summary-stat-val">5</div><div class="summary-stat-label">Flights</div></div><div class="summary-stat"><div class="summary-stat-val">May 13→18</div><div class="summary-stat-label">Travel Days</div></div></div>
     </div>
 
     <div class="flight-leg" style="margin-top:40px;">
       <div class="leg-label">🛬 Inbound — Bali to Denver</div>
-      <div class="flight-card"><div class="flight-endpoint"><div class="airport-code">DPS</div><div class="airport-city">Bali</div><div class="flight-time">3:55 PM</div><div class="flight-date-small">Fri May 23</div></div><div class="flight-middle"><div class="flight-line-bar"></div><div class="flight-duration">5h 25m</div><div class="flight-airline">China Airlines</div></div><div class="flight-endpoint right"><div class="airport-code">TPE</div><div class="airport-city">Taipei, Taiwan</div><div class="flight-time">9:20 PM</div><div class="flight-date-small">Fri May 23</div></div><div class="flight-meta"><div class="flight-num">CI 0772</div></div></div>
+      <div class="flight-card"><div class="flight-endpoint"><div class="airport-code">DPS</div><div class="airport-city">Bali</div><div class="flight-time">3:55 PM</div><div class="flight-date-small">Fri May 23</div></div><div class="flight-middle"><div class="flight-line-bar"></div><div class="flight-duration">5h 25m</div><div class="flight-airline">China Airlines</div></div><div class="flight-endpoint right"><div class="airport-code">TPE</div><div class="airport-city">Taipei, Taiwan</div><div class="flight-time">9:20 PM</div><div class="flight-date-small">Fri May 23</div></div><div class="flight-meta"><div class="flight-num">CI 0772</div><div class="flight-tag" style="margin-top:4px;">🧍 Kyle: 32K &nbsp;·&nbsp; Sarah: 32H</div></div></div>
       <div class="layover-badge">⏱ 2h 30m layover — Taipei</div>
-      <div class="flight-card"><div class="flight-endpoint"><div class="airport-code">TPE</div><div class="airport-city">Taipei, Taiwan</div><div class="flight-time">11:50 PM</div><div class="flight-date-small">Fri May 23</div></div><div class="flight-middle"><div class="flight-line-bar"></div><div class="flight-duration">11h 55m</div><div class="flight-airline">China Airlines</div></div><div class="flight-endpoint right"><div class="airport-code">LAX</div><div class="airport-city">Los Angeles, CA</div><div class="flight-time">8:45 PM</div><div class="flight-date-small">Fri May 23</div></div><div class="flight-meta"><div class="flight-num">CI 0008</div></div></div>
+      <div class="flight-card"><div class="flight-endpoint"><div class="airport-code">TPE</div><div class="airport-city">Taipei, Taiwan</div><div class="flight-time">11:50 PM</div><div class="flight-date-small">Fri May 23</div></div><div class="flight-middle"><div class="flight-line-bar"></div><div class="flight-duration">11h 55m</div><div class="flight-airline">China Airlines</div></div><div class="flight-endpoint right"><div class="airport-code">LAX</div><div class="airport-city">Los Angeles, CA</div><div class="flight-time">8:45 PM</div><div class="flight-date-small">Fri May 23</div></div><div class="flight-meta"><div class="flight-num">CI 0008</div><div class="flight-tag" style="margin-top:4px;">🧍 Kyle: 31G &nbsp;·&nbsp; Sarah: 31F</div></div></div>
       <div class="note-box" style="margin-bottom:12px;"><strong>🌙 LAX Overnight:</strong> Overnight at Hyatt Regency LAX — next morning flight home.</div>
-      <div class="flight-card"><div class="flight-endpoint"><div class="airport-code">LAX</div><div class="airport-city">Los Angeles, CA</div><div class="flight-time">9:20 AM</div><div class="flight-date-small">Sat May 24</div></div><div class="flight-middle"><div class="flight-line-bar"></div><div class="flight-duration">2h 20m</div><div class="flight-airline">Southwest Airlines</div></div><div class="flight-endpoint right"><div class="airport-code">DEN</div><div class="airport-city">Denver, CO</div><div class="flight-time">12:40 PM</div><div class="flight-date-small">Sat May 24</div></div><div class="flight-meta"><div class="flight-num">WN 2842</div></div></div>
+      <div class="flight-card"><div class="flight-endpoint"><div class="airport-code">LAX</div><div class="airport-city">Los Angeles, CA</div><div class="flight-time">9:20 AM</div><div class="flight-date-small">Sat May 24</div></div><div class="flight-middle"><div class="flight-line-bar"></div><div class="flight-duration">2h 20m</div><div class="flight-airline">Southwest Airlines</div></div><div class="flight-endpoint right"><div class="airport-code">DEN</div><div class="airport-city">Denver, CO</div><div class="flight-time">12:40 PM</div><div class="flight-date-small">Sat May 24</div></div><div class="flight-meta"><div class="flight-num">WN 2842</div><div class="flight-tag" style="margin-top:4px;">🧍 Kyle: 18F &nbsp;·&nbsp; Sarah: 18D</div></div></div>
       <div class="summary-strip"><div class="summary-stat"><div class="summary-stat-val">19h 40m</div><div class="summary-stat-label">Flight Time</div></div><div class="summary-stat"><div class="summary-stat-val">14h 5m</div><div class="summary-stat-label">Layovers</div></div><div class="summary-stat"><div class="summary-stat-val">3</div><div class="summary-stat-label">Flights</div></div><div class="summary-stat"><div class="summary-stat-val">May 23→24</div><div class="summary-stat-label">Travel Days</div></div></div>
     </div>
   </section>
@@ -1213,10 +1324,10 @@
     <div class="ticket-grid docs-protected-content" id="docsProtectedContent">
       <div class="ticket-card"><span class="doc-status-ok">✓ Valid</span><span class="ticket-icon">🛂</span><div class="ticket-label">US Passport — Kyle</div><div class="ticket-name">Kyle William Fitzpatrick</div><div class="ticket-detail"><span>Expires</span><span class="ticket-val">18 NOV 2033</span></div><a class="doc-link" href="https://drive.google.com/file/d/1h8Ej36bBexRICoiGL2uDGaaz2KotBh0l/view?usp=sharing" target="_blank">📄 View Passport</a></div>
       <div class="ticket-card"><span class="doc-status-ok">✓ Valid</span><span class="ticket-icon">🛂</span><div class="ticket-label">US Passport — Sarah</div><div class="ticket-name">Sarah Kohn Fitzpatrick</div><div class="ticket-detail"><span>Expires</span><span class="ticket-val">11 NOV 2033</span></div><a class="doc-link" href="https://drive.google.com/file/d/12wEXN0CFCr0YZHPjRDulrSqefmkWd1Fa/view?usp=sharing" target="_blank">📄 View Passport</a></div>
-      <div class="ticket-card"><span class="doc-status-ok">✓ Confirmed</span><span class="ticket-icon">🇮🇩</span><div class="ticket-label">Indonesia e-VOA — Kyle</div><div class="ticket-name">Electronic Visa on Arrival</div><div class="ticket-detail"><span>Visa No.</span><span class="ticket-val">Z1A9609232</span></div><div class="ticket-detail"><span>Use Before</span><span class="ticket-val">07 Aug 2026</span></div></div>
-      <div class="ticket-card"><span class="doc-status-ok">✓ Confirmed</span><span class="ticket-icon">🇮🇩</span><div class="ticket-label">Indonesia e-VOA — Sarah</div><div class="ticket-name">Electronic Visa on Arrival</div><div class="ticket-detail"><span>Visa No.</span><span class="ticket-val">Z1A9609332</span></div><div class="ticket-detail"><span>Use Before</span><span class="ticket-val">07 Aug 2026</span></div></div>
-      <div class="ticket-card"><span class="doc-status-ok">✓ Paid</span><span class="ticket-icon">🌿</span><div class="ticket-label">Bali Tourism Levy — Kyle</div><div class="ticket-name">Bali Provincial Gov. Levy</div><div class="ticket-detail"><span>Voucher</span><span class="ticket-val">LVB26EU1S2P</span></div></div>
-      <div class="ticket-card"><span class="doc-status-ok">✓ Paid</span><span class="ticket-icon">🌿</span><div class="ticket-label">Bali Tourism Levy — Sarah</div><div class="ticket-name">Bali Provincial Gov. Levy</div><div class="ticket-detail"><span>Voucher</span><span class="ticket-val">LVB26EUXBN4</span></div></div>
+      <div class="ticket-card"><span class="doc-status-ok">✓ Confirmed</span><span class="ticket-icon">🇮🇩</span><div class="ticket-label">Indonesia e-VOA — Kyle</div><div class="ticket-name">Electronic Visa on Arrival</div><div class="ticket-detail"><span>Visa No.</span><span class="ticket-val">Z1A9609232</span></div><div class="ticket-detail"><span>Use Before</span><span class="ticket-val">07 Aug 2026</span></div><a class="doc-link" href="https://drive.google.com/file/d/1LzPXsyPhaD2ymBGUGHI15_YFzfhg_pGX/view?usp=sharing" target="_blank">📄 View e-VOA</a></div>
+      <div class="ticket-card"><span class="doc-status-ok">✓ Confirmed</span><span class="ticket-icon">🇮🇩</span><div class="ticket-label">Indonesia e-VOA — Sarah</div><div class="ticket-name">Electronic Visa on Arrival</div><div class="ticket-detail"><span>Visa No.</span><span class="ticket-val">Z1A9609332</span></div><div class="ticket-detail"><span>Use Before</span><span class="ticket-val">07 Aug 2026</span></div><a class="doc-link" href="https://drive.google.com/file/d/1aE_sooQs5c0i74bnO8Jk1Tanjm4pb61U/view?usp=sharing" target="_blank">📄 View e-VOA</a></div>
+      <div class="ticket-card"><span class="doc-status-ok">✓ Paid</span><span class="ticket-icon">🌿</span><div class="ticket-label">Bali Tourism Levy — Kyle</div><div class="ticket-name">Bali Provincial Gov. Levy</div><div class="ticket-detail"><span>Voucher</span><span class="ticket-val">LVB26EU1S2P</span></div><a class="doc-link" href="https://drive.google.com/file/d/1r9RXYJ_UUCxKVdygE8zd-R8HA5M6lNbr/view?usp=sharing" target="_blank">📄 View Levy Voucher</a></div>
+      <div class="ticket-card"><span class="doc-status-ok">✓ Paid</span><span class="ticket-icon">🌿</span><div class="ticket-label">Bali Tourism Levy — Sarah</div><div class="ticket-name">Bali Provincial Gov. Levy</div><div class="ticket-detail"><span>Voucher</span><span class="ticket-val">LVB26EUXBN4</span></div><a class="doc-link" href="https://drive.google.com/file/d/1XKO8CCNJyGWN0k3UIaDl5HObc2U9pZgX/view?usp=sharing" target="_blank">📄 View Levy Voucher</a></div>
     </div>
   </section>
 
@@ -1510,6 +1621,37 @@
   syncCurrency('hkd');
   syncCurrency('idr');
 
+
+
+  // ---- TEMPERATURE CONVERTER ----
+  function convertTemp() {
+    const input = parseFloat(document.getElementById('tempInput').value);
+    const dir = document.getElementById('tempDir').value;
+    if (isNaN(input)) return;
+    let result, fromLabel, toLabel, fromStr, toStr;
+    if (dir === 'f-to-c') {
+      result = ((input - 32) * 5/9);
+      fromLabel = 'Fahrenheit'; toLabel = 'Celsius';
+      fromStr = input.toFixed(1) + '°F';
+      toStr = result.toFixed(1) + '°C';
+    } else {
+      result = (input * 9/5) + 32;
+      fromLabel = 'Celsius'; toLabel = 'Fahrenheit';
+      fromStr = input.toFixed(1) + '°C';
+      toStr = result.toFixed(1) + '°F';
+    }
+    document.getElementById('tempFromLabel').textContent = fromLabel;
+    document.getElementById('tempToLabel').textContent = toLabel;
+    document.getElementById('tempFromVal').textContent = fromStr;
+    document.getElementById('tempToVal').textContent = toStr;
+  }
+  function setTemp(val, unit) {
+    const dir = unit === 'f' ? 'f-to-c' : 'c-to-f';
+    document.getElementById('tempDir').value = dir;
+    document.getElementById('tempInput').value = val;
+    convertTemp();
+  }
+  convertTemp();
 
   // ---- TIMEZONE LIVE CLOCKS ----
   function updateClocks() {
