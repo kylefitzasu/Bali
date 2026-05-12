@@ -1030,6 +1030,116 @@
   }
   .temp-preset-btn:hover { background: var(--sand); }
   .temp-preset-label { font-size: 9px; color: var(--muted); display: block; margin-top: 1px; }
+
+  /* PHOTO GALLERIES */
+  .gallery-section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .gallery-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .photo-grid.wide {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+  @media (max-width: 860px) {
+    .photo-grid { grid-template-columns: repeat(2, 1fr); }
+    .photo-grid.wide { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .photo-grid, .photo-grid.wide { grid-template-columns: 1fr 1fr; }
+  }
+
+  .photo-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--deep-teal);
+  }
+  .photo-item.tall { grid-row: span 2; }
+
+  .photo-item img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .photo-item.tall img { height: 100%; min-height: 372px; }
+
+  .photo-item:hover img { transform: scale(1.05); }
+
+  .photo-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 28px 12px 10px;
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
+    color: white;
+    font-size: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    pointer-events: none;
+  }
+
+  /* HK gallery dark theme override */
+  .hk-photo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    padding: 0 24px 32px;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  @media (max-width: 700px) {
+    .hk-photo-grid { grid-template-columns: repeat(2, 1fr); padding: 0 16px 24px; }
+  }
+  .hk-photo-item {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #1a1a1a;
+  }
+  .hk-photo-item img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+    opacity: 0.85;
+  }
+  .hk-photo-item:hover img { transform: scale(1.06); opacity: 1; }
+  .hk-photo-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 22px 8px 7px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+    color: white;
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.5px;
+  }
+
 </style>
 </head>
 <body>
@@ -1288,6 +1398,46 @@
     <div class="hk-day-panels" id="hk-panel-1"><div class="hk-day-header"><div class="hk-day-badge" style="background:#B8860B;">Day 2</div><h2 class="hk-day-title">Kowloon Peninsula</h2><p class="hk-day-sub">Vertical City, Markets & Modern Art</p></div><div class="hk-timeline" id="hk-day2"></div></div>
     <div class="hk-day-panels" id="hk-panel-2"><div class="hk-day-header"><div class="hk-day-badge" style="background:#0A6B3B;">Day 3</div><h2 class="hk-day-title">Adventure Day</h2><p class="hk-day-sub">Dragon's Back, Sai Kung & Skyline Farewell</p></div><div class="hk-timeline" id="hk-day3"></div></div>
     <div class="hk-essential-tips"><h3 class="hk-tips-title">Essential Tips</h3><div class="hk-tips-grid"><div class="hk-tip-card"><span class="hk-tip-card-icon">🚇</span><div class="hk-tip-card-title">Octopus Card</div><div class="hk-tip-card-text">Buy at any <a href="https://www.mtr.com.hk/en/customer/main/index.html" target="_blank" rel="noopener">MTR</a> station. Covers metro, buses, <a href="https://www.starferry.com.hk/en/home" target="_blank" rel="noopener">Star Ferry</a>, and 7-Eleven.</div></div><div class="hk-tip-card"><span class="hk-tip-card-icon">💰</span><div class="hk-tip-card-title">Money</div><div class="hk-tip-card-text">Carry HKD cash for markets and street food. Cards work everywhere upscale.</div></div><div class="hk-tip-card"><span class="hk-tip-card-icon">🌡️</span><div class="hk-tip-card-title">Weather</div><div class="hk-tip-card-text">Light, breathable clothes. Bring a layer for aggressive restaurant AC.</div></div><div class="hk-tip-card"><span class="hk-tip-card-icon">📱</span><div class="hk-tip-card-title">Apps</div><div class="hk-tip-card-text">Download <a href="https://citymapper.com/hong-kong" target="_blank" rel="noopener">Citymapper HK</a>. <a href="https://translate.google.com/" target="_blank" rel="noopener">Google Translate</a> camera works great here.</div></div></div><h3 class="hk-tips-title" style="margin-top:28px;">Kyle & Sarah Recommended Shortlist</h3><div class="hk-tips-grid"><div class="hk-tip-card"><span class="hk-tip-card-icon">🏙️</span><div class="hk-tip-card-title"><a href="https://www.discoverhongkong.com/us/explore/neighbourhoods/sham-shui-po.html" target="_blank" rel="noopener">Sham Shui Po</a></div><div class="hk-tip-card-text">Best stop for the crowded borough / vertical-city feel, local food, fabrics, electronics, neon, and real Hong Kong texture.</div></div><div class="hk-tip-card"><span class="hk-tip-card-icon">📸</span><div class="hk-tip-card-title"><a href="https://en.wikipedia.org/wiki/Monster_Building" target="_blank" rel="noopener">Monster Building</a></div><div class="hk-tip-card-text">Iconic stacked residential towers in Quarry Bay. Quick photo stop, but be respectful because it is residential.</div></div><div class="hk-tip-card"><span class="hk-tip-card-icon">🎨</span><div class="hk-tip-card-title"><a href="https://www.taikwun.hk/" target="_blank" rel="noopener">Tai Kwun</a> + <a href="https://www.pmq.org.hk/" target="_blank" rel="noopener">PMQ</a></div><div class="hk-tip-card-text">The best art/design/cocktail/architecture pairing near Central and Sheung Wan.</div></div><div class="hk-tip-card"><span class="hk-tip-card-icon">🖼️</span><div class="hk-tip-card-title"><a href="https://www.mplus.org.hk/en/" target="_blank" rel="noopener">M+ Museum</a></div><div class="hk-tip-card-text">Modern visual culture, excellent architecture, and a better fit than Avenue of Stars for art and design.</div></div><div class="hk-tip-card"><span class="hk-tip-card-icon">🍸</span><div class="hk-tip-card-title"><a href="https://coa.com.hk/" target="_blank" rel="noopener">COA</a> / <a href="https://dragonfly.com.hk/" target="_blank" rel="noopener">Dragonfly</a></div><div class="hk-tip-card-text">Strong cocktail options if you want a more adult, design-forward Hong Kong night.</div></div><div class="hk-tip-card"><span class="hk-tip-card-icon">🍽️</span><div class="hk-tip-card-title"><a href="https://www.duddells.co/" target="_blank" rel="noopener">Duddell's</a></div><div class="hk-tip-card-text">Great alternative to Lung King Heen: modern Cantonese, artful atmosphere, and less formal than a hotel fine-dining room.</div></div></div></div>
+
+    <!-- HK PHOTO GALLERY -->
+    <div class="hk-essential-tips" style="padding-top:0;border-top:none;">
+      <h3 class="hk-tips-title" style="padding-top:24px;border-top:1px solid #222;">📸 Hong Kong — Sights &amp; Scenes</h3>
+      <div class="hk-photo-grid">
+        <div class="hk-photo-item">
+          <img src="https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=400&q=85&auto=format&fit=crop" alt="Hong Kong skyline" loading="lazy">
+          <div class="hk-photo-caption">Victoria Harbour Skyline</div>
+        </div>
+        <div class="hk-photo-item">
+          <img src="https://images.unsplash.com/photo-1507941097613-9f2157b69235?w=400&q=85&auto=format&fit=crop" alt="Star Ferry Hong Kong" loading="lazy">
+          <div class="hk-photo-caption">Star Ferry</div>
+        </div>
+        <div class="hk-photo-item">
+          <img src="https://images.unsplash.com/photo-1570366583862-f91883984fde?w=400&q=85&auto=format&fit=crop" alt="Victoria Peak Hong Kong" loading="lazy">
+          <div class="hk-photo-caption">Victoria Peak</div>
+        </div>
+        <div class="hk-photo-item">
+          <img src="https://images.unsplash.com/photo-1510846606678-710e4e7be7eb?w=400&q=85&auto=format&fit=crop" alt="Hong Kong night city" loading="lazy">
+          <div class="hk-photo-caption">Temple Street Night Market</div>
+        </div>
+        <div class="hk-photo-item">
+          <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=400&q=85&auto=format&fit=crop" alt="Dim sum Hong Kong" loading="lazy">
+          <div class="hk-photo-caption">Dim Sum Culture</div>
+        </div>
+        <div class="hk-photo-item">
+          <img src="https://images.unsplash.com/photo-1531259683007-016a7b628fc3?w=400&q=85&auto=format&fit=crop" alt="Wong Tai Sin temple Hong Kong" loading="lazy">
+          <div class="hk-photo-caption">Wong Tai Sin Temple</div>
+        </div>
+        <div class="hk-photo-item">
+          <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=400&q=85&auto=format&fit=crop" alt="Dragon Back hike Hong Kong" loading="lazy">
+          <div class="hk-photo-caption">Dragon's Back Trail</div>
+        </div>
+        <div class="hk-photo-item">
+          <img src="https://images.unsplash.com/photo-1576487503038-d2fafd2c9f39?w=400&q=85&auto=format&fit=crop" alt="Hong Kong tram Peak" loading="lazy">
+          <div class="hk-photo-caption">Peak Tram</div>
+        </div>
+      </div>
+    </div>
+
   </section>
 
   <section class="section" id="itinerary">
@@ -1345,6 +1495,54 @@
       <div class="packing-cat"><div class="packing-cat-title">📋 Documents</div><label class="packing-item"><input type="checkbox"> Passport — Kyle</label><label class="packing-item"><input type="checkbox"> Passport — Sarah</label><label class="packing-item"><input type="checkbox"> Indonesia e-VOA printout</label><label class="packing-item"><input type="checkbox"> Tourism tax QR code</label><label class="packing-item"><input type="checkbox"> Hotel confirmations</label></div>
       <div class="packing-cat"><div class="packing-cat-title">📱 Tech</div><label class="packing-item"><input type="checkbox"> Phone + charger</label><label class="packing-item"><input type="checkbox"> Universal adapter</label><label class="packing-item"><input type="checkbox"> Portable battery bank</label><label class="packing-item"><input type="checkbox"> Earbuds / headphones</label><label class="packing-item"><input type="checkbox"> Downloaded maps</label></div>
     </div>
+
+    <!-- BALI PHOTO GALLERY -->
+    <div style="margin-top:40px;">
+      <div class="gallery-section-label">📸 Bali — Places & Experiences</div>
+
+      <div class="photo-grid wide">
+        <div class="photo-item tall">
+          <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=85&auto=format&fit=crop" alt="Nusa Dua Beach Bali" loading="lazy">
+          <div class="photo-caption">Nusa Dua — Your Home Base</div>
+        </div>
+        <div class="photo-item">
+          <img src="https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=400&q=85&auto=format&fit=crop" alt="Ubud Monkey Forest" loading="lazy">
+          <div class="photo-caption">Sacred Monkey Forest, Ubud</div>
+        </div>
+        <div class="photo-item">
+          <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=400&q=85&auto=format&fit=crop" alt="Uluwatu Temple Bali" loading="lazy">
+          <div class="photo-caption">Uluwatu Temple at Sunset</div>
+        </div>
+        <div class="photo-item">
+          <img src="https://images.unsplash.com/photo-1604928141064-207cea6f571f?w=400&q=85&auto=format&fit=crop" alt="Tanah Lot Temple" loading="lazy">
+          <div class="photo-caption">Tanah Lot Sea Temple</div>
+        </div>
+        <div class="photo-item">
+          <img src="https://images.unsplash.com/photo-1573790387438-4da905039392?w=400&q=85&auto=format&fit=crop" alt="Bali Rice Terraces" loading="lazy">
+          <div class="photo-caption">Tegallalang Rice Terraces</div>
+        </div>
+      </div>
+
+      <div class="photo-grid">
+        <div class="photo-item">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=85&auto=format&fit=crop" alt="Seminyak Beach Bali" loading="lazy">
+          <div class="photo-caption">Seminyak Beach</div>
+        </div>
+        <div class="photo-item">
+          <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc32?w=400&q=85&auto=format&fit=crop" alt="GWK Garuda Wisnu Kencana Bali" loading="lazy">
+          <div class="photo-caption">GWK Cultural Park</div>
+        </div>
+        <div class="photo-item">
+          <img src="https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=400&q=85&auto=format&fit=crop" alt="Bali Hindu Temple" loading="lazy">
+          <div class="photo-caption">Balinese Temple</div>
+        </div>
+        <div class="photo-item">
+          <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=85&auto=format&fit=crop" alt="Bali tropical landscape" loading="lazy">
+          <div class="photo-caption">Tropical Landscape</div>
+        </div>
+      </div>
+    </div>
+
   </section>
 
   <section class="section" id="tips">
