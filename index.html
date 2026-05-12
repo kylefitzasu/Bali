@@ -1149,7 +1149,7 @@
   <h1>Bali &amp; <em>Beyond</em></h1>
   <div class="hero-sub">Kyle &amp; Sarah Fitzpatrick — Complete Trip Hub</div>
   <div class="hero-dates">
-    <span>May 13</span> → Denver Departs → <span>May 23</span> → Bali → Home <span>May 24</span>
+    <span>May 13</span> → Denver Departs → <span>May 15</span> → Hong Kong → <span>May 18</span> → Bali → Home <span>May 24</span>
   </div>
 </div>
 
@@ -1288,23 +1288,24 @@
   </section>
 
   <section class="section" id="globe">
-    <div class="section-header"><span class="section-label">✦</span><h2 class="section-title">Interactive Flight Globe</h2></div>
-    <div class="globe-card">
-      <div class="globe-copy">
-        <div>
-          <div class="ticket-label">Full route animation</div>
-          <div id="routeTitle" class="globe-route-title">DEN → SFO</div>
-          <div id="routeSub" class="globe-route-sub">Denver to San Francisco · May 13</div>
-        </div>
-        <div class="globe-controls">
-          <button id="globePlayBtn" onclick="toggleTripGlobe()">⏸ Pause</button>
-          <button onclick="restartTripGlobe()">↺ Restart</button>
-          <label>Speed <input type="range" id="globeSpeed" min="1200" max="7000" step="200" value="3200"></label>
-        </div>
+    <div class="section-header"><span class="section-label">✦</span><h2 class="section-title">Flight Map</h2></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+      <div style="text-align:center;min-height:48px;">
+        <p id="cgname" style="font-family:'Playfair Display',serif;font-size:22px;color:var(--deep-teal);margin:0 0 4px;font-weight:700;">Denver, CO</p>
+        <p id="cgdate" style="font-family:'DM Mono',monospace;font-size:12px;color:var(--muted);margin:0;letter-spacing:1px;text-transform:uppercase;">Departure: May 13</p>
       </div>
-      <div id="tripGlobe"></div>
-      <div class="route-strip" id="routeStrip"></div>
-      <div class="note-box mt-md"><strong>Stops included:</strong> Denver → San Francisco → Taipei → Hong Kong → Singapore → Bali → Taipei → Los Angeles → Denver.</div>
+      <canvas id="cgc" width="520" height="520" style="display:block;border-radius:50%;max-width:100%;"></canvas>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center;">
+        <button id="cgplay" onclick="cgTogglePlay()" style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;padding:8px 18px;border-radius:8px;border:1px solid var(--border);background:var(--deep-teal);color:var(--sand);cursor:pointer;">⏸ PAUSE</button>
+        <button onclick="cgRestart()" style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;padding:8px 18px;border-radius:8px;border:1px solid var(--border);background:white;color:var(--deep-teal);cursor:pointer;">↺ RESTART</button>
+        <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1px;">SPEED</span>
+        <input type="range" id="cgspeed" min="0.3" max="5" step="0.1" value="1.5" style="width:80px;" oninput="cgSpd=parseFloat(this.value)">
+      </div>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;">
+        <div style="display:flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1px;"><svg width="22" height="6"><line x1="0" y1="3" x2="22" y2="3" stroke="#F4A832" stroke-width="3" stroke-linecap="round"/></svg>OUTBOUND</div>
+        <div style="display:flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1px;"><svg width="22" height="6"><line x1="0" y1="3" x2="22" y2="3" stroke="#5BC8F5" stroke-width="2.5" stroke-dasharray="5,3" stroke-linecap="round"/></svg>RETURN</div>
+        <div style="display:flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1px;"><svg width="12" height="12"><circle cx="6" cy="6" r="5" fill="#FF5E5E"/></svg>VISITED</div>
+      </div>
     </div>
   </section>
 
@@ -1332,6 +1333,7 @@
         <a href="https://www.marriott.com/en-us/hotels/hkgdt-jw-marriott-hotel-hong-kong/photos/" target="_blank" rel="noopener">
           <img class="hotel-photo" src="https://cache.marriott.com/is/image/marriotts7prod/jw-hkgdt-hotel-swimming-pool-39125%3AWide-Hor?fit=constrain&wid=900" alt="JW Marriott Hong Kong outdoor pool with Hong Kong greenery and city towers">
         </a>
+        <img class="hotel-photo" src="https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=800&q=85&auto=format&fit=crop" alt="Hong Kong skyline lit up at night" loading="lazy">
         <div class="hotel-conf"><div class="hotel-conf-label">Confirmation</div><div class="hotel-conf-num" style="font-size:16px;">94185544</div></div>
         <div class="hotel-photo-caption">Outdoor pool · JW Marriott Hong Kong</div>
       </div>
@@ -1358,6 +1360,7 @@
         <a href="https://www.hyatt.com/grand-hyatt/en-US/balgh-grand-hyatt-bali/gallery" target="_blank" rel="noopener">
           <img class="hotel-photo" src="https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2023/09/07/0623/BALGH-P0579-Beach-Cabana-Aerial-Front.jpg/BALGH-P0579-Beach-Cabana-Aerial-Front.16x9.jpg?imwidth=1280" alt="Grand Hyatt Bali beachfront cabanas and Nusa Dua resort grounds">
         </a>
+        <img class="hotel-photo" src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800&q=85&auto=format&fit=crop" alt="Tropical resort pool glowing at night with palm trees and warm lighting" loading="lazy">
         <div class="hotel-conf"><div class="hotel-conf-label">Confirmation</div><div class="hotel-conf-num">520001</div></div>
         <div class="hotel-photo-caption">Beachfront cabanas · Grand Hyatt Bali</div>
       </div>
@@ -1384,6 +1387,7 @@
         <a href="https://www.hyatt.com/hyatt-regency/en-US/laxla-hyatt-regency-los-angeles-international-airport/gallery" target="_blank" rel="noopener">
           <img class="hotel-photo" src="https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2017/07/13/1029/Hyatt-Regency-Los-Angeles-International-Airport-P169-Pool.jpg/Hyatt-Regency-Los-Angeles-International-Airport-P169-Pool.16x9.jpg?imwidth=1280" alt="Hyatt Regency LAX outdoor pool with airport control tower view">
         </a>
+        <img class="hotel-photo" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=85&auto=format&fit=crop" alt="Modern hotel building facade lit up at night with city glow" loading="lazy">
         <div class="hotel-conf"><div class="hotel-conf-label">Confirmation</div><div class="hotel-conf-num" style="font-size:16px;">944971835</div></div>
         <div class="hotel-photo-caption">Outdoor pool · Hyatt Regency LAX</div>
       </div>
@@ -1913,139 +1917,319 @@
   });
 </script>
 
-<script src="https://unpkg.com/globe.gl"></script>
 <script>
 (function(){
-  const stops = [
-    { code:'DEN', name:'Denver, CO',       detail:'Departs May 13 · 8:25 PM',       lat:39.8561, lng:-104.6737 },
-    { code:'SFO', name:'San Francisco, CA',detail:'Layover May 13 · 10:10 PM',      lat:37.6213, lng:-122.3790 },
-    { code:'TPE', name:'Taipei, Taiwan',   detail:'Layover May 15 · 5:35 AM',       lat:25.0797, lng:121.2342 },
-    { code:'HKG', name:'Hong Kong',        detail:'Stopover May 15–18',             lat:22.3080, lng:113.9185 },
-    { code:'SIN', name:'Singapore',        detail:'Layover May 18 · 12:55 PM',      lat:1.3644,  lng:103.9915 },
-    { code:'DPS', name:'Bali, Indonesia',  detail:'Grand Hyatt Bali · May 18–23',   lat:-8.7482, lng:115.1670 },
-    { code:'TPE', name:'Taipei, Taiwan',   detail:'Return layover May 23 · 9:20 PM',lat:25.0797, lng:121.2342 },
-    { code:'LAX', name:'Los Angeles, CA',  detail:'Overnight May 23',               lat:33.9416, lng:-118.4085 },
-    { code:'DEN', name:'Denver, CO',       detail:'Home May 24 · 12:40 PM',         lat:39.8561, lng:-104.6737 }
-  ];
+const C=document.getElementById('cgc');
+if(!C)return;
+const X=C.getContext('2d');
+const W=520,H=520,CX=260,CY=260,R=225;
 
-  const legs = stops.slice(0, -1).map((s, i) => ({
-    startLat: s.lat,
-    startLng: s.lng,
-    endLat: stops[i + 1].lat,
-    endLng: stops[i + 1].lng,
-    from: s.code,
-    to: stops[i + 1].code,
-    label: `${s.code} → ${stops[i + 1].code}`,
-    detail: `${s.name} to ${stops[i + 1].name}`,
-    status: i < 5 ? 'Outbound' : 'Return',
-    color: i < 5 ? '#E8B85A' : '#7EC8E3'
-  }));
+const STOPS=[
+  {n:"Denver, CO",      d:"Departs May 13",   la:39.74, lo:-104.99,t:"out"},
+  {n:"San Francisco",   d:"Layover May 13",   la:37.77, lo:-122.42,t:"out"},
+  {n:"Taipei, Taiwan",  d:"Layover May 15",   la:25.03, lo:121.57, t:"out"},
+  {n:"Hong Kong",       d:"May 15–18",        la:22.32, lo:114.17, t:"out"},
+  {n:"Singapore",       d:"Layover May 18",   la:1.35,  lo:103.82, t:"out"},
+  {n:"Bali, Indonesia", d:"May 18–23",        la:-8.34, lo:115.09, t:"out"},
+  {n:"Taipei, Taiwan",  d:"Layover May 23",   la:25.03, lo:121.57, t:"ret"},
+  {n:"Los Angeles",     d:"Overnight May 23", la:34.05, lo:-118.24,t:"ret"},
+  {n:"Denver, CO",      d:"Arrives May 24",   la:39.74, lo:-104.99,t:"ret"},
+];
 
-  const uniqueStops = [];
-  stops.forEach((stop, idx) => {
-    const key = `${stop.code}-${Math.round(stop.lat * 100)}-${Math.round(stop.lng * 100)}`;
-    if (!uniqueStops.some(s => s.key === key)) uniqueStops.push({ ...stop, key, order: idx + 1 });
+const LAND=[
+  {c:'#4CAF68',o:'#3A9450',segs:[
+    [[-168,72],[-140,70],[-120,68],[-95,74],[-85,73],[-75,68],[-65,63],[-60,47],[-66,44],[-70,42],[-75,35],[-81,25],[-83,10],[-77,8],[-83,10],[-88,16],[-100,19],[-110,23],[-117,32],[-120,34],[-124,49],[-110,49],[-95,49],[-88,48],[-84,46],[-83,42],[-79,43],[-75,44],[-66,45],[-60,47],[-65,63],[-75,68],[-95,74],[-120,68],[-140,70],[-168,72]],
+    [[-152,60],[-138,58],[-130,54],[-124,49],[-130,54],[-138,58],[-152,60]],
+  ]},
+  {c:'#6BCF82',o:'#4aA860',segs:[[[-44,84],[-20,83],[-18,70],[-26,65],[-44,62],[-52,66],[-56,72],[-50,82],[-44,84]]]},
+  {c:'#4CAF68',o:'#3A9450',segs:[[[-82,8],[-77,4],[-62,2],[-50,0],[-35,-5],[-35,-10],[-38,-18],[-42,-22],[-48,-26],[-51,-34],[-58,-38],[-62,-38],[-66,-52],[-68,-54],[-70,-52],[-72,-46],[-74,-38],[-72,-28],[-70,-18],[-75,-10],[-80,0],[-77,4],[-82,8]]]},
+  {c:'#4CAF68',o:'#3A9450',segs:[[[-10,36],[0,36],[8,38],[15,38],[18,40],[24,38],[28,38],[30,42],[26,46],[18,46],[14,46],[10,47],[2,51],[-5,48],[-10,38],[-10,36]]]},
+  {c:'#4CAF68',o:'#3A9450',segs:[[[4,58],[14,56],[20,56],[26,60],[28,64],[30,68],[20,70],[14,64],[10,58],[4,58]]]},
+  {c:'#4CAF68',o:'#3A9450',segs:[[[-18,16],[-15,5],[0,5],[10,4],[16,2],[26,0],[30,-2],[38,-10],[36,-18],[34,-22],[26,-34],[18,-34],[12,-22],[8,-14],[2,4],[4,12],[14,16],[20,22],[30,20],[38,18],[44,8],[50,8],[46,4],[40,2],[36,-2],[34,-8],[38,-10],[36,-18],[26,-34],[18,-34],[12,-22],[2,4],[-5,5],[-15,5],[-18,16]]]},
+  {c:'#4CAF68',o:'#3A9450',segs:[
+    [[26,42],[36,36],[44,38],[58,34],[60,28],[68,22],[76,28],[84,26],[90,20],[100,5],[108,2],[112,-2],[110,-6],[106,-6],[104,2],[100,5],[90,20],[84,26],[80,28],[76,28],[68,22],[60,24],[56,30],[48,30],[44,36],[36,36],[26,42]],
+    [[90,42],[100,40],[120,46],[130,42],[135,35],[130,33],[122,32],[114,22],[104,26],[90,34],[78,34],[68,36],[60,42],[70,42],[90,40],[90,42]],
+  ]},
+  {c:'#4CAF68',o:'#3A9450',segs:[[[100,5],[104,2],[108,2],[108,6],[104,14],[96,20],[100,5]]]},
+  {c:'#4CAF68',o:'#3A9450',segs:[[[130,32],[134,36],[138,38],[141,44],[136,44],[132,34],[130,32]]]},
+  {c:'#4CAF68',o:'#3A9450',segs:[
+    [[96,4],[100,0],[106,-6],[108,-8],[104,-6],[100,-2],[96,2],[96,4]],
+    [[108,-6],[114,-8],[116,-8],[116,-10],[112,-10],[108,-8],[108,-6]],
+    [[108,2],[116,2],[118,0],[116,-4],[112,-4],[108,0],[108,2]],
+    [[122,-2],[126,-2],[128,-4],[128,-6],[124,-6],[122,-4],[122,-2]],
+  ]},
+  {c:'#4CAF68',o:'#3A9450',segs:[[[118,10],[122,12],[122,16],[118,16],[116,14],[118,10]]]},
+  {c:'#4CAF68',o:'#3A9450',segs:[[[114,-22],[128,-14],[136,-12],[142,-12],[146,-18],[150,-22],[152,-30],[150,-38],[142,-38],[132,-32],[124,-34],[114,-34],[112,-26],[114,-22]]]},
+  {c:'#4CAF68',o:'#3A9450',segs:[[[168,-46],[174,-42],[172,-36],[166,-44],[168,-46]]]},
+  {c:'#4CAF68',o:'#3A9450',segs:[[[-6,50],[-2,50],[2,52],[-2,52],[-4,56],[-6,58],[-4,56],[-2,52],[-6,50]]]},
+  {c:'#6BCF82',o:'#4aA860',segs:[[[-24,64],[-14,64],[-12,66],[-20,66],[-24,64]]]},
+];
+
+const TERRAIN=[
+  {lo:20,la:24,r:18,c:'#D4A554'},{lo:45,la:25,r:12,c:'#D4A554'},
+  {lo:65,la:27,r:8,c:'#C4955A'},{lo:-110,la:35,r:7,c:'#C4955A'},
+  {lo:-70,la:-24,r:9,c:'#C4955A'},{lo:135,la:-25,r:14,c:'#D4A554'},
+];
+
+const MOUNTAINS=[
+  {lo:-80,la:2},{lo:-72,la:-15},{lo:-70,la:-32},
+  {lo:-105,la:45},{lo:-112,la:48},{lo:-117,la:46},
+  {lo:10,la:46},{lo:8,la:47},{lo:12,la:47},
+  {lo:85,la:28},{lo:88,la:28},{lo:86,la:30},
+];
+
+const CLOUDS=[
+  {lo:20,la:55,s:1.0},{lo:90,la:58,s:0.8},{lo:-40,la:52,s:0.9},
+  {lo:-120,la:52,s:1.1},{lo:150,la:40,s:0.75},{lo:60,la:12,s:0.65},
+  {lo:-80,la:15,s:0.7},{lo:30,la:-10,s:0.6},{lo:170,la:-30,s:0.7},
+  {lo:-30,la:-5,s:0.8},
+];
+
+let rotLon=-89.99;
+let cgGt=0,cgPlaying=true,cgSpd=1.5,cgLast=null;
+window.cgSpd=1.5;
+const STEPS=300,TOTAL=(STOPS.length-1)*STEPS;
+
+function toRad(d){return d*Math.PI/180;}
+function project(lat,lon,rLon){
+  const φ=toRad(lat),λ=toRad(lon-rLon),cosφ=Math.cos(φ);
+  return{x:CX+R*cosφ*Math.sin(λ),y:CY-R*Math.sin(φ),z:cosφ*Math.cos(λ)};
+}
+function slerp(la1,lo1,la2,lo2,f){
+  const r=toRad;
+  const v1=[Math.cos(r(la1))*Math.cos(r(lo1)),Math.cos(r(la1))*Math.sin(r(lo1)),Math.sin(r(la1))];
+  const v2=[Math.cos(r(la2))*Math.cos(r(lo2)),Math.cos(r(la2))*Math.sin(r(lo2)),Math.sin(r(la2))];
+  let d=Math.max(-1,Math.min(1,v1[0]*v2[0]+v1[1]*v2[1]+v1[2]*v2[2]));
+  const Ω=Math.acos(d);if(Ω<1e-5)return{lat:la1,lon:lo1};
+  const s=Math.sin(Ω),a=Math.sin((1-f)*Ω)/s,b=Math.sin(f*Ω)/s;
+  const rx=a*v1[0]+b*v2[0],ry=a*v1[1]+b*v2[1],rz=a*v1[2]+b*v2[2];
+  return{lat:Math.atan2(rz,Math.sqrt(rx*rx+ry*ry))*180/Math.PI,lon:Math.atan2(ry,rx)*180/Math.PI};
+}
+
+function drawCloud(x,y,s){
+  X.save();X.translate(x,y);X.scale(s,s);
+  X.fillStyle='rgba(255,255,255,0.72)';
+  [[0,0,16],[18,5,13],[-16,5,12],[6,-9,11],[22,-4,9],[-8,-5,9]].forEach(([cx,cy,cr])=>{
+    X.beginPath();X.arc(cx,cy,cr,0,Math.PI*2);X.fill();
+  });
+  X.fillStyle='rgba(255,255,255,0.4)';
+  X.fillRect(-30,4,60,10);
+  X.restore();
+}
+
+function drawMountain(x,y,s){
+  X.save();X.translate(x,y);X.scale(s,s);
+  X.fillStyle='rgba(0,0,0,0.07)';
+  X.beginPath();X.moveTo(-10,0);X.lineTo(0,-16);X.lineTo(10,0);X.closePath();X.fill();
+  X.fillStyle='#8B7355';
+  X.beginPath();X.moveTo(-9,0);X.lineTo(0,-14);X.lineTo(9,0);X.closePath();X.fill();
+  X.fillStyle='#F5F5F5';
+  X.beginPath();X.moveTo(-3,-9);X.lineTo(0,-14);X.lineTo(3,-9);X.closePath();X.fill();
+  X.restore();
+}
+
+function drawDesert(px,py,rx,ry){
+  X.save();
+  X.beginPath();X.ellipse(px,py,rx,ry,0,0,Math.PI*2);X.clip();
+  X.fillStyle='rgba(212,165,84,0.5)';
+  X.fillRect(px-rx,py-ry,rx*2,ry*2);
+  X.strokeStyle='rgba(180,130,60,0.35)';X.lineWidth=1;
+  for(let i=-ry;i<ry;i+=6){
+    X.beginPath();X.moveTo(px-rx,py+i);X.bezierCurveTo(px-rx/2,py+i-3,px+rx/2,py+i+3,px+rx,py+i);X.stroke();
+  }
+  X.restore();
+}
+
+function drawPlane(x,y,ang,sc){
+  X.save();X.translate(x,y);X.rotate(ang);X.scale(sc,sc);
+  X.fillStyle='rgba(0,0,0,0.12)';
+  X.beginPath();X.ellipse(3,5,20,6,0.1,0,Math.PI*2);X.fill();
+  X.fillStyle='#F8F8F8';
+  X.beginPath();X.moveTo(22,0);X.bezierCurveTo(20,-5,-18,-5,-22,0);X.bezierCurveTo(-18,5,20,5,22,0);X.closePath();X.fill();
+  X.strokeStyle='#CCC';X.lineWidth=0.8;X.stroke();
+  X.fillStyle='#E0E0E0';
+  X.beginPath();X.moveTo(4,-2);X.lineTo(-6,-22);X.lineTo(-14,-20);X.lineTo(-2,2);X.closePath();X.fill();
+  X.strokeStyle='#BBB';X.lineWidth=0.8;X.stroke();
+  X.beginPath();X.moveTo(4,2);X.lineTo(-6,22);X.lineTo(-14,20);X.lineTo(-2,-2);X.closePath();X.fill();X.stroke();
+  X.fillStyle='#D8D8D8';
+  X.beginPath();X.moveTo(-14,-2);X.lineTo(-22,-12);X.lineTo(-18,0);X.closePath();X.fill();X.stroke();
+  X.fillStyle='#C8C8C8';
+  [[-10,-14],[-10,14]].forEach(([ex,ey])=>{
+    X.beginPath();X.ellipse(ex,ey,6,3,0,0,Math.PI*2);X.fill();
+    X.strokeStyle='#AAA';X.lineWidth=0.7;X.stroke();
+  });
+  X.fillStyle='rgba(180,210,240,0.6)';
+  X.beginPath();X.moveTo(22,0);X.bezierCurveTo(16,-3,8,-2,8,0);X.bezierCurveTo(8,2,16,3,22,0);X.closePath();X.fill();
+  X.fillStyle='rgba(135,195,235,0.9)';
+  for(let i=0;i<5;i++){X.beginPath();X.ellipse(10-i*6,0,2.2,1.8,0,0,Math.PI*2);X.fill();}
+  X.strokeStyle='#E55';X.lineWidth=1.2;
+  X.beginPath();X.moveTo(16,-2);X.lineTo(-20,-2);X.stroke();
+  X.strokeStyle='#5AF';X.lineWidth=0.8;
+  X.beginPath();X.moveTo(16,2);X.lineTo(-20,2);X.stroke();
+  X.restore();
+}
+
+function drawPin(x,y,visited,active){
+  X.fillStyle='rgba(0,0,0,0.18)';
+  X.beginPath();X.ellipse(x+2,y+18,7,3,0,0,Math.PI*2);X.fill();
+  X.strokeStyle=visited?'#CC3333':'#999';X.lineWidth=2.5;X.lineCap='round';
+  X.beginPath();X.moveTo(x,y);X.lineTo(x,y+16);X.stroke();
+  const fc=active?'#FF8800':visited?'#FF4444':'rgba(255,255,255,0.6)';
+  const hc=active?'#CC6600':visited?'#AA2222':'#888';
+  X.fillStyle=fc;X.beginPath();X.arc(x,y,9,0,Math.PI*2);X.fill();
+  X.strokeStyle=hc;X.lineWidth=1.8;X.stroke();
+  X.fillStyle='rgba(255,255,255,0.4)';
+  X.beginPath();X.arc(x-2,y-2,3,0,Math.PI*2);X.fill();
+  if(visited&&!active){
+    X.strokeStyle='#fff';X.lineWidth=2;X.lineCap='round';
+    X.beginPath();X.moveTo(x-3.5,y);X.lineTo(x-1,y+3);X.lineTo(x+4,y-3);X.stroke();
+  }
+}
+
+function drawCityLabel(x,y,name){
+  const pad=6,fh=11;
+  X.font=`bold ${fh}px sans-serif`;
+  const tw=X.measureText(name).width;
+  const bx=x-tw/2-pad,by=y-fh-pad*2-20,bw=tw+pad*2,bh=fh+pad*2;
+  X.fillStyle='rgba(20,20,40,0.75)';
+  X.beginPath();
+  if(X.roundRect) X.roundRect(bx,by,bw,bh,4);
+  else X.rect(bx,by,bw,bh);
+  X.fill();
+  X.fillStyle='#fff';X.textAlign='center';X.textBaseline='middle';
+  X.fillText(name,x,by+bh/2);
+}
+
+function draw(){
+  X.clearRect(0,0,W,H);
+  X.save();X.beginPath();X.arc(CX,CY,R+3,0,Math.PI*2);X.clip();
+  const oc=X.createRadialGradient(CX-50,CY-50,20,CX,CY,R);
+  oc.addColorStop(0,'#7DD4F4');oc.addColorStop(0.4,'#4AAEE0');
+  oc.addColorStop(0.75,'#2E8AC8');oc.addColorStop(1,'#1A5F9A');
+  X.beginPath();X.arc(CX,CY,R,0,Math.PI*2);X.fillStyle=oc;X.fill();
+  X.strokeStyle='rgba(255,255,255,0.07)';X.lineWidth=0.5;
+  for(let la=-75;la<=75;la+=15){
+    X.beginPath();let f=true;
+    for(let lo=-180;lo<=180;lo+=4){const p=project(la,lo,rotLon);if(p.z>0){f?X.moveTo(p.x,p.y):X.lineTo(p.x,p.y);f=false;}else f=true;}
+    X.stroke();
+  }
+  for(let lo=-180;lo<180;lo+=15){
+    X.beginPath();let f=true;
+    for(let la=-88;la<=88;la+=4){const p=project(la,lo,rotLon);if(p.z>0){f?X.moveTo(p.x,p.y):X.lineTo(p.x,p.y);f=false;}else f=true;}
+    X.stroke();
+  }
+  ['#DFF0FF','#EEF8FF'].forEach((cc,pi)=>{
+    const pla=pi===0?-82:82;
+    X.beginPath();let f=true;
+    for(let lo=-180;lo<=180;lo+=4){const p=project(pla,lo,rotLon);if(p.z>0){f?X.moveTo(p.x,p.y):X.lineTo(p.x,p.y);f=false;}else f=true;}
+    X.closePath();X.fillStyle=cc;X.fill();
+  });
+  LAND.forEach(({c,o,segs})=>{
+    segs.forEach(poly=>{
+      X.beginPath();let f=true,lv=false;
+      poly.forEach(([lo,la])=>{
+        const p=project(la,lo,rotLon);
+        if(p.z>0.02){if(f||!lv)X.moveTo(p.x,p.y);else X.lineTo(p.x,p.y);f=false;lv=true;}else lv=false;
+      });
+      X.closePath();X.fillStyle=c;X.fill();X.strokeStyle=o;X.lineWidth=1.4;X.stroke();
+    });
+  });
+  TERRAIN.forEach(({lo,la,r})=>{
+    const p=project(la,lo,rotLon);
+    if(p.z<0.05)return;
+    X.save();X.beginPath();X.arc(CX,CY,R,0,Math.PI*2);X.clip();
+    drawDesert(p.x,p.y,r*p.z*R/100,r*p.z*R/160);
+    X.restore();
+  });
+  MOUNTAINS.forEach(({lo,la})=>{
+    const p=project(la,lo,rotLon);
+    if(p.z<0.12)return;
+    drawMountain(p.x,p.y,p.z*0.9);
+  });
+  CLOUDS.forEach(({lo,la,s})=>{
+    const p=project(la,lo,rotLon);
+    if(p.z>0.08) drawCloud(p.x,p.y,s*(0.65+p.z*0.45));
+  });
+  X.restore();
+
+  const seg=Math.floor(cgGt/STEPS),frac=(cgGt%STEPS)/STEPS;
+  const drawArc=(s1,s2,maxF,isOut)=>{
+    X.strokeStyle=isOut?'#F4A832':'#5BC8F5';
+    X.lineWidth=isOut?3:2.5;
+    X.setLineDash(isOut?[]:[7,5]);
+    X.lineCap='round';
+    X.beginPath();let f=true;
+    for(let i=0;i<=80;i++){
+      const pos=slerp(s1.la,s1.lo,s2.la,s2.lo,(i/80)*maxF);
+      const p=project(pos.lat,pos.lon,rotLon);
+      if(p.z>0){f?X.moveTo(p.x,p.y):X.lineTo(p.x,p.y);f=false;}else f=true;
+    }
+    X.stroke();X.setLineDash([]);
+  };
+  for(let i=0;i<seg&&i<STOPS.length-1;i++) drawArc(STOPS[i],STOPS[i+1],1,STOPS[i].t==='out');
+  if(seg<STOPS.length-1) drawArc(STOPS[seg],STOPS[seg+1],frac,STOPS[seg].t==='out');
+
+  STOPS.forEach((s,i)=>{
+    const p=project(s.la,s.lo,rotLon);
+    if(p.z<=0.08)return;
+    drawPin(p.x,p.y-2,i<=seg,i===seg);
+    if(i<=seg) drawCityLabel(p.x,p.y-2,s.n);
   });
 
-  const globeEl = document.getElementById('tripGlobe');
-  const routeTitle = document.getElementById('routeTitle');
-  const routeSub = document.getElementById('routeSub');
-  const routeStrip = document.getElementById('routeStrip');
-  const playBtn = document.getElementById('globePlayBtn');
-  const speed = document.getElementById('globeSpeed');
-  if (!globeEl || !window.Globe) {
-    if (globeEl) globeEl.innerHTML = '<div style="color:#F2E8D9;text-align:center;padding:60px 20px;font-family:DM Mono,monospace;">Globe library could not load. Check your internet connection.</div>';
-    return;
+  if(seg<STOPS.length-1){
+    const cur=slerp(STOPS[seg].la,STOPS[seg].lo,STOPS[seg+1].la,STOPS[seg+1].lo,frac);
+    const nxt=slerp(STOPS[seg].la,STOPS[seg].lo,STOPS[seg+1].la,STOPS[seg+1].lo,Math.min(1,frac+0.012));
+    const pc=project(cur.lat,cur.lon,rotLon);
+    const pn=project(nxt.lat,nxt.lon,rotLon);
+    if(pc.z>0.08) drawPlane(pc.x,pc.y,Math.atan2(pn.y-pc.y,pn.x-pc.x),1.05);
+  } else {
+    const p=project(STOPS[STOPS.length-1].la,STOPS[STOPS.length-1].lo,rotLon);
+    if(p.z>0.08){X.font='24px serif';X.textAlign='center';X.fillText('🏠',p.x,p.y-14);}
   }
 
-  routeStrip.innerHTML = legs.map((leg, i) => `<span class="route-pill" id="route-pill-${i}">${leg.label}</span>`).join('');
+  const vig=X.createRadialGradient(CX,CY,R*0.7,CX,CY,R);
+  vig.addColorStop(0,'rgba(0,0,0,0)');vig.addColorStop(1,'rgba(10,40,80,0.35)');
+  X.beginPath();X.arc(CX,CY,R,0,Math.PI*2);X.fillStyle=vig;X.fill();
+  X.save();X.beginPath();X.arc(CX,CY,R,0,Math.PI*2);X.clip();
+  X.fillStyle='rgba(255,255,255,0.09)';
+  X.beginPath();X.ellipse(CX-70,CY-70,100,80,-0.4,0,Math.PI*2);X.fill();
+  X.restore();
+  X.beginPath();X.arc(CX,CY,R,0,Math.PI*2);
+  X.strokeStyle='rgba(255,255,255,0.4)';X.lineWidth=4;X.stroke();
+  X.beginPath();X.arc(CX,CY,R+3,0,Math.PI*2);
+  X.strokeStyle='rgba(30,80,150,0.35)';X.lineWidth=3;X.stroke();
+}
 
-  const globe = Globe()(globeEl)
-    .backgroundColor('rgba(0,0,0,0)')
-    .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
-    .bumpImageUrl('https://unpkg.com/three-globe/example/img/earth-topology.png')
-    .showAtmosphere(true)
-    .atmosphereColor('#7EC8E3')
-    .atmosphereAltitude(0.18)
-    .pointsData(uniqueStops)
-    .pointLat('lat')
-    .pointLng('lng')
-    .pointAltitude(0.018)
-    .pointRadius(d => d.code === 'DPS' || d.code === 'HKG' ? 0.48 : 0.34)
-    .pointColor(d => d.code === 'DPS' ? '#E8825E' : d.code === 'HKG' ? '#FFD700' : '#F2E8D9')
-    .pointLabel(d => `<div style="font-family:Arial,sans-serif;"><b>${d.code}</b> — ${d.name}<br><span>${d.detail}</span></div>`)
-    .labelsData(uniqueStops)
-    .labelLat('lat')
-    .labelLng('lng')
-    .labelText('code')
-    .labelSize(1.1)
-    .labelDotRadius(0.22)
-    .labelColor(() => '#F2E8D9')
-    .labelResolution(2)
-    .arcsData(legs)
-    .arcStartLat('startLat')
-    .arcStartLng('startLng')
-    .arcEndLat('endLat')
-    .arcEndLng('endLng')
-    .arcColor(d => d.color)
-    .arcAltitude(d => d.from === 'SFO' && d.to === 'TPE' ? 0.45 : d.to === 'LAX' ? 0.42 : 0.22)
-    .arcStroke(0.9)
-    .arcDashLength(0.38)
-    .arcDashGap(1.3)
-    .arcDashInitialGap((d, i) => i * 0.22)
-    .arcDashAnimateTime(2600)
-    .arcsTransitionDuration(900);
+function updateInfo(){
+  const seg=Math.floor(cgGt/STEPS),idx=Math.min(seg,STOPS.length-1);
+  const ne=document.getElementById('cgname'),de=document.getElementById('cgdate');
+  if(ne)ne.textContent=STOPS[idx].n;
+  if(de)de.textContent=STOPS[idx].d;
+  const ni=Math.min(idx+1,STOPS.length-1);
+  const diff=((STOPS[ni].lo-20-rotLon+540)%360)-180;
+  rotLon+=diff*0.012;
+}
 
-  globe.controls().autoRotate = true;
-  globe.controls().autoRotateSpeed = 0.45;
-  globe.controls().enableZoom = true;
-  globe.pointOfView({ lat: 25, lng: 132, altitude: 2.35 }, 1200);
+function cgLoop(ts){
+  if(!cgLast)cgLast=ts;
+  const dt=(ts-cgLast)/1000;cgLast=ts;
+  if(cgPlaying&&cgGt<TOTAL){cgGt=Math.min(TOTAL,cgGt+dt*60*window.cgSpd);updateInfo();}
+  draw();
+  requestAnimationFrame(cgLoop);
+}
 
-  let activeLeg = 0;
-  let playing = true;
-  let timer = null;
+window.cgTogglePlay=function(){
+  cgPlaying=!cgPlaying;
+  const btn=document.getElementById('cgplay');
+  if(btn)btn.textContent=cgPlaying?'⏸ PAUSE':'▶ PLAY';
+};
+window.cgRestart=function(){
+  cgGt=0;rotLon=-89.99;cgPlaying=true;cgLast=null;
+  const btn=document.getElementById('cgplay');
+  if(btn)btn.textContent='⏸ PAUSE';
+};
 
-  function setActiveLeg(i) {
-    activeLeg = i % legs.length;
-    const leg = legs[activeLeg];
-    const nextStop = stops[activeLeg + 1];
-    routeTitle.textContent = leg.label;
-    routeSub.textContent = `${leg.detail} · ${leg.status}`;
-    document.querySelectorAll('.route-pill').forEach((pill, idx) => pill.classList.toggle('active', idx === activeLeg));
-
-    globe.arcsData(legs.map((l, idx) => ({
-      ...l,
-      color: idx === activeLeg ? '#FF6B6B' : l.color
-    })));
-    globe.pointOfView({ lat: nextStop.lat, lng: nextStop.lng, altitude: 2.1 }, 1100);
-  }
-
-  function schedule() {
-    clearInterval(timer);
-    timer = setInterval(() => {
-      if (playing) setActiveLeg(activeLeg + 1);
-    }, Number(speed.value));
-  }
-
-  window.toggleTripGlobe = function() {
-    playing = !playing;
-    playBtn.textContent = playing ? '⏸ Pause' : '▶ Play';
-    globe.controls().autoRotate = playing;
-  };
-
-  window.restartTripGlobe = function() {
-    playing = true;
-    playBtn.textContent = '⏸ Pause';
-    globe.controls().autoRotate = true;
-    setActiveLeg(0);
-    schedule();
-  };
-
-  speed.addEventListener('input', schedule);
-  window.addEventListener('resize', () => globe.width(globeEl.clientWidth).height(globeEl.clientHeight));
-
-  setActiveLeg(0);
-  schedule();
+requestAnimationFrame(cgLoop);
 })();
 </script>
 
